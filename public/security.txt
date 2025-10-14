@@ -1,0 +1,27 @@
+Contact: security@phantom-protocol.com
+Expires: 2025-12-31T23:59:59.000Z
+Preferred-Languages: en, es
+Canonical: https://phantom-protocol.vercel.app/.well-known/security.txt
+
+# Security Policy
+# If you discover a security vulnerability, please report it responsibly.
+# Do not exploit the vulnerability or access data that doesn't belong to you.
+
+# Scope
+# This security policy applies to:
+# - https://phantom-protocol.vercel.app
+# - All subdomains
+
+# Out of Scope
+# - Social engineering attacks
+# - Physical attacks
+# - Denial of Service (DoS/DDoS)
+# - Spam or phishing attacks
+
+# Safe Harbor
+# We consider security research conducted under this policy to be:
+# - Authorized in accordance with the Computer Fraud and Abuse Act
+# - Exempt from DMCA
+# - Lawful and helpful to the security of the internet
+
+# Thank you for helping keep Phantom Protocol secure!

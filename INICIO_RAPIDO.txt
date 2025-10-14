@@ -1,0 +1,98 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║              👻 PHANTOM PROTOCOL - INICIO RÁPIDO             ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+🎯 OPCIÓN 1: DEPLOY EN VERCEL (MÁS FÁCIL - SIN INSTALAR NADA)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Crea cuenta en Vercel:
+   👉 https://vercel.com/signup
+
+2. Sube tu proyecto a GitHub:
+   👉 https://github.com/new
+   - Descarga GitHub Desktop: https://desktop.github.com/
+   - Arrastra tu carpeta al programa
+   - Click en "Publish repository"
+
+3. Deploy en Vercel:
+   👉 https://vercel.com/new
+   - Importa tu repositorio
+   - Click en "Deploy"
+   - ¡Espera 2 minutos!
+
+✅ Tu sitio estará en: https://phantom-protocol.vercel.app
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🖥️ OPCIÓN 2: EJECUTAR LOCALMENTE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Instala Node.js:
+   👉 https://nodejs.org/
+   - Descarga versión LTS
+   - Instala y reinicia tu PC
+
+2. Ejecuta el proyecto:
+   - Doble click en: setup-and-deploy.bat
+   - Elige opción 1
+   - Abre: http://localhost:3000
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📚 ARCHIVOS IMPORTANTES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📄 LEEME_PRIMERO.md          → Empieza aquí
+📄 DEPLOY_INSTRUCTIONS.md    → Guía completa de deploy
+📄 README.md                 → Documentación técnica
+📄 GUIA_DE_USO.md           → Cómo usar el sitio
+📄 ANIMACIONES.md           → Especificaciones técnicas
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✨ CARACTERÍSTICAS DEL PROYECTO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Logo animado épico
+✅ Cursor personalizado
+✅ Loading screen
+✅ 60+ microanimaciones
+✅ Pricing estilo Necrum
+✅ Sistema de pago Bitcoin
+✅ Responsive completo
+✅ SEO optimizado
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🆘 ¿PROBLEMAS?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+❌ "npm no se reconoce"
+   → Instala Node.js: https://nodejs.org/
+
+❌ "git no se reconoce"
+   → Instala Git: https://git-scm.com/
+
+❌ Otros problemas
+   → Lee: DEPLOY_INSTRUCTIONS.md
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 RECOMENDACIÓN PARA TI
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Si NO quieres instalar nada:
+
+1. Sube a GitHub (GitHub Desktop)
+2. Deploy en Vercel (3 clicks)
+3. ¡Listo!
+
+⏱️ Tiempo total: 5-10 minutos
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+¡Tu obra de arte está lista para el mundo! 🎨✨
+
+Desarrollado con 💜 - Phantom Protocol
