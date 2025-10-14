@@ -230,39 +230,10 @@ export default function PricingSection() {
                     : '0 0 40px rgba(123, 44, 191, 0.4)'
                 }}
               >
-                {/* Animated border effect */}
-                <motion.div
-                  className="absolute inset-0 opacity-0"
-                  style={{
-                    background: `conic-gradient(from 0deg, transparent, ${plan.popular ? '#FF2E2E' : '#B026FF'}, transparent)`
-                  }}
-                  whileHover={{ opacity: 0.3, rotate: 360 }}
-                  transition={{ duration: 2, ease: "linear" }}
-                />
+
 
                 <div className="bg-transparent p-10 rounded-lg h-full relative z-10">
-                  {/* Floating particles inside card */}
-                  {[...Array(3)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute w-1 h-1 bg-purple-400 rounded-full opacity-50"
-                      style={{
-                        top: `${20 + i * 30}%`,
-                        left: `${10 + i * 20}%`
-                      }}
-                      animate={{
-                        y: [-10, 10, -10],
-                        x: [-5, 5, -5],
-                        opacity: [0.3, 0.7, 0.3]
-                      }}
-                      transition={{
-                        duration: 3 + i,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: i * 0.5
-                      }}
-                    />
-                  ))}
+
 
                   <div className="text-center mb-8">
                     {/* Badge si existe */}
@@ -339,47 +310,34 @@ export default function PricingSection() {
                   <div className="space-y-3">
                     <motion.button
                       onClick={() => handleBuyNow(plan)}
-                      className={`w-full bg-gradient-to-r ${plan.color} hover:opacity-90 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 neon-border flex items-center justify-center relative overflow-hidden group`}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                      className={`w-full bg-gradient-to-r ${plan.color} hover:opacity-90 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center`}
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
                     >
-                      {/* Shine effect */}
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-30"
-                        initial={{ x: '-100%' }}
-                        whileHover={{ x: '100%' }}
-                        transition={{ duration: 0.6 }}
-                      />
-                      <motion.svg 
+                      <svg 
                         className="w-5 h-5 mr-2" 
                         fill="currentColor" 
                         viewBox="0 0 20 20"
-                        whileHover={{ rotate: [0, -10, 10, 0] }}
-                        transition={{ duration: 0.5 }}
                       >
                         <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
-                      </motion.svg>
-                      <span className="relative z-10">Buy Now</span>
+                      </svg>
+                      <span>Comprar Ahora</span>
                     </motion.button>
                     
                     <motion.button
-                      className="w-full bg-dark-bg hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg border border-gray-600 hover:border-yellow-500 transition-all duration-300 flex items-center justify-center relative overflow-hidden group"
-                      whileHover={{ 
-                        scale: 1.02,
-                        borderColor: '#EAB308'
-                      }}
-                      whileTap={{ scale: 0.98 }}
+                      onClick={() => handleBuyNow(plan)}
+                      className="w-full bg-primary hover:bg-secondary text-light font-semibold py-3 px-6 rounded-xl border-2 border-accent/30 hover:border-accent transition-all duration-300 flex items-center justify-center"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
                     >
-                      <motion.svg 
+                      <svg 
                         className="w-5 h-5 mr-2" 
                         fill="currentColor" 
                         viewBox="0 0 24 24"
-                        animate={{ rotate: [0, 5, -5, 0] }}
-                        transition={{ duration: 2, repeat: Infinity }}
                       >
                         <path d="M23.638 14.904c-1.602 6.43-8.113 10.34-14.542 8.736C2.67 22.05-1.244 15.525.362 9.105 1.962 2.67 8.475-1.243 14.9.358c6.43 1.605 10.342 8.115 8.738 14.548v-.002zm-6.35-4.613c.24-1.59-.974-2.45-2.64-3.03l.54-2.153-1.315-.33-.525 2.107c-.345-.087-.705-.167-1.064-.25l.526-2.127-1.32-.33-.54 2.165c-.285-.067-.565-.132-.84-.2l-1.815-.45-.35 1.407s.975.225.955.236c.535.136.63.486.615.766l-1.477 5.92c-.075.166-.24.406-.614.314.015.02-.96-.24-.96-.24l-.66 1.51 1.71.426.93.242-.54 2.19 1.32.327.54-2.17c.36.1.705.19 1.05.273l-.51 2.154 1.32.33.545-2.19c2.24.427 3.93.257 4.64-1.774.57-1.637-.03-2.58-1.217-3.196.854-.193 1.5-.76 1.68-1.93h.01zm-3.01 4.22c-.404 1.64-3.157.75-4.05.53l.72-2.9c.896.23 3.757.67 3.33 2.37zm.41-4.24c-.37 1.49-2.662.735-3.405.55l.654-2.64c.744.18 3.137.524 2.75 2.084v.006z"/>
-                      </motion.svg>
-                      <span className="relative z-10">Bitcoin Payment</span>
+                      </svg>
+                      <span>Pago Bitcoin</span>
                     </motion.button>
                   </div>
                 </div>

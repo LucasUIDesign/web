@@ -108,28 +108,6 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.8 }}
           >
-            {/* Animated background pulse */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-accent to-highlight rounded-2xl blur-xl"
-              animate={{
-                opacity: [0.4, 0.7, 0.4],
-                scale: [1, 1.1, 1]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            
-            {/* Shine effect */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40"
-              initial={{ x: '-100%' }}
-              whileHover={{ x: '100%' }}
-              transition={{ duration: 0.6 }}
-            />
-            
             <span className="relative z-10 flex items-center gap-3">
               COMPRAR AHORA
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

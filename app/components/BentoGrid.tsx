@@ -172,35 +172,8 @@ export default function BentoGrid() {
                 transition: { duration: 0.3 }
               }}
             >
-              {/* Animated glow effect */}
-              <motion.div
-                className="absolute -inset-1 bg-gradient-to-r from-accent via-highlight to-accent rounded-3xl opacity-0 blur-xl"
-                whileHover={{ opacity: 0.4 }}
-                transition={{ duration: 0.3 }}
-              />
+              <div className="bento-card p-8 rounded-3xl h-full relative overflow-hidden border-2 border-accent/20 hover:border-accent/50 transition-all duration-300">
 
-              <div className="bento-card p-8 rounded-3xl h-full relative z-10 overflow-hidden border-2 border-accent/20 hover:border-accent/50 transition-all duration-300">
-                {/* Background particles */}
-                {[...Array(5)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute w-1 h-1 bg-white rounded-full opacity-20"
-                    style={{
-                      top: `${Math.random() * 100}%`,
-                      left: `${Math.random() * 100}%`
-                    }}
-                    animate={{
-                      y: [0, -20, 0],
-                      opacity: [0.2, 0.5, 0.2],
-                      scale: [1, 1.5, 1]
-                    }}
-                    transition={{
-                      duration: 2 + Math.random() * 2,
-                      repeat: Infinity,
-                      delay: Math.random() * 2
-                    }}
-                  />
-                ))}
 
                 <div className="flex items-center mb-6">
                   <motion.div
@@ -253,21 +226,7 @@ export default function BentoGrid() {
                   {activeDemo === feature.demo && renderDemo(feature.demo)}
                 </motion.div>
 
-                {/* Efecto de brillo en hover */}
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent rounded-xl"
-                  initial={{ x: '-100%', opacity: 0 }}
-                  whileHover={{ x: '100%', opacity: 1 }}
-                  transition={{ duration: 0.6 }}
-                />
 
-                {/* Corner accent */}
-                <motion.div
-                  className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-white/10 to-transparent rounded-bl-full"
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileHover={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
               </div>
             </motion.div>
           ))}
