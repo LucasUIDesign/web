@@ -8,11 +8,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'neon-red': '#FF2E2E',
-        'neon-blue': '#00D4FF',
-        'neon-purple': '#B026FF',
-        'dark-bg': '#0A0A0A',
-        'dark-card': '#1A1A1A',
+        'neon-red': '#FF6B6B',
+        'neon-blue': '#4ECDC4',
+        'neon-purple': '#A78BFA',
+        'dark-bg': '#0F0F1E',
+        'dark-card': '#1A1625',
+        'necrum-purple': '#8B5CF6',
+        'necrum-yellow': '#EAB308',
       },
       fontFamily: {
         'futuristic': ['Orbitron', 'Rajdhani', 'monospace'],

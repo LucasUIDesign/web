@@ -5,10 +5,10 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'PHANTOM PROTOCOL - Cheats VALORANT Undetectables 2025',
-  description: 'Domina VALORANT con Phantom Protocol. Aimbot, Wallhack y ESP con IA adaptativa. Usado por +10,000 pros en torneos.',
-  keywords: 'VALORANT cheats, undetected aimbot, ESP hack 2025, best cheats for VALORANT, phantom protocol, valorant hacks',
-  robots: 'noindex, nofollow', // Importante para contenido ficticio
+  title: 'PHANTOM PROTOCOL - Premium VALORANT Enhancements',
+  description: 'Domina VALORANT con Phantom Protocol. Aimbot, Wallhack y ESP con IA adaptativa. Planes desde 7 días hasta Lifetime. Usado por +10,000 jugadores.',
+  keywords: 'VALORANT cheats, undetected aimbot, ESP hack 2025, best cheats for VALORANT, phantom protocol, valorant hacks, valorant enhancements',
+  robots: 'noindex, nofollow',
   openGraph: {
     title: 'PHANTOM PROTOCOL - Cheats VALORANT Undetectables',
     description: 'Aimbot, Wallhack y ESP con IA adaptativa. Solo 47 licencias disponibles.',

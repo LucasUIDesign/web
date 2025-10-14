@@ -5,49 +5,84 @@ import { useEffect, useState } from 'react'
 
 const plans = [
   {
-    name: "Bronze",
-    price: 49.99,
-    originalPrice: 79.99,
+    name: "7 DAYS",
+    price: 15,
+    originalPrice: 25,
+    duration: "7 días",
     features: [
-      "Aimbot básico",
-      "ESP estándar", 
-      "7 días de garantía",
-      "Soporte por email",
-      "Actualizaciones básicas"
+      "Access To All Products",
+      "Special Discord Role",
+      "Priority Support 24/7",
+      "Frequent Updates",
+      "High Quality",
+      "No Ads"
     ],
-    color: "from-orange-600 to-orange-800",
-    popular: false
+    color: "from-orange-500 to-orange-700",
+    borderColor: "border-orange-500",
+    popular: false,
+    note: "Perfect para probar"
   },
   {
-    name: "Gold",
-    price: 99.99,
-    originalPrice: 149.99,
+    name: "MONTHLY VIP",
+    price: 30,
+    originalPrice: 50,
+    duration: "1 mes",
     features: [
-      "Todo en Bronze +",
-      "Wallhack avanzado",
-      "Soporte 24/7",
-      "Actualizaciones vitalicias",
-      "Configuración personalizada",
-      "Anti-detección mejorada"
+      "Access To All Products",
+      "Special Discord Role",
+      "Priority Support 24/7",
+      "Frequent Updates",
+      "High Quality",
+      "No Ads",
+      "Configuración personalizada"
     ],
     color: "from-yellow-500 to-yellow-700",
-    popular: true
+    borderColor: "border-yellow-500",
+    popular: true,
+    note: "Más popular"
   },
   {
-    name: "Platinum",
-    price: 149.99,
-    originalPrice: 299.99,
+    name: "YEARLY VIP",
+    price: 90,
+    originalPrice: 150,
+    duration: "1 año",
     features: [
-      "Todo en Gold +",
-      "Cheats de torneo",
-      "IA personalizada",
-      "Prioridad en soporte",
-      "Acceso beta",
-      "Configuración remota",
-      "Garantía de por vida"
+      "Access To All Products",
+      "Special Discord Role",
+      "Priority Support 24/7",
+      "Frequent Updates",
+      "High Quality",
+      "No Ads",
+      "Configuración personalizada",
+      "Acceso beta features"
     ],
-    color: "from-purple-600 to-purple-800",
-    popular: false
+    color: "from-blue-500 to-blue-700",
+    borderColor: "border-blue-500",
+    popular: false,
+    note: "Ahorra €270 comparado con monthly"
+  },
+  {
+    name: "LIFETIME VIP",
+    price: 200,
+    originalPrice: 400,
+    duration: "De por vida",
+    features: [
+      "Access To All Products",
+      "Special Discord Role",
+      "Priority Support 24/7",
+      "Frequent Updates",
+      "High Quality",
+      "No Ads",
+      "Configuración personalizada",
+      "Acceso beta features",
+      "Configuración remota",
+      "Soporte prioritario"
+    ],
+    color: "from-purple-500 to-purple-700",
+    borderColor: "border-purple-500",
+    popular: false,
+    note: "Best value - Paga una vez, usa forever",
+    badge: "LIMITED EDITION"
   }
 ]
 
@@ -145,7 +180,7 @@ export default function PricingSection() {
         </motion.div>
 
         {/* Planes de precios */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {plans.map((plan, index) => (
             <motion.div
               key={plan.name}
@@ -180,11 +215,11 @@ export default function PricingSection() {
               )}
               
               <motion.div 
-                className={`bg-gradient-to-br ${plan.color} p-1 rounded-xl relative overflow-hidden`}
+                className={`bg-[#1a1625] border-2 ${plan.borderColor} rounded-2xl relative overflow-hidden`}
                 whileHover={{
                   boxShadow: plan.popular 
-                    ? '0 0 40px rgba(255, 46, 46, 0.6)' 
-                    : '0 0 30px rgba(176, 38, 255, 0.4)'
+                    ? '0 0 40px rgba(234, 179, 8, 0.4)' 
+                    : '0 0 30px rgba(168, 85, 247, 0.3)'
                 }}
               >
                 {/* Animated border effect */}
@@ -197,7 +232,7 @@ export default function PricingSection() {
                   transition={{ duration: 2, ease: "linear" }}
                 />
 
-                <div className="bg-dark-card p-8 rounded-lg h-full relative z-10">
+                <div className="bg-transparent p-8 rounded-lg h-full relative z-10">
                   {/* Floating particles inside card */}
                   {[...Array(3)].map((_, i) => (
                     <motion.div
@@ -222,35 +257,50 @@ export default function PricingSection() {
                   ))}
 
                   <div className="text-center mb-8">
+                    {/* Badge si existe */}
+                    {plan.badge && (
+                      <motion.div
+                        className="inline-block bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-4"
+                        animate={{ scale: [1, 1.05, 1] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      >
+                        {plan.badge}
+                      </motion.div>
+                    )}
+                    
                     <motion.h3 
-                      className="text-2xl font-bold text-white mb-2"
+                      className="text-xl font-bold text-white mb-2 tracking-wider"
                       whileHover={{ scale: 1.05 }}
                     >
                       {plan.name}
                     </motion.h3>
-                    <div className="mb-4">
+                    
+                    <div className="mb-2">
                       <motion.span 
-                        className="text-4xl font-bold text-white"
+                        className="text-5xl font-black text-white"
                         animate={{
                           textShadow: [
-                            '0 0 5px rgba(255, 255, 255, 0.5)',
-                            '0 0 10px rgba(255, 255, 255, 0.8)',
-                            '0 0 5px rgba(255, 255, 255, 0.5)'
+                            '0 0 5px rgba(255, 255, 255, 0.3)',
+                            '0 0 10px rgba(255, 255, 255, 0.5)',
+                            '0 0 5px rgba(255, 255, 255, 0.3)'
                           ]
                         }}
                         transition={{ duration: 2, repeat: Infinity }}
                       >
-                        ${plan.price}
+                        €{plan.price}
                       </motion.span>
-                      <span className="text-lg text-gray-400 line-through ml-2">${plan.originalPrice}</span>
+                      <span className="text-base text-gray-500 line-through ml-2">€{plan.originalPrice}</span>
                     </div>
+                    
+                    <div className="text-sm text-gray-400 mb-3">{plan.duration}</div>
+                    
                     <motion.div 
-                      className="text-green-400 font-semibold"
+                      className="text-green-400 font-semibold text-sm"
                       initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3 }}
                     >
-                      Ahorras ${(plan.originalPrice - plan.price).toFixed(2)}
+                      {plan.note}
                     </motion.div>
                   </div>
 

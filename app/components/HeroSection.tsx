@@ -45,27 +45,27 @@ export default function HeroSection() {
         >
           {/* Headline Principal */}
           <motion.h1 
-            className="text-6xl md:text-8xl font-futuristic font-black mb-6 leading-tight"
+            className="text-5xl md:text-7xl font-futuristic font-bold mb-6 leading-tight"
             animate={{ 
               textShadow: [
-                '0 0 10px #FF2E2E',
-                '0 0 20px #FF2E2E, 0 0 30px #FF2E2E',
-                '0 0 10px #FF2E2E'
+                '0 0 10px rgba(139, 92, 246, 0.3)',
+                '0 0 20px rgba(139, 92, 246, 0.5)',
+                '0 0 10px rgba(139, 92, 246, 0.3)'
               ]
             }}
-            transition={{ duration: 2, repeat: Infinity }}
+            transition={{ duration: 3, repeat: Infinity }}
           >
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-purple-500 to-blue-500">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400">
               DOMINA VALORANT
             </span>
-            <span className="block text-neon-red glow-text">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-purple-400">
               CON {glitchText}
             </span>
           </motion.h1>
 
           {/* Subheadline */}
           <motion.p 
-            className="text-xl md:text-2xl text-gray-300 mb-4 font-medium"
+            className="text-lg md:text-xl text-gray-400 mb-4 font-normal"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
@@ -74,7 +74,7 @@ export default function HeroSection() {
           </motion.p>
 
           <motion.p 
-            className="text-lg md:text-xl text-neon-blue mb-8 font-semibold"
+            className="text-base md:text-lg text-purple-300 mb-8 font-medium"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 1 }}
