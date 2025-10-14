@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import CheckoutModal from './CheckoutModal'
 
 const plans = [
   {
@@ -94,6 +95,13 @@ export default function PricingSection() {
   })
   
   const [licensesSold, setLicensesSold] = useState(83)
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false)
+  const [selectedPlan, setSelectedPlan] = useState<typeof plans[0] | null>(null)
+
+  const handleBuyNow = (plan: typeof plans[0]) => {
+    setSelectedPlan(plan)
+    setIsCheckoutOpen(true)
+  }
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -330,6 +338,7 @@ export default function PricingSection() {
 
                   <div className="space-y-3">
                     <motion.button
+                      onClick={() => handleBuyNow(plan)}
                       className={`w-full bg-gradient-to-r ${plan.color} hover:opacity-90 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 neon-border flex items-center justify-center relative overflow-hidden group`}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
@@ -425,6 +434,15 @@ export default function PricingSection() {
           </div>
         </motion.div>
       </div>
+
+      {/* Checkout Modal */}
+      {selectedPlan && (
+        <CheckoutModal
+          isOpen={isCheckoutOpen}
+          onClose={() => setIsCheckoutOpen(false)}
+          plan={selectedPlan}
+        />
+      )}
     </section>
   )
 }
