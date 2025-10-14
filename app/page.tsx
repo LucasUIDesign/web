@@ -5,10 +5,10 @@ import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
 import BentoGrid from './components/BentoGrid'
 import PricingSection from './components/PricingSection'
-import PaymentSection from './components/PaymentSection'
+
 import SocialProof from './components/SocialProof'
 import Footer from './components/Footer'
-import MatrixBackground from './components/MatrixBackground'
+import VideoBackground from './components/VideoBackground'
 import CustomCursor from './components/CustomCursor'
 import LoadingScreen from './components/LoadingScreen'
 
@@ -28,12 +28,11 @@ export default function Home() {
       <LoadingScreen />
       <main className="relative min-h-screen">
         <CustomCursor />
-        <MatrixBackground />
+        <VideoBackground />
         <Navbar />
         <HeroSection />
         <BentoGrid />
         <PricingSection />
-        <PaymentSection />
         <SocialProof />
         <Footer />
       </main>

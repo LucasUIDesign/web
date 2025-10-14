@@ -18,8 +18,8 @@ const plans = [
       "High Quality",
       "No Ads"
     ],
-    color: "from-orange-500 to-orange-700",
-    borderColor: "border-orange-500",
+    color: "from-sakura to-crimson",
+    borderColor: "border-sakura",
     popular: false,
     note: "Perfect para probar"
   },
@@ -37,8 +37,8 @@ const plans = [
       "No Ads",
       "Configuración personalizada"
     ],
-    color: "from-yellow-500 to-yellow-700",
-    borderColor: "border-yellow-500",
+    color: "from-gold to-crimson",
+    borderColor: "border-gold",
     popular: true,
     note: "Más popular"
   },
@@ -57,8 +57,8 @@ const plans = [
       "Configuración personalizada",
       "Acceso beta features"
     ],
-    color: "from-blue-500 to-blue-700",
-    borderColor: "border-blue-500",
+    color: "from-indigo to-charcoal",
+    borderColor: "border-indigo",
     popular: false,
     note: "Ahorra €270 comparado con monthly"
   },
@@ -79,8 +79,8 @@ const plans = [
       "Configuración remota",
       "Soporte prioritario"
     ],
-    color: "from-purple-500 to-purple-700",
-    borderColor: "border-purple-500",
+    color: "from-crimson to-gold",
+    borderColor: "border-crimson",
     popular: false,
     note: "Best value - Paga una vez, usa forever",
     badge: "LIMITED EDITION"

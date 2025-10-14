@@ -8,13 +8,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'neon-red': '#FF6B6B',
-        'neon-blue': '#4ECDC4',
-        'neon-purple': '#A78BFA',
-        'dark-bg': '#0F0F1E',
-        'dark-card': '#1A1625',
-        'necrum-purple': '#8B5CF6',
-        'necrum-yellow': '#EAB308',
+        // Paleta Japonesa Minimalista
+        'sakura': '#E8B4B8',        // Rosa sakura suave
+        'indigo': '#4A5568',         // Índigo japonés
+        'charcoal': '#2D3748',       // Carbón oscuro
+        'slate': '#1A202C',          // Pizarra profunda
+        'gold': '#D4AF37',           // Oro apagado
+        'crimson': '#DC143C',        // Carmesí elegante
+        'jade': '#00A86B',           // Jade suave
+        'ivory': '#F7FAFC',          // Marfil
+        'ash': '#718096',            // Ceniza
+        'midnight': '#0A0E1A',       // Medianoche
       },
       fontFamily: {
         'futuristic': ['Orbitron', 'Rajdhani', 'monospace'],

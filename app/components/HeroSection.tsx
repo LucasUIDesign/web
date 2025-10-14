@@ -43,29 +43,29 @@ export default function HeroSection() {
           transition={{ duration: 1 }}
           className="max-w-4xl mx-auto"
         >
-          {/* Headline Principal */}
+          {/* Headline Principal - Estilo Japonés */}
           <motion.h1 
             className="text-5xl md:text-7xl font-futuristic font-bold mb-6 leading-tight"
             animate={{ 
               textShadow: [
-                '0 0 10px rgba(139, 92, 246, 0.3)',
-                '0 0 20px rgba(139, 92, 246, 0.5)',
-                '0 0 10px rgba(139, 92, 246, 0.3)'
+                '0 0 20px rgba(212, 175, 55, 0.2)',
+                '0 0 40px rgba(212, 175, 55, 0.4)',
+                '0 0 20px rgba(212, 175, 55, 0.2)'
               ]
             }}
-            transition={{ duration: 3, repeat: Infinity }}
+            transition={{ duration: 4, repeat: Infinity }}
           >
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-gold via-sakura to-crimson">
               DOMINA VALORANT
             </span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-purple-400">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-crimson via-gold to-sakura">
               CON {glitchText}
             </span>
           </motion.h1>
 
-          {/* Subheadline */}
+          {/* Subheadline - Estilo Minimalista */}
           <motion.p 
-            className="text-lg md:text-xl text-gray-400 mb-4 font-normal"
+            className="text-lg md:text-xl text-ash mb-4 font-light tracking-wide"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
@@ -74,7 +74,7 @@ export default function HeroSection() {
           </motion.p>
 
           <motion.p 
-            className="text-base md:text-lg text-purple-300 mb-8 font-medium"
+            className="text-base md:text-lg text-sakura mb-8 font-normal"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 1 }}
@@ -94,9 +94,9 @@ export default function HeroSection() {
             </p>
           </motion.div>
 
-          {/* CTA Principal */}
+          {/* CTA Principal - Estilo Japonés */}
           <motion.button
-            className="group relative bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold py-6 px-12 rounded-lg text-xl transition-all duration-300 transform neon-border overflow-hidden"
+            className="group relative bg-gradient-to-r from-crimson to-gold hover:from-gold hover:to-crimson text-ivory font-bold py-6 px-12 rounded-sm text-xl transition-all duration-500 transform border-2 border-gold overflow-hidden"
             whileHover={{ 
               boxShadow: '0 0 40px #FF2E2E, 0 0 60px rgba(255, 46, 46, 0.5)',
               scale: 1.05 

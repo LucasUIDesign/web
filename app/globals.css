@@ -9,15 +9,19 @@
 }
 
 body {
-  background: #0F0F1E;
-  color: #E5E7EB;
+  background: #0A0E1A;
+  color: #F7FAFC;
   font-family: 'Rajdhani', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .glow-text {
-  text-shadow: 0 0 10px rgba(139, 92, 246, 0.4), 0 0 20px rgba(139, 92, 246, 0.3);
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.3), 0 0 40px rgba(212, 175, 55, 0.2);
+}
+
+.japanese-border {
+  border-image: linear-gradient(45deg, #D4AF37, #DC143C) 1;
 }
 
 .neon-border {
