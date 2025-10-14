@@ -8,20 +8,21 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Paleta Japonesa Minimalista
-        'sakura': '#E8B4B8',        // Rosa sakura suave
-        'indigo': '#4A5568',         // Índigo japonés
-        'charcoal': '#2D3748',       // Carbón oscuro
-        'slate': '#1A202C',          // Pizarra profunda
-        'gold': '#D4AF37',           // Oro apagado
-        'crimson': '#DC143C',        // Carmesí elegante
-        'jade': '#00A86B',           // Jade suave
-        'ivory': '#F7FAFC',          // Marfil
-        'ash': '#718096',            // Ceniza
-        'midnight': '#0A0E1A',       // Medianoche
+        // Paleta ColorMagic - Profesional y Sofisticada
+        'primary': '#1a1625',        // Púrpura oscuro profundo
+        'secondary': '#2d1b3d',      // Púrpura medio
+        'accent': '#8b5cf6',         // Violeta vibrante
+        'highlight': '#a78bfa',      // Lavanda suave
+        'dark': '#0f0a1a',           // Negro púrpura
+        'light': '#e9d5ff',          // Lavanda muy claro
+        'success': '#10b981',        // Verde éxito
+        'warning': '#f59e0b',        // Naranja advertencia
+        'danger': '#ef4444',         // Rojo peligro
       },
       fontFamily: {
         'futuristic': ['Orbitron', 'Rajdhani', 'monospace'],
+        'japanese': ['Noto Sans JP', 'Inter', 'sans-serif'],
+        'display': ['Space Grotesk', 'Inter', 'sans-serif'],
       },
       animation: {
         'glow': 'glow 2s ease-in-out infinite alternate',

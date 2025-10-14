@@ -23,8 +23,41 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const btcAddress = "bc1ql0upf2d9xntcwzjrjx62j4h5vr09z62mcwwd6e"
-  const btcAmount = (plan.price / 45000).toFixed(8) // Conversión aproximada EUR a BTC
+  const [selectedPayment, setSelectedPayment] = useState<'btc' | 'eth' | 'usdt' | 'ltc'>('btc')
+  
+  // Direcciones de crypto reales (reemplaza con las tuyas)
+  const paymentMethods = {
+    btc: {
+      address: "bc1ql0upf2d9xntcwzjrjx62j4h5vr09z62mcwwd6e",
+      amount: (plan.price / 45000).toFixed(8),
+      name: "Bitcoin (BTC)",
+      icon: "₿",
+      color: "from-orange-500 to-yellow-500"
+    },
+    eth: {
+      address: "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
+      amount: (plan.price / 2500).toFixed(6),
+      name: "Ethereum (ETH)",
+      icon: "Ξ",
+      color: "from-blue-500 to-purple-500"
+    },
+    usdt: {
+      address: "TYDzsYUEpvnYmQk4zGP9sWWcTEd2MiAtW6",
+      amount: plan.price.toFixed(2),
+      name: "Tether (USDT)",
+      icon: "₮",
+      color: "from-green-500 to-emerald-500"
+    },
+    ltc: {
+      address: "LdP8Qox1VAhCzLJNqrr74YovaWYyNBUWvL",
+      amount: (plan.price / 85).toFixed(6),
+      name: "Litecoin (LTC)",
+      icon: "Ł",
+      color: "from-gray-400 to-gray-600"
+    }
+  }
+  
+  const currentPayment = paymentMethods[selectedPayment]
 
   // Countdown timer
   useEffect(() => {
@@ -183,18 +216,51 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
                   </div>
                 </motion.div>
 
+                {/* Payment Method Selector */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                  {Object.entries(paymentMethods).map(([key, method]) => (
+                    <motion.button
+                      key={key}
+                      onClick={() => setSelectedPayment(key as any)}
+                      className={`p-4 rounded-xl border-2 transition-all ${
+                        selectedPayment === key
+                          ? 'border-accent bg-accent/20'
+                          : 'border-gray-700 bg-gray-800/50 hover:border-gray-600'
+                      }`}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <div className={`text-3xl mb-2 bg-gradient-to-r ${method.color} bg-clip-text text-transparent font-black`}>
+                        {method.icon}
+                      </div>
+                      <div className="text-xs text-white font-bold">{key.toUpperCase()}</div>
+                    </motion.button>
+                  ))}
+                </div>
+
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {/* QR Code */}
                   <motion.div
+                    key={selectedPayment}
                     className="bg-gradient-to-br from-purple-900/20 to-blue-900/20 rounded-xl p-6 border border-purple-500/30"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
                     whileHover={{ scale: 1.02 }}
                   >
-                    <h3 className="text-xl font-bold text-white mb-4 text-center">
+                    <h3 className="text-xl font-bold text-white mb-2 text-center">
                       Escanea con tu Wallet
                     </h3>
-                    <QRCode value={`bitcoin:${btcAddress}?amount=${btcAmount}`} />
+                    <p className={`text-center font-bold mb-4 bg-gradient-to-r ${currentPayment.color} bg-clip-text text-transparent`}>
+                      {currentPayment.name}
+                    </p>
+                    <QRCode value={selectedPayment === 'btc' 
+                      ? `bitcoin:${currentPayment.address}?amount=${currentPayment.amount}`
+                      : selectedPayment === 'eth'
+                      ? `ethereum:${currentPayment.address}?value=${currentPayment.amount}`
+                      : currentPayment.address
+                    } />
                     <p className="text-center text-sm text-gray-400 mt-4">
-                      Usa cualquier wallet Bitcoin
+                      Usa cualquier wallet {currentPayment.name}
                     </p>
                   </motion.div>
 
@@ -202,7 +268,10 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
                   <div className="space-y-4">
                     {/* Amount */}
                     <motion.div
-                      className="bg-gradient-to-br from-yellow-900/20 to-orange-900/20 rounded-xl p-6 border border-yellow-500/30"
+                      key={`amount-${selectedPayment}`}
+                      className={`bg-gradient-to-br from-yellow-900/20 to-orange-900/20 rounded-xl p-6 border border-yellow-500/30`}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
                       whileHover={{ borderColor: '#eab308' }}
                     >
                       <label className="block text-sm font-bold text-yellow-400 mb-3 uppercase tracking-wider">
@@ -210,13 +279,13 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
                       </label>
                       <div className="flex items-center gap-3">
                         <div className="flex-1 bg-black/50 p-4 rounded-lg">
-                          <code className="text-3xl text-yellow-400 font-bold block">
-                            {btcAmount} BTC
+                          <code className={`text-3xl font-bold block bg-gradient-to-r ${currentPayment.color} bg-clip-text text-transparent`}>
+                            {currentPayment.amount} {selectedPayment.toUpperCase()}
                           </code>
                           <span className="text-lg text-gray-400">≈ €{plan.price}</span>
                         </div>
                         <motion.button
-                          onClick={() => copyToClipboard(btcAmount)}
+                          onClick={() => copyToClipboard(currentPayment.amount)}
                           className="bg-yellow-600 hover:bg-yellow-700 px-4 py-4 rounded-lg font-semibold"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
@@ -228,18 +297,22 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
 
                     {/* Address */}
                     <motion.div
+                      key={`address-${selectedPayment}`}
                       className="bg-gradient-to-br from-green-900/20 to-emerald-900/20 rounded-xl p-6 border border-green-500/30"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 }}
                       whileHover={{ borderColor: '#10b981' }}
                     >
                       <label className="block text-sm font-bold text-green-400 mb-3 uppercase tracking-wider">
-                        📍 Dirección Bitcoin
+                        📍 Dirección {currentPayment.name}
                       </label>
                       <div className="flex items-center gap-3">
                         <code className="flex-1 text-sm text-green-400 break-all font-mono bg-black/50 p-3 rounded-lg">
-                          {btcAddress}
+                          {currentPayment.address}
                         </code>
                         <motion.button
-                          onClick={() => copyToClipboard(btcAddress)}
+                          onClick={() => copyToClipboard(currentPayment.address)}
                           className="bg-green-600 hover:bg-green-700 px-4 py-3 rounded-lg font-semibold whitespace-nowrap"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}

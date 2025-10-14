@@ -3,9 +3,11 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import Logo from './Logo'
+import StatusModal from './StatusModal'
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [showStatusModal, setShowStatusModal] = useState(false)
   const { scrollY } = useScroll()
   const backgroundColor = useTransform(
     scrollY,
@@ -24,7 +26,7 @@ export default function Navbar() {
   const navItems = [
     { name: 'Store', href: '#pricing' },
     { name: 'Features', href: '#features' },
-    { name: 'Status', href: '#status' },
+    { name: 'Status', href: '#status', onClick: () => setShowStatusModal(true) },
     { name: 'Discord', href: '#discord' }
   ]
 
@@ -47,7 +49,13 @@ export default function Navbar() {
               <motion.a
                 key={item.name}
                 href={item.href}
-                className="text-gray-300 hover:text-white font-semibold transition-colors relative group"
+                onClick={(e) => {
+                  if (item.onClick) {
+                    e.preventDefault()
+                    item.onClick()
+                  }
+                }}
+                className="text-gray-300 hover:text-white font-semibold transition-colors relative group cursor-pointer"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 + 0.3 }}
@@ -65,8 +73,9 @@ export default function Navbar() {
           </div>
 
           {/* Status Indicator */}
-          <motion.div
-            className="flex items-center space-x-2 bg-green-900/20 border border-green-500/30 rounded-full px-4 py-2"
+          <motion.button
+            onClick={() => setShowStatusModal(true)}
+            className="flex items-center space-x-2 bg-green-900/20 border border-green-500/30 rounded-full px-4 py-2 hover:bg-green-900/30 transition-colors cursor-pointer"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.6 }}
@@ -85,7 +94,9 @@ export default function Navbar() {
               }}
             />
             <span className="text-green-400 text-sm font-semibold">All services online</span>
-          </motion.div>
+          </motion.button>
+          
+          <StatusModal isOpen={showStatusModal} onClose={() => setShowStatusModal(false)} />
 
           {/* Dashboard Button */}
           <motion.button

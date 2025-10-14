@@ -9,19 +9,27 @@
 }
 
 body {
-  background: #0A0E1A;
-  color: #F7FAFC;
-  font-family: 'Rajdhani', sans-serif;
+  background: #0f0a1a;
+  color: #e9d5ff;
+  font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .glow-text {
-  text-shadow: 0 0 20px rgba(212, 175, 55, 0.3), 0 0 40px rgba(212, 175, 55, 0.2);
+  text-shadow: 0 0 20px rgba(139, 92, 246, 0.4), 0 0 40px rgba(139, 92, 246, 0.2);
 }
 
-.japanese-border {
-  border-image: linear-gradient(45deg, #D4AF37, #DC143C) 1;
+.bento-card {
+  background: linear-gradient(135deg, #1a1625 0%, #2d1b3d 100%);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bento-card:hover {
+  border-color: rgba(139, 92, 246, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
 }
 
 .neon-border {

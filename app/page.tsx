@@ -11,6 +11,7 @@ import Footer from './components/Footer'
 import VideoBackground from './components/VideoBackground'
 import CustomCursor from './components/CustomCursor'
 import LoadingScreen from './components/LoadingScreen'
+import VGCBypassDemo from './components/VGCBypassDemo'
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
@@ -32,6 +33,7 @@ export default function Home() {
         <Navbar />
         <HeroSection />
         <BentoGrid />
+        <VGCBypassDemo />
         <PricingSection />
         <SocialProof />
         <Footer />
