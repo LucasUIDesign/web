@@ -18,8 +18,8 @@ const plans = [
       "High Quality",
       "No Ads"
     ],
-    color: "from-sakura to-crimson",
-    borderColor: "border-sakura",
+    color: "from-accent to-highlight",
+    borderColor: "border-accent",
     popular: false,
     note: "Perfect para probar"
   },
@@ -37,8 +37,8 @@ const plans = [
       "No Ads",
       "Configuración personalizada"
     ],
-    color: "from-gold to-crimson",
-    borderColor: "border-gold",
+    color: "from-highlight to-warning",
+    borderColor: "border-highlight",
     popular: true,
     note: "Más popular"
   },
@@ -57,8 +57,8 @@ const plans = [
       "Configuración personalizada",
       "Acceso beta features"
     ],
-    color: "from-indigo to-charcoal",
-    borderColor: "border-indigo",
+    color: "from-secondary to-primary",
+    borderColor: "border-secondary",
     popular: false,
     note: "Ahorra €270 comparado con monthly"
   },
@@ -79,8 +79,8 @@ const plans = [
       "Configuración remota",
       "Soporte prioritario"
     ],
-    color: "from-crimson to-gold",
-    borderColor: "border-crimson",
+    color: "from-accent to-success",
+    borderColor: "border-accent",
     popular: false,
     note: "Best value - Paga una vez, usa forever",
     badge: "LIMITED EDITION"
@@ -140,7 +140,7 @@ export default function PricingSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl font-futuristic font-bold mb-6 glow-text">
+          <h2 className="text-6xl md:text-7xl font-display font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-light via-highlight to-accent">
             ELIGE TU PODER
           </h2>
           
@@ -223,11 +223,11 @@ export default function PricingSection() {
               )}
               
               <motion.div 
-                className={`bg-[#1a1625] border-2 ${plan.borderColor} rounded-2xl relative overflow-hidden`}
+                className={`bento-card border-2 ${plan.borderColor} rounded-3xl relative overflow-hidden backdrop-blur-sm`}
                 whileHover={{
                   boxShadow: plan.popular 
-                    ? '0 0 40px rgba(234, 179, 8, 0.4)' 
-                    : '0 0 30px rgba(168, 85, 247, 0.3)'
+                    ? '0 0 50px rgba(123, 44, 191, 0.6)' 
+                    : '0 0 40px rgba(123, 44, 191, 0.4)'
                 }}
               >
                 {/* Animated border effect */}
@@ -240,7 +240,7 @@ export default function PricingSection() {
                   transition={{ duration: 2, ease: "linear" }}
                 />
 
-                <div className="bg-transparent p-8 rounded-lg h-full relative z-10">
+                <div className="bg-transparent p-10 rounded-lg h-full relative z-10">
                   {/* Floating particles inside card */}
                   {[...Array(3)].map((_, i) => (
                     <motion.div
@@ -277,7 +277,7 @@ export default function PricingSection() {
                     )}
                     
                     <motion.h3 
-                      className="text-xl font-bold text-white mb-2 tracking-wider"
+                      className="text-2xl font-display font-black text-light mb-2 tracking-wider"
                       whileHover={{ scale: 1.05 }}
                     >
                       {plan.name}
@@ -285,25 +285,25 @@ export default function PricingSection() {
                     
                     <div className="mb-2">
                       <motion.span 
-                        className="text-5xl font-black text-white"
+                        className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-light to-highlight"
                         animate={{
                           textShadow: [
-                            '0 0 5px rgba(255, 255, 255, 0.3)',
-                            '0 0 10px rgba(255, 255, 255, 0.5)',
-                            '0 0 5px rgba(255, 255, 255, 0.3)'
+                            '0 0 10px rgba(224, 170, 255, 0.4)',
+                            '0 0 20px rgba(224, 170, 255, 0.6)',
+                            '0 0 10px rgba(224, 170, 255, 0.4)'
                           ]
                         }}
                         transition={{ duration: 2, repeat: Infinity }}
                       >
                         €{plan.price}
                       </motion.span>
-                      <span className="text-base text-gray-500 line-through ml-2">€{plan.originalPrice}</span>
+                      <span className="text-base text-light/40 line-through ml-2">€{plan.originalPrice}</span>
                     </div>
                     
-                    <div className="text-sm text-gray-400 mb-3">{plan.duration}</div>
+                    <div className="text-base text-highlight/80 mb-3 font-japanese">{plan.duration}</div>
                     
                     <motion.div 
-                      className="text-green-400 font-semibold text-sm"
+                      className="text-success font-bold text-base font-japanese"
                       initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3 }}
@@ -312,18 +312,18 @@ export default function PricingSection() {
                     </motion.div>
                   </div>
 
-                  <ul className="space-y-3 mb-8">
+                  <ul className="space-y-4 mb-8">
                     {plan.features.map((feature, featureIndex) => (
                       <motion.li 
                         key={featureIndex} 
-                        className="flex items-center text-gray-300"
+                        className="flex items-center text-light/80 font-body"
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: featureIndex * 0.1 }}
-                        whileHover={{ x: 5, color: '#ffffff' }}
+                        whileHover={{ x: 5, color: '#E0AAFF' }}
                       >
                         <motion.svg 
-                          className="w-5 h-5 text-green-400 mr-3" 
+                          className="w-6 h-6 text-success mr-3 flex-shrink-0" 
                           fill="currentColor" 
                           viewBox="0 0 20 20"
                           whileHover={{ scale: 1.2, rotate: 360 }}
@@ -331,7 +331,7 @@ export default function PricingSection() {
                         >
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </motion.svg>
-                        {feature}
+                        <span>{feature}</span>
                       </motion.li>
                     ))}
                   </ul>

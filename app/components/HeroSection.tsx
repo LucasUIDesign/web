@@ -34,7 +34,7 @@ export default function HeroSection() {
       <ParticleEffect />
       
       {/* Fondo con efecto de niebla */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-red-900/20" />
+      <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-highlight/10" />
       
       <div className="container mx-auto px-6 text-center z-10">
         <motion.div
@@ -43,62 +43,64 @@ export default function HeroSection() {
           transition={{ duration: 1 }}
           className="max-w-4xl mx-auto"
         >
-          {/* Headline Principal - Estilo Japonés */}
+          {/* Headline Principal */}
           <motion.h1 
-            className="text-5xl md:text-7xl font-futuristic font-bold mb-6 leading-tight"
+            className="text-6xl md:text-9xl font-display font-black mb-8 leading-none tracking-tighter"
             animate={{ 
               textShadow: [
-                '0 0 20px rgba(212, 175, 55, 0.2)',
-                '0 0 40px rgba(212, 175, 55, 0.4)',
-                '0 0 20px rgba(212, 175, 55, 0.2)'
+                '0 0 40px rgba(123, 44, 191, 0.5)',
+                '0 0 80px rgba(199, 125, 255, 0.7)',
+                '0 0 40px rgba(123, 44, 191, 0.5)'
               ]
             }}
-            transition={{ duration: 4, repeat: Infinity }}
+            transition={{ duration: 3, repeat: Infinity }}
           >
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-gold via-sakura to-crimson">
-              DOMINA VALORANT
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-light via-highlight to-accent">
+              DOMINA
             </span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-crimson via-gold to-sakura">
-              CON {glitchText}
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-accent via-highlight to-light">
+              VALORANT
             </span>
           </motion.h1>
 
-          {/* Subheadline - Estilo Minimalista */}
+          {/* Subheadline */}
           <motion.p 
-            className="text-lg md:text-xl text-ash mb-4 font-light tracking-wide"
+            className="text-2xl md:text-3xl text-light/90 mb-6 font-japanese font-bold tracking-wide max-w-4xl mx-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
           >
-            Cheats Undetectables para Jugadores que Exigen Victoria
+            Cheats Indetectables de Nivel Élite
           </motion.p>
 
           <motion.p 
-            className="text-base md:text-lg text-sakura mb-8 font-normal"
+            className="text-lg md:text-xl text-highlight/80 mb-12 font-body font-normal max-w-3xl mx-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 1 }}
           >
-            Aimbot, Wallhack y ESP con IA adaptativa. Usado por +10,000 pros en torneos.
+            Aimbot Predictivo • Wallhack Inteligente • ESP Avanzado • 0 Bans Reportados
           </motion.p>
 
           {/* Escasez */}
           <motion.div 
-            className="bg-red-900/30 border border-red-500 rounded-lg p-4 mb-8 inline-block"
+            className="bg-gradient-to-r from-danger/20 to-warning/20 border-2 border-danger/50 rounded-2xl p-6 mb-8 inline-block backdrop-blur-sm"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 1, type: "spring", stiffness: 200 }}
+            whileHover={{ scale: 1.05 }}
           >
-            <p className="text-red-300 font-bold text-lg">
-              ⚠️ Solo 47 licencias disponibles esta semana
+            <p className="text-light font-black text-xl">
+              ⚠️ Solo 23 licencias disponibles hoy
             </p>
           </motion.div>
 
-          {/* CTA Principal - Estilo Japonés */}
-          <motion.button
-            className="group relative bg-gradient-to-r from-crimson to-gold hover:from-gold hover:to-crimson text-ivory font-bold py-6 px-12 rounded-sm text-xl transition-all duration-500 transform border-2 border-gold overflow-hidden"
+          {/* CTA Principal */}
+          <motion.a
+            href="#pricing"
+            className="group relative inline-block bg-gradient-to-r from-accent to-highlight hover:from-highlight hover:to-accent text-white font-display font-black py-7 px-20 rounded-2xl text-2xl transition-all duration-300 transform border-2 border-accent hover:border-light overflow-hidden shadow-2xl"
             whileHover={{ 
-              boxShadow: '0 0 40px #FF2E2E, 0 0 60px rgba(255, 46, 46, 0.5)',
+              boxShadow: '0 0 60px rgba(123, 44, 191, 0.8), 0 0 100px rgba(199, 125, 255, 0.5)',
               scale: 1.05 
             }}
             whileTap={{ scale: 0.95 }}
@@ -108,10 +110,10 @@ export default function HeroSection() {
           >
             {/* Animated background pulse */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-red-400 to-red-500 rounded-lg blur"
+              className="absolute inset-0 bg-gradient-to-r from-accent to-highlight rounded-2xl blur-xl"
               animate={{
-                opacity: [0.3, 0.6, 0.3],
-                scale: [1, 1.05, 1]
+                opacity: [0.4, 0.7, 0.4],
+                scale: [1, 1.1, 1]
               }}
               transition={{
                 duration: 2,
@@ -122,48 +124,54 @@ export default function HeroSection() {
             
             {/* Shine effect */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-30"
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40"
               initial={{ x: '-100%' }}
               whileHover={{ x: '100%' }}
               transition={{ duration: 0.6 }}
             />
-
-            {/* Particles around button */}
-            {[...Array(4)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-white rounded-full"
-                style={{
-                  top: '50%',
-                  left: '50%'
-                }}
-                animate={{
-                  x: [0, Math.cos(i * 90 * Math.PI / 180) * 60, 0],
-                  y: [0, Math.sin(i * 90 * Math.PI / 180) * 60, 0],
-                  opacity: [0, 1, 0],
-                  scale: [0, 1.5, 0]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: i * 0.2,
-                  ease: "easeOut"
-                }}
-              />
-            ))}
             
-            <span className="relative z-10">QUIERO AHORA – Solo 3 cupos</span>
-          </motion.button>
+            <span className="relative z-10 flex items-center gap-3">
+              COMPRAR AHORA
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </span>
+          </motion.a>
 
           {/* Contador de usuarios activos */}
           <motion.div 
-            className="mt-8 flex items-center justify-center space-x-2 text-green-400"
+            className="mt-10 flex items-center justify-center space-x-3 text-success"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5, duration: 1 }}
           >
-            <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
-            <span className="font-semibold">1,247 jugadores activos ahora mismo</span>
+            <motion.div 
+              className="w-4 h-4 bg-success rounded-full"
+              animate={{ scale: [1, 1.3, 1], opacity: [1, 0.5, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+            <span className="font-japanese font-bold text-lg">1,847 jugadores activos ahora</span>
+          </motion.div>
+
+          {/* Stats rápidos */}
+          <motion.div
+            className="mt-12 grid grid-cols-3 gap-8 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.7, duration: 0.8 }}
+          >
+            <div className="text-center">
+              <div className="text-4xl font-black text-light mb-2">99.9%</div>
+              <div className="text-sm text-highlight font-japanese">Precisión</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-black text-light mb-2">0</div>
+              <div className="text-sm text-highlight font-japanese">Bans</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-black text-light mb-2">24/7</div>
+              <div className="text-sm text-highlight font-japanese">Soporte</div>
+            </div>
           </motion.div>
         </motion.div>
       </div>
@@ -174,8 +182,12 @@ export default function HeroSection() {
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <div className="w-6 h-10 border-2 border-neon-red rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-neon-red rounded-full mt-2 animate-pulse" />
+        <div className="w-6 h-10 border-2 border-accent rounded-full flex justify-center">
+          <motion.div 
+            className="w-1 h-3 bg-accent rounded-full mt-2"
+            animate={{ opacity: [1, 0.3, 1] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          />
         </div>
       </motion.div>
     </section>

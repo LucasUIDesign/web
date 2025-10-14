@@ -147,11 +147,11 @@ export default function BentoGrid() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl font-futuristic font-bold mb-6 glow-text">
+          <h2 className="text-6xl md:text-7xl font-display font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-light via-highlight to-accent">
             CARACTERÍSTICAS ÉLITE
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Tecnología de vanguardia que te dará la ventaja definitiva en VALORANT
+          <p className="text-xl md:text-2xl text-light/80 max-w-3xl mx-auto font-japanese">
+            Tecnología de vanguardia que te dará la ventaja definitiva
           </p>
         </motion.div>
 
@@ -163,7 +163,7 @@ export default function BentoGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`relative group bg-gradient-to-br ${feature.color} p-1 rounded-xl cursor-pointer`}
+              className="relative group cursor-pointer"
               onMouseEnter={() => setActiveDemo(feature.demo)}
               onMouseLeave={() => setActiveDemo(null)}
               whileHover={{ 
@@ -174,12 +174,12 @@ export default function BentoGrid() {
             >
               {/* Animated glow effect */}
               <motion.div
-                className="absolute -inset-1 bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 rounded-xl opacity-0 blur-lg"
-                whileHover={{ opacity: 0.5 }}
+                className="absolute -inset-1 bg-gradient-to-r from-accent via-highlight to-accent rounded-3xl opacity-0 blur-xl"
+                whileHover={{ opacity: 0.4 }}
                 transition={{ duration: 0.3 }}
               />
 
-              <div className="bg-dark-card p-6 rounded-lg h-full relative z-10 overflow-hidden">
+              <div className="bento-card p-8 rounded-3xl h-full relative z-10 overflow-hidden border-2 border-accent/20 hover:border-accent/50 transition-all duration-300">
                 {/* Background particles */}
                 {[...Array(5)].map((_, i) => (
                   <motion.div
@@ -202,26 +202,26 @@ export default function BentoGrid() {
                   />
                 ))}
 
-                <div className="flex items-center mb-4">
-                  <motion.span 
-                    className="text-3xl mr-3"
+                <div className="flex items-center mb-6">
+                  <motion.div
+                    className="w-16 h-16 bg-gradient-to-br from-accent to-highlight rounded-2xl flex items-center justify-center mr-4 text-3xl"
                     whileHover={{ 
-                      scale: 1.2,
-                      rotate: [0, -10, 10, 0],
-                      transition: { duration: 0.5 }
+                      scale: 1.1,
+                      rotate: [0, -5, 5, 0],
+                      transition: { duration: 0.4 }
                     }}
                   >
                     {feature.icon}
-                  </motion.span>
+                  </motion.div>
                   <div>
                     <motion.h3 
-                      className="text-xl font-bold text-white"
-                      whileHover={{ x: 5 }}
+                      className="text-2xl font-display font-black text-light mb-1"
+                      whileHover={{ x: 3 }}
                     >
                       {feature.title}
                     </motion.h3>
                     <motion.p 
-                      className="text-sm text-gray-400"
+                      className="text-sm text-highlight font-japanese"
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
                       transition={{ delay: 0.2 }}
@@ -232,7 +232,7 @@ export default function BentoGrid() {
                 </div>
                 
                 <motion.p 
-                  className="text-gray-300 mb-4 text-sm leading-relaxed"
+                  className="text-light/70 mb-4 text-base leading-relaxed font-body"
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
@@ -278,24 +278,36 @@ export default function BentoGrid() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8"
         >
-          <div>
-            <div className="text-3xl font-bold text-neon-red">99.7%</div>
-            <div className="text-gray-400">Precisión Aimbot</div>
-          </div>
-          <div>
-            <div className="text-3xl font-bold text-neon-blue">0</div>
-            <div className="text-gray-400">Detecciones</div>
-          </div>
-          <div>
-            <div className="text-3xl font-bold text-neon-purple">10,000+</div>
-            <div className="text-gray-400">Usuarios Activos</div>
-          </div>
-          <div>
-            <div className="text-3xl font-bold text-green-400">24/7</div>
-            <div className="text-gray-400">Soporte</div>
-          </div>
+          <motion.div 
+            className="bento-card p-6 rounded-2xl text-center"
+            whileHover={{ scale: 1.05 }}
+          >
+            <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent to-highlight mb-2">99.9%</div>
+            <div className="text-light/60 font-japanese">Precisión Aimbot</div>
+          </motion.div>
+          <motion.div 
+            className="bento-card p-6 rounded-2xl text-center"
+            whileHover={{ scale: 1.05 }}
+          >
+            <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-success to-success mb-2">0</div>
+            <div className="text-light/60 font-japanese">Bans Reportados</div>
+          </motion.div>
+          <motion.div 
+            className="bento-card p-6 rounded-2xl text-center"
+            whileHover={{ scale: 1.05 }}
+          >
+            <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-highlight to-light mb-2">10K+</div>
+            <div className="text-light/60 font-japanese">Usuarios Activos</div>
+          </motion.div>
+          <motion.div 
+            className="bento-card p-6 rounded-2xl text-center"
+            whileHover={{ scale: 1.05 }}
+          >
+            <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent to-highlight mb-2">24/7</div>
+            <div className="text-light/60 font-japanese">Soporte</div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

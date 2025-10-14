@@ -8,21 +8,21 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Paleta ColorMagic - Profesional y Sofisticada
-        'primary': '#1a1625',        // Púrpura oscuro profundo
-        'secondary': '#2d1b3d',      // Púrpura medio
-        'accent': '#8b5cf6',         // Violeta vibrante
-        'highlight': '#a78bfa',      // Lavanda suave
-        'dark': '#0f0a1a',           // Negro púrpura
-        'light': '#e9d5ff',          // Lavanda muy claro
+        // Paleta ColorMagic - https://colormagic.app/palette/67170ec21fc5d72248a38433
+        'primary': '#0A0118',        // Negro profundo
+        'secondary': '#1A0B2E',      // Púrpura muy oscuro
+        'accent': '#7B2CBF',         // Púrpura vibrante
+        'highlight': '#C77DFF',      // Lavanda brillante
+        'light': '#E0AAFF',          // Lavanda claro
+        'dark': '#05000D',           // Negro absoluto
         'success': '#10b981',        // Verde éxito
         'warning': '#f59e0b',        // Naranja advertencia
         'danger': '#ef4444',         // Rojo peligro
       },
       fontFamily: {
-        'futuristic': ['Orbitron', 'Rajdhani', 'monospace'],
-        'japanese': ['Noto Sans JP', 'Inter', 'sans-serif'],
-        'display': ['Space Grotesk', 'Inter', 'sans-serif'],
+        'display': ['Zen Dots', 'Orbitron', 'sans-serif'],
+        'japanese': ['M PLUS Rounded 1c', 'Noto Sans JP', 'sans-serif'],
+        'body': ['Inter', 'system-ui', 'sans-serif'],
       },
       animation: {
         'glow': 'glow 2s ease-in-out infinite alternate',
