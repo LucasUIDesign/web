@@ -8,7 +8,6 @@ import PricingSection from './components/PricingSection'
 
 import SocialProof from './components/SocialProof'
 import Footer from './components/Footer'
-import VideoBackground from './components/VideoBackground'
 import CustomCursor from './components/CustomCursor'
 import LoadingScreen from './components/LoadingScreen'
 import VGCBypassDemo from './components/VGCBypassDemo'
@@ -29,7 +28,6 @@ export default function Home() {
       <LoadingScreen />
       <main className="relative min-h-screen">
         <CustomCursor />
-        <VideoBackground />
         <Navbar />
         <HeroSection />
         <BentoGrid />

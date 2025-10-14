@@ -20,8 +20,8 @@ module.exports = {
         'danger': '#ef4444',         // Rojo peligro
       },
       fontFamily: {
-        'display': ['Zen Dots', 'Orbitron', 'sans-serif'],
-        'japanese': ['M PLUS Rounded 1c', 'Noto Sans JP', 'sans-serif'],
+        'display': ['Space Grotesk', 'Inter', 'sans-serif'],
+        'mono': ['JetBrains Mono', 'Consolas', 'monospace'],
         'body': ['Inter', 'system-ui', 'sans-serif'],
       },
       animation: {

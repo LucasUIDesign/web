@@ -6,95 +6,96 @@ import CheckoutModal from './CheckoutModal'
 
 const plans = [
   {
-    name: "7 DAYS",
+    name: "STARTER",
     price: 15,
     originalPrice: 25,
     duration: "7 días",
     features: [
-      "Access To All Products",
-      "Special Discord Role",
-      "Priority Support 24/7",
-      "Frequent Updates",
-      "High Quality",
-      "No Ads"
+      "Aimbot Básico",
+      "Wallhack Estándar",
+      "ESP Básico",
+      "Soporte Discord",
+      "Actualizaciones",
+      "Guía de instalación"
     ],
     color: "from-accent to-highlight",
     borderColor: "border-accent",
     popular: false,
-    note: "Perfect para probar"
+    note: "Perfecto para empezar",
+    savings: null
   },
   {
-    name: "MONTHLY VIP",
-    price: 30,
-    originalPrice: 50,
+    name: "PRO",
+    price: 35,
+    originalPrice: 60,
     duration: "1 mes",
     features: [
-      "Access To All Products",
-      "Special Discord Role",
-      "Priority Support 24/7",
-      "Frequent Updates",
-      "High Quality",
-      "No Ads",
-      "Configuración personalizada"
+      "Aimbot Avanzado",
+      "Wallhack Inteligente",
+      "ESP Completo",
+      "Soporte Prioritario",
+      "Configuración Personalizada",
+      "Auto-Update",
+      "Anti-Detección Básico"
     ],
-    color: "from-highlight to-warning",
+    color: "from-highlight to-accent",
     borderColor: "border-highlight",
     popular: true,
-    note: "Más popular"
+    note: "Más elegido",
+    savings: "42%"
   },
   {
-    name: "YEARLY VIP",
-    price: 90,
-    originalPrice: 150,
+    name: "ELITE",
+    price: 120,
+    originalPrice: 200,
     duration: "1 año",
     features: [
-      "Access To All Products",
-      "Special Discord Role",
-      "Priority Support 24/7",
-      "Frequent Updates",
-      "High Quality",
-      "No Ads",
-      "Configuración personalizada",
-      "Acceso beta features"
+      "Todas las funciones PRO",
+      "IA Predictiva",
+      "Anti-Detección Avanzado",
+      "Configuración Remota",
+      "Soporte VIP 24/7",
+      "Beta Access",
+      "Spoofer Incluido",
+      "Garantía Extendida"
     ],
-    color: "from-secondary to-primary",
+    color: "from-secondary to-accent",
     borderColor: "border-secondary",
     popular: false,
-    note: "Ahorra €270 comparado con monthly"
+    note: "Mejor valor anual",
+    savings: "40%"
   },
   {
-    name: "LIFETIME VIP",
-    price: 200,
-    originalPrice: 400,
+    name: "LIFETIME",
+    price: 299,
+    originalPrice: 500,
     duration: "De por vida",
     features: [
-      "Access To All Products",
-      "Special Discord Role",
-      "Priority Support 24/7",
-      "Frequent Updates",
-      "High Quality",
-      "No Ads",
-      "Configuración personalizada",
-      "Acceso beta features",
-      "Configuración remota",
-      "Soporte prioritario"
+      "Acceso de por vida",
+      "Todas las funciones ELITE",
+      "Actualizaciones perpetuas",
+      "Soporte premium ilimitado",
+      "Acceso a nuevos productos",
+      "Configuración dedicada",
+      "Garantía total",
+      "Prioridad máxima"
     ],
     color: "from-accent to-success",
     borderColor: "border-accent",
     popular: false,
-    note: "Best value - Paga una vez, usa forever",
-    badge: "LIMITED EDITION"
+    note: "Inversión única",
+    badge: "MEJOR OFERTA",
+    savings: "40%"
   }
 ]
 
 export default function PricingSection() {
   const [timeLeft, setTimeLeft] = useState({
-    hours: 2,
-    minutes: 15,
-    seconds: 42
+    hours: 23,
+    minutes: 47,
+    seconds: 32
   })
   
-  const [licensesSold, setLicensesSold] = useState(83)
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false)
   const [selectedPlan, setSelectedPlan] = useState<typeof plans[0] | null>(null)
 
@@ -113,283 +114,249 @@ export default function PricingSection() {
         } else if (prev.hours > 0) {
           return { hours: prev.hours - 1, minutes: 59, seconds: 59 }
         }
-        return prev
+        return { hours: 23, minutes: 59, seconds: 59 }
       })
     }, 1000)
 
     return () => clearInterval(timer)
   }, [])
 
-  useEffect(() => {
-    const licenseTimer = setInterval(() => {
-      if (Math.random() < 0.3 && licensesSold < 95) {
-        setLicensesSold(prev => prev + 1)
-      }
-    }, 15000)
-
-    return () => clearInterval(licenseTimer)
-  }, [licensesSold])
-
   return (
-    <section id="pricing" className="py-20 px-6 relative">
+    <section id="pricing" className="py-32 px-8 relative">
       <div className="container mx-auto max-w-7xl">
-        {/* Header con urgencia */}
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-6xl md:text-7xl font-display font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-light via-highlight to-accent">
-            ELIGE TU PODER
-          </h2>
-          
-          {/* Countdown Timer */}
-          <div className="bg-red-900/30 border border-red-500 rounded-lg p-6 mb-8 inline-block">
-            <p className="text-red-300 font-bold text-lg mb-4">
-              ⏰ OFERTA LIMITADA TERMINA EN:
-            </p>
-            <div className="flex justify-center space-x-4 text-3xl font-bold">
-              <div className="text-center">
-                <div className="countdown-digit">{String(timeLeft.hours).padStart(2, '0')}</div>
-                <div className="text-xs text-gray-400">HORAS</div>
-              </div>
-              <div className="text-red-500">:</div>
-              <div className="text-center">
-                <div className="countdown-digit">{String(timeLeft.minutes).padStart(2, '0')}</div>
-                <div className="text-xs text-gray-400">MIN</div>
-              </div>
-              <div className="text-red-500">:</div>
-              <div className="text-center">
-                <div className="countdown-digit">{String(timeLeft.seconds).padStart(2, '0')}</div>
-                <div className="text-xs text-gray-400">SEG</div>
-              </div>
-            </div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="inline-flex items-center gap-2 bg-accent/10 border border-accent/30 rounded-full px-6 py-3 mb-8"
+          >
+            <span className="text-accent font-medium">Planes de Acceso</span>
+          </motion.div>
 
-          {/* Barra de progreso de licencias */}
-          <div className="max-w-md mx-auto mb-8">
-            <div className="flex justify-between text-sm text-gray-400 mb-2">
-              <span>Licencias vendidas</span>
-              <span>{licensesSold}% completado</span>
-            </div>
-            <div className="w-full bg-gray-700 rounded-full h-3">
-              <motion.div 
-                className="progress-bar h-3 rounded-full"
-                initial={{ width: "0%" }}
-                animate={{ width: `${licensesSold}%` }}
-                transition={{ duration: 1 }}
-              />
-            </div>
-            <p className="text-red-400 font-semibold mt-2">
-              ¡Solo quedan {100 - licensesSold} licencias!
+          <h2 className="text-6xl md:text-7xl lg:text-8xl font-display font-black mb-8 leading-[0.9]">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-light to-highlight">
+              ELIGE TU
+            </span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-accent to-light">
+              VENTAJA
+            </span>
+          </h2>
+
+          {/* Urgency Timer */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="bg-gradient-to-r from-danger/20 to-warning/20 border-2 border-danger/40 rounded-2xl p-8 mb-12 inline-block backdrop-blur-sm"
+          >
+            <p className="text-light font-bold text-xl mb-4">
+              ⏰ Oferta especial termina en:
             </p>
-          </div>
+            <div className="flex justify-center items-center gap-6 text-4xl md:text-5xl font-black">
+              <div className="text-center">
+                <div className="text-transparent bg-clip-text bg-gradient-to-r from-danger to-warning">
+                  {String(timeLeft.hours).padStart(2, '0')}
+                </div>
+                <div className="text-xs text-light/60 font-medium mt-1">HORAS</div>
+              </div>
+              <div className="text-danger">:</div>
+              <div className="text-center">
+                <div className="text-transparent bg-clip-text bg-gradient-to-r from-danger to-warning">
+                  {String(timeLeft.minutes).padStart(2, '0')}
+                </div>
+                <div className="text-xs text-light/60 font-medium mt-1">MIN</div>
+              </div>
+              <div className="text-danger">:</div>
+              <div className="text-center">
+                <div className="text-transparent bg-clip-text bg-gradient-to-r from-danger to-warning">
+                  {String(timeLeft.seconds).padStart(2, '0')}
+                </div>
+                <div className="text-xs text-light/60 font-medium mt-1">SEG</div>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
 
-        {/* Planes de precios */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Pricing Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
           {plans.map((plan, index) => (
             <motion.div
               key={plan.name}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              className={`relative ${plan.popular ? 'md:scale-105 z-10' : ''}`}
-              whileHover={{ 
-                y: -10,
-                transition: { duration: 0.3 }
-              }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className={`relative ${plan.popular ? 'lg:scale-105 z-10' : ''}`}
             >
+              {/* Popular Badge */}
               {plan.popular && (
                 <motion.div 
-                  className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-red-500 to-purple-500 text-white px-6 py-2 rounded-full text-sm font-bold z-20"
-                  animate={{
-                    scale: [1, 1.05, 1],
-                    boxShadow: [
-                      '0 0 0px rgba(255, 46, 46, 0)',
-                      '0 0 20px rgba(255, 46, 46, 0.5)',
-                      '0 0 0px rgba(255, 46, 46, 0)'
-                    ]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
+                  className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-accent to-highlight text-white px-6 py-2 rounded-full text-sm font-bold z-20 shadow-lg"
+                  animate={{ y: [0, -2, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
                 >
                   MÁS POPULAR
                 </motion.div>
               )}
+
+              {/* Limited Badge */}
+              {plan.badge && (
+                <motion.div 
+                  className="absolute -top-4 right-4 bg-gradient-to-r from-success to-success text-white px-4 py-2 rounded-full text-xs font-bold z-20 shadow-lg"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  {plan.badge}
+                </motion.div>
+              )}
               
               <motion.div 
-                className={`bento-card border-2 ${plan.borderColor} rounded-3xl relative overflow-hidden backdrop-blur-sm`}
-                whileHover={{
+                className={`bento-card border-2 ${plan.borderColor} rounded-3xl relative overflow-hidden h-full`}
+                whileHover={{ 
+                  y: -8,
                   boxShadow: plan.popular 
-                    ? '0 0 50px rgba(123, 44, 191, 0.6)' 
-                    : '0 0 40px rgba(123, 44, 191, 0.4)'
+                    ? '0 25px 50px rgba(123, 44, 191, 0.4)' 
+                    : '0 20px 40px rgba(123, 44, 191, 0.2)'
                 }}
+                transition={{ duration: 0.3 }}
               >
-
-
-                <div className="bg-transparent p-10 rounded-lg h-full relative z-10">
-
-
+                <div className="p-8 h-full flex flex-col">
+                  {/* Header */}
                   <div className="text-center mb-8">
-                    {/* Badge si existe */}
-                    {plan.badge && (
-                      <motion.div
-                        className="inline-block bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-4"
-                        animate={{ scale: [1, 1.05, 1] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      >
-                        {plan.badge}
-                      </motion.div>
-                    )}
-                    
-                    <motion.h3 
-                      className="text-2xl font-display font-black text-light mb-2 tracking-wider"
-                      whileHover={{ scale: 1.05 }}
-                    >
+                    <h3 className="text-2xl font-display font-black text-light mb-4">
                       {plan.name}
-                    </motion.h3>
+                    </h3>
                     
-                    <div className="mb-2">
-                      <motion.span 
-                        className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-light to-highlight"
-                        animate={{
-                          textShadow: [
-                            '0 0 10px rgba(224, 170, 255, 0.4)',
-                            '0 0 20px rgba(224, 170, 255, 0.6)',
-                            '0 0 10px rgba(224, 170, 255, 0.4)'
-                          ]
-                        }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      >
-                        €{plan.price}
-                      </motion.span>
-                      <span className="text-base text-light/40 line-through ml-2">€{plan.originalPrice}</span>
+                    {/* Price */}
+                    <div className="mb-4">
+                      <div className="flex items-baseline justify-center gap-2 mb-2">
+                        <span className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-light to-highlight">
+                          €{plan.price}
+                        </span>
+                        {plan.originalPrice && (
+                          <span className="text-lg text-light/40 line-through">
+                            €{plan.originalPrice}
+                          </span>
+                        )}
+                      </div>
+                      
+                      {plan.savings && (
+                        <div className="inline-flex items-center gap-1 bg-success/20 border border-success/40 rounded-full px-3 py-1 mb-2">
+                          <span className="text-success text-sm font-bold">
+                            Ahorra {plan.savings}
+                          </span>
+                        </div>
+                      )}
+                      
+                      <p className="text-highlight/80 font-medium">
+                        {plan.duration}
+                      </p>
+                      
+                      <p className="text-success text-sm font-medium mt-1">
+                        {plan.note}
+                      </p>
                     </div>
-                    
-                    <div className="text-base text-highlight/80 mb-3 font-japanese">{plan.duration}</div>
-                    
-                    <motion.div 
-                      className="text-success font-bold text-base font-japanese"
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.3 }}
-                    >
-                      {plan.note}
-                    </motion.div>
                   </div>
 
-                  <ul className="space-y-4 mb-8">
-                    {plan.features.map((feature, featureIndex) => (
-                      <motion.li 
-                        key={featureIndex} 
-                        className="flex items-center text-light/80 font-body"
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: featureIndex * 0.1 }}
-                        whileHover={{ x: 5, color: '#E0AAFF' }}
-                      >
-                        <motion.svg 
-                          className="w-6 h-6 text-success mr-3 flex-shrink-0" 
-                          fill="currentColor" 
-                          viewBox="0 0 20 20"
-                          whileHover={{ scale: 1.2, rotate: 360 }}
-                          transition={{ duration: 0.5 }}
+                  {/* Features */}
+                  <div className="flex-1 mb-8">
+                    <ul className="space-y-3">
+                      {plan.features.map((feature, featureIndex) => (
+                        <motion.li 
+                          key={featureIndex} 
+                          className="flex items-start gap-3 text-light/80"
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: featureIndex * 0.05 }}
                         >
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </motion.svg>
-                        <span>{feature}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-
-                  <div className="space-y-3">
-                    <motion.button
-                      onClick={() => handleBuyNow(plan)}
-                      className={`w-full bg-gradient-to-r ${plan.color} hover:opacity-90 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center`}
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                    >
-                      <svg 
-                        className="w-5 h-5 mr-2" 
-                        fill="currentColor" 
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
-                      </svg>
-                      <span>Comprar Ahora</span>
-                    </motion.button>
-                    
-                    <motion.button
-                      onClick={() => handleBuyNow(plan)}
-                      className="w-full bg-primary hover:bg-secondary text-light font-semibold py-3 px-6 rounded-xl border-2 border-accent/30 hover:border-accent transition-all duration-300 flex items-center justify-center"
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                    >
-                      <svg 
-                        className="w-5 h-5 mr-2" 
-                        fill="currentColor" 
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M23.638 14.904c-1.602 6.43-8.113 10.34-14.542 8.736C2.67 22.05-1.244 15.525.362 9.105 1.962 2.67 8.475-1.243 14.9.358c6.43 1.605 10.342 8.115 8.738 14.548v-.002zm-6.35-4.613c.24-1.59-.974-2.45-2.64-3.03l.54-2.153-1.315-.33-.525 2.107c-.345-.087-.705-.167-1.064-.25l.526-2.127-1.32-.33-.54 2.165c-.285-.067-.565-.132-.84-.2l-1.815-.45-.35 1.407s.975.225.955.236c.535.136.63.486.615.766l-1.477 5.92c-.075.166-.24.406-.614.314.015.02-.96-.24-.96-.24l-.66 1.51 1.71.426.93.242-.54 2.19 1.32.327.54-2.17c.36.1.705.19 1.05.273l-.51 2.154 1.32.33.545-2.19c2.24.427 3.93.257 4.64-1.774.57-1.637-.03-2.58-1.217-3.196.854-.193 1.5-.76 1.68-1.93h.01zm-3.01 4.22c-.404 1.64-3.157.75-4.05.53l.72-2.9c.896.23 3.757.67 3.33 2.37zm.41-4.24c-.37 1.49-2.662.735-3.405.55l.654-2.64c.744.18 3.137.524 2.75 2.084v.006z"/>
-                      </svg>
-                      <span>Pago Bitcoin</span>
-                    </motion.button>
+                          <svg 
+                            className="w-5 h-5 text-success mt-0.5 flex-shrink-0" 
+                            fill="currentColor" 
+                            viewBox="0 0 20 20"
+                          >
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                          <span className="font-medium">{feature}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
                   </div>
+
+                  {/* CTA Button */}
+                  <motion.button
+                    onClick={() => handleBuyNow(plan)}
+                    className={`w-full bg-gradient-to-r ${plan.color} text-white font-bold py-4 px-6 rounded-2xl transition-all duration-300 shadow-lg`}
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <span className="flex items-center justify-center gap-2">
+                      Obtener Acceso
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </span>
+                  </motion.button>
                 </div>
               </motion.div>
             </motion.div>
           ))}
         </div>
 
-        {/* Pop-up de urgencia */}
+        {/* Guarantees */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 3, duration: 0.5 }}
-          className="fixed bottom-4 right-4 bg-red-900 border border-red-500 rounded-lg p-4 max-w-sm z-50"
-        >
-          <div className="flex items-center">
-            <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse mr-3" />
-            <div>
-              <p className="text-white font-semibold text-sm">¡ÚLTIMA OPORTUNIDAD!</p>
-              <p className="text-red-300 text-xs">3 personas están viendo este plan ahora</p>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Garantías */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
-          <div className="flex flex-col items-center">
-            <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mb-4">
-              <span className="text-2xl">🛡️</span>
-            </div>
-            <h4 className="font-bold text-white mb-2">100% Indetectable</h4>
-            <p className="text-gray-400 text-sm">Garantía anti-ban o reembolso completo</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mb-4">
-              <span className="text-2xl">⚡</span>
-            </div>
-            <h4 className="font-bold text-white mb-2">Activación Instantánea</h4>
-            <p className="text-gray-400 text-sm">Recibe tu licencia en menos de 10 minutos</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mb-4">
-              <span className="text-2xl">🔄</span>
-            </div>
-            <h4 className="font-bold text-white mb-2">Actualizaciones Gratis</h4>
-            <p className="text-gray-400 text-sm">Siempre compatible con la última versión</p>
-          </div>
+          {[
+            {
+              icon: "🛡️",
+              title: "100% Indetectable",
+              description: "Garantía anti-ban o reembolso completo"
+            },
+            {
+              icon: "⚡",
+              title: "Activación Instantánea",
+              description: "Acceso inmediato tras el pago"
+            },
+            {
+              icon: "🔄",
+              title: "Actualizaciones Gratis",
+              description: "Siempre compatible con la última versión"
+            }
+          ].map((guarantee, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.6 }}
+              className="text-center"
+            >
+              <div className="w-16 h-16 bg-accent/20 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl">
+                {guarantee.icon}
+              </div>
+              <h4 className="font-display font-bold text-light text-xl mb-2">
+                {guarantee.title}
+              </h4>
+              <p className="text-light/60 font-medium">
+                {guarantee.description}
+              </p>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
 
