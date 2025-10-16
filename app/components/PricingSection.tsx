@@ -7,8 +7,8 @@ import CheckoutModal from './CheckoutModal'
 const plans = [
   {
     name: "STARTER",
-    price: 15,
-    originalPrice: 25,
+    price: 19,
+    originalPrice: 29,
     duration: "7 días",
     features: [
       "Aimbot Básico",
@@ -26,8 +26,8 @@ const plans = [
   },
   {
     name: "PRO",
-    price: 35,
-    originalPrice: 60,
+    price: 39,
+    originalPrice: 69,
     duration: "1 mes",
     features: [
       "Aimbot Avanzado",
@@ -46,8 +46,8 @@ const plans = [
   },
   {
     name: "ELITE",
-    price: 120,
-    originalPrice: 200,
+    price: 149,
+    originalPrice: 249,
     duration: "1 año",
     features: [
       "Todas las funciones PRO",
@@ -67,8 +67,8 @@ const plans = [
   },
   {
     name: "LIFETIME",
-    price: 299,
-    originalPrice: 500,
+    price: 349,
+    originalPrice: 599,
     duration: "De por vida",
     features: [
       "Acceso de por vida",
@@ -241,11 +241,11 @@ export default function PricingSection() {
                     <div className="mb-4">
                       <div className="flex items-baseline justify-center gap-2 mb-2">
                         <span className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-light to-highlight">
-                          €{plan.price}
+                          ${plan.price}
                         </span>
                         {plan.originalPrice && (
                           <span className="text-lg text-light/40 line-through">
-                            €{plan.originalPrice}
+                            ${plan.originalPrice}
                           </span>
                         )}
                       </div>

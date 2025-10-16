@@ -20,29 +20,29 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-white mb-4">Productos</h4>
             <ul className="space-y-2 text-gray-400 text-sm">
-              <li><a href="#" className="hover:text-neon-red transition-colors">Aimbot Avanzado</a></li>
-              <li><a href="#" className="hover:text-neon-red transition-colors">Wallhack Pro</a></li>
-              <li><a href="#" className="hover:text-neon-red transition-colors">ESP Inteligente</a></li>
-              <li><a href="#" className="hover:text-neon-red transition-colors">IA Adaptativa</a></li>
+              <li><a href="#pricing" className="hover:text-accent transition-colors">Phantom Protocol</a></li>
+              <li><a href="#features" className="hover:text-accent transition-colors">Características</a></li>
+              <li><a href="#pricing" className="hover:text-accent transition-colors">Planes de Acceso</a></li>
+              <li><a href="#" className="hover:text-accent transition-colors">Documentación</a></li>
             </ul>
           </div>
           
           <div>
             <h4 className="font-bold text-white mb-4">Soporte</h4>
             <ul className="space-y-2 text-gray-400 text-sm">
-              <li><a href="#" className="hover:text-neon-blue transition-colors">Centro de Ayuda</a></li>
-              <li><a href="#" className="hover:text-neon-blue transition-colors">Guías</a></li>
-              <li><a href="#" className="hover:text-neon-blue transition-colors">Discord</a></li>
-              <li><a href="#" className="hover:text-neon-blue transition-colors">Telegram</a></li>
+              <li><a href="#" className="hover:text-highlight transition-colors">Centro de Ayuda</a></li>
+              <li><a href="#" className="hover:text-highlight transition-colors">Guías de Instalación</a></li>
+              <li><a href="#" className="hover:text-highlight transition-colors">Discord Oficial</a></li>
+              <li><a href="#" className="hover:text-highlight transition-colors">Soporte 24/7</a></li>
             </ul>
           </div>
           
           <div>
             <h4 className="font-bold text-white mb-4">Legal</h4>
             <ul className="space-y-2 text-gray-400 text-sm">
-              <li><a href="#" className="hover:text-neon-purple transition-colors">Términos de Uso</a></li>
-              <li><a href="#" className="hover:text-neon-purple transition-colors">Privacidad</a></li>
-              <li><a href="#" className="hover:text-neon-purple transition-colors">Reembolsos</a></li>
+              <li><a href="#" className="hover:text-light transition-colors">Términos de Uso</a></li>
+              <li><a href="#" className="hover:text-light transition-colors">Política de Privacidad</a></li>
+              <li><a href="#" className="hover:text-light transition-colors">Política de Reembolsos</a></li>
             </ul>
           </div>
         </div>

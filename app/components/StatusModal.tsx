@@ -12,12 +12,10 @@ export default function StatusModal({ isOpen, onClose }: StatusModalProps) {
   const [activeTab, setActiveTab] = useState<'status' | 'security'>('status')
 
   const services = [
-    { name: 'Phantom Protocol Cheat', status: 'online', uptime: '99.98%', ping: '12ms' },
+    { name: 'Phantom Protocol', status: 'online', uptime: '99.98%', ping: '12ms' },
     { name: 'VGC Bypass System', status: 'online', uptime: '99.95%', ping: '8ms' },
     { name: 'Offset Auto-Update', status: 'online', uptime: '100%', ping: '5ms' },
-    { name: 'License Server', status: 'online', uptime: '99.99%', ping: '15ms' },
-    { name: 'Payment Gateway', status: 'online', uptime: '99.97%', ping: '20ms' },
-    { name: 'Discord Bot', status: 'online', uptime: '99.92%', ping: '18ms' }
+    { name: 'License Server', status: 'online', uptime: '99.99%', ping: '15ms' }
   ]
 
   const securityFeatures = [
@@ -64,17 +62,17 @@ export default function StatusModal({ isOpen, onClose }: StatusModalProps) {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
+        className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
       >
         <motion.div
-          className="relative w-full max-w-6xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-[#1a1625] via-[#2d1b3d] to-[#1a1625] rounded-3xl border-2 border-accent/30 shadow-2xl"
-          initial={{ scale: 0.9, y: 20 }}
+          className="relative w-full max-w-4xl max-h-[80vh] overflow-y-auto bg-gradient-to-br from-primary via-secondary to-primary rounded-2xl border-2 border-accent/40 shadow-2xl"
+          initial={{ scale: 0.95, y: 20 }}
           animate={{ scale: 1, y: 0 }}
-          exit={{ scale: 0.9, y: 20 }}
+          exit={{ scale: 0.95, y: 20 }}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Close Button */}
@@ -91,7 +89,7 @@ export default function StatusModal({ isOpen, onClose }: StatusModalProps) {
             {/* Header */}
             <div className="text-center mb-8">
               <motion.div
-                className="inline-flex items-center gap-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-8 py-3 rounded-full text-lg font-bold mb-6"
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-success to-success text-white px-6 py-3 rounded-full text-base font-bold mb-6"
                 animate={{ 
                   boxShadow: [
                     '0 0 20px rgba(16, 185, 129, 0.3)',
@@ -106,68 +104,37 @@ export default function StatusModal({ isOpen, onClose }: StatusModalProps) {
                   animate={{ scale: [1, 1.3, 1], opacity: [1, 0.5, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
-                ALL SYSTEMS OPERATIONAL
+                TODOS LOS SISTEMAS OPERATIVOS
               </motion.div>
               
-              <h2 className="text-5xl font-display font-black text-light mb-4">
-                System Status
+              <h2 className="text-4xl font-display font-black text-light mb-4">
+                Estado del Sistema
               </h2>
-              <p className="text-xl text-highlight font-japanese">
-                Todos nuestros servicios están 100% operativos e indetectables
+              <p className="text-lg text-highlight">
+                Phantom Protocol está 100% operativo e indetectable
               </p>
             </div>
 
-            {/* Tabs */}
-            <div className="flex gap-4 mb-8 justify-center">
-              <motion.button
-                onClick={() => setActiveTab('status')}
-                className={`px-8 py-4 rounded-xl font-bold text-lg transition-all ${
-                  activeTab === 'status'
-                    ? 'bg-gradient-to-r from-accent to-highlight text-white'
-                    : 'bg-primary/50 text-light/60 hover:text-light'
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                📊 Estado de Servicios
-              </motion.button>
-              <motion.button
-                onClick={() => setActiveTab('security')}
-                className={`px-8 py-4 rounded-xl font-bold text-lg transition-all ${
-                  activeTab === 'security'
-                    ? 'bg-gradient-to-r from-accent to-highlight text-white'
-                    : 'bg-primary/50 text-light/60 hover:text-light'
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                🛡️ Seguridad & Bypass
-              </motion.button>
-            </div>
 
-            {/* Status Tab */}
-            {activeTab === 'status' && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="space-y-4"
-              >
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="space-y-6"
+            >
                 {/* Maintenance Notice */}
                 <motion.div
-                  className="bg-gradient-to-r from-blue-900/30 to-cyan-900/30 border-2 border-blue-500/50 rounded-2xl p-6 mb-6"
+                  className="bg-gradient-to-r from-blue-900/20 to-cyan-900/20 border border-blue-500/30 rounded-xl p-6 mb-6"
                   whileHover={{ scale: 1.01 }}
                 >
                   <div className="flex items-start gap-4">
-                    <div className="text-4xl">ℹ️</div>
+                    <div className="text-3xl">ℹ️</div>
                     <div>
-                      <h3 className="text-xl font-bold text-blue-300 mb-2">
+                      <h3 className="text-lg font-bold text-blue-300 mb-2">
                         Política de Mantenimiento
                       </h3>
-                      <p className="text-blue-200 mb-2">
-                        Cualquier mantenimiento programado será notificado con <span className="font-bold text-white">30 minutos de anticipación</span> en nuestro Discord oficial.
-                      </p>
-                      <p className="text-sm text-blue-300">
-                        📢 Únete a nuestro Discord para recibir notificaciones en tiempo real
+                      <p className="text-blue-200 text-sm">
+                        Cualquier mantenimiento será notificado con <span className="font-bold text-white">30 minutos de anticipación</span> en Discord.
                       </p>
                     </div>
                   </div>
@@ -178,42 +145,42 @@ export default function StatusModal({ isOpen, onClose }: StatusModalProps) {
                   {services.map((service, index) => (
                     <motion.div
                       key={service.name}
-                      className="bento-card p-6 rounded-2xl"
+                      className="bento-card p-6 rounded-xl"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
                       whileHover={{ scale: 1.02 }}
                     >
                       <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-lg font-bold text-light">{service.name}</h3>
+                        <h3 className="text-base font-bold text-light">{service.name}</h3>
                         <motion.div
-                          className="flex items-center gap-2 bg-green-900/30 border border-green-500/50 rounded-full px-4 py-2"
+                          className="flex items-center gap-2 bg-success/20 border border-success/50 rounded-full px-3 py-1"
                           animate={{ 
                             boxShadow: [
                               '0 0 0px rgba(16, 185, 129, 0)',
-                              '0 0 15px rgba(16, 185, 129, 0.5)',
+                              '0 0 10px rgba(16, 185, 129, 0.4)',
                               '0 0 0px rgba(16, 185, 129, 0)'
                             ]
                           }}
                           transition={{ duration: 2, repeat: Infinity }}
                         >
                           <motion.div
-                            className="w-2 h-2 bg-green-400 rounded-full"
-                            animate={{ scale: [1, 1.3, 1] }}
+                            className="w-2 h-2 bg-success rounded-full"
+                            animate={{ scale: [1, 1.2, 1] }}
                             transition={{ duration: 1.5, repeat: Infinity }}
                           />
-                          <span className="text-green-400 text-sm font-bold uppercase">Online</span>
+                          <span className="text-success text-xs font-bold">ONLINE</span>
                         </motion.div>
                       </div>
                       
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-primary/50 rounded-lg p-3">
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="bg-primary/30 rounded-lg p-3">
                           <p className="text-xs text-highlight mb-1">Uptime</p>
-                          <p className="text-xl font-bold text-success">{service.uptime}</p>
+                          <p className="text-lg font-bold text-success">{service.uptime}</p>
                         </div>
-                        <div className="bg-primary/50 rounded-lg p-3">
+                        <div className="bg-primary/30 rounded-lg p-3">
                           <p className="text-xs text-highlight mb-1">Latencia</p>
-                          <p className="text-xl font-bold text-light">{service.ping}</p>
+                          <p className="text-lg font-bold text-light">{service.ping}</p>
                         </div>
                       </div>
                     </motion.div>
@@ -227,24 +194,23 @@ export default function StatusModal({ isOpen, onClose }: StatusModalProps) {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
                 >
-                  <div className="bg-gradient-to-br from-green-900/30 to-emerald-900/30 border border-green-500/30 rounded-2xl p-6 text-center">
-                    <div className="text-4xl mb-2">✅</div>
-                    <div className="text-3xl font-black text-success mb-1">99.97%</div>
-                    <div className="text-sm text-highlight">Uptime Global</div>
+                  <div className="bg-gradient-to-br from-success/20 to-success/10 border border-success/30 rounded-xl p-4 text-center">
+                    <div className="text-3xl mb-2">✅</div>
+                    <div className="text-2xl font-black text-success mb-1">99.97%</div>
+                    <div className="text-xs text-highlight">Uptime Global</div>
                   </div>
-                  <div className="bg-gradient-to-br from-blue-900/30 to-cyan-900/30 border border-blue-500/30 rounded-2xl p-6 text-center">
-                    <div className="text-4xl mb-2">⚡</div>
-                    <div className="text-3xl font-black text-blue-400 mb-1">13ms</div>
-                    <div className="text-sm text-highlight">Latencia Promedio</div>
+                  <div className="bg-gradient-to-br from-blue-500/20 to-blue-500/10 border border-blue-500/30 rounded-xl p-4 text-center">
+                    <div className="text-3xl mb-2">⚡</div>
+                    <div className="text-2xl font-black text-blue-400 mb-1">11ms</div>
+                    <div className="text-xs text-highlight">Latencia Promedio</div>
                   </div>
-                  <div className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 border border-purple-500/30 rounded-2xl p-6 text-center">
-                    <div className="text-4xl mb-2">🛡️</div>
-                    <div className="text-3xl font-black text-accent mb-1">0</div>
-                    <div className="text-sm text-highlight">Bans Reportados</div>
+                  <div className="bg-gradient-to-br from-accent/20 to-accent/10 border border-accent/30 rounded-xl p-4 text-center">
+                    <div className="text-3xl mb-2">🛡️</div>
+                    <div className="text-2xl font-black text-accent mb-1">0</div>
+                    <div className="text-xs text-highlight">Bans Reportados</div>
                   </div>
                 </motion.div>
               </motion.div>
-            )}
 
             {/* Security Tab */}
             {activeTab === 'security' && (

@@ -24,7 +24,7 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const btcAddress = "bc1ql0upf2d9xntcwzjrjx62j4h5vr09z62mcwwd6e"
-  const btcAmount = (plan.price / 45000).toFixed(8)
+  const btcAmount = (plan.price / 95000).toFixed(8)
 
   // Countdown timer
   useEffect(() => {
@@ -216,7 +216,7 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
                           <code className="text-3xl font-bold block bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent">
                             {btcAmount} BTC
                           </code>
-                          <span className="text-lg text-gray-400">≈ €{plan.price}</span>
+                          <span className="text-lg text-gray-400">≈ ${plan.price}</span>
                         </div>
                         <motion.button
                           onClick={() => copyToClipboard(btcAmount)}

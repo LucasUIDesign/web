@@ -7,56 +7,62 @@ const testimonials = [
   {
     id: 1,
     name: "@ValoPro_ES",
-    text: "Gané mi primer torneo con Phantom Protocol. Nadie sospechó nada. El aimbot es increíblemente natural.",
+    text: "Honestamente no esperaba que funcionara tan bien. Llevo 3 semanas usándolo y mi aim ha mejorado muchísimo, parece natural.",
     rating: 5,
     avatar: "🎯",
     verified: true,
-    rank: "Radiant"
+    rank: "Radiant",
+    timeAgo: "hace 4 días"
   },
   {
     id: 2,
     name: "@JettMain2025",
-    text: "El soporte es increíble. Me ayudaron a configurar el Aimbot en menos de 5 minutos. 100% recomendado.",
+    text: "Al principio tenía miedo de que me banearan, pero después de 2 meses sin problemas ya confío totalmente. El soporte responde súper rápido.",
     rating: 5,
     avatar: "⚡",
     verified: true,
-    rank: "Immortal 3"
+    rank: "Immortal 3",
+    timeAgo: "hace 1 semana"
   },
   {
     id: 3,
     name: "@SageCarry",
-    text: "Llevo 6 meses usando Phantom Protocol y nunca he tenido problemas. El wallhack es una ventaja brutal.",
+    text: "Lo compré hace como 5 meses y cero problemas. El wallhack es sutil, no es obvio como otros que he probado antes.",
     rating: 5,
     avatar: "🔮",
     verified: true,
-    rank: "Immortal 1"
+    rank: "Immortal 1",
+    timeAgo: "hace 3 días"
   },
   {
     id: 4,
     name: "@DuelistKing",
-    text: "Pasé de Plata a Diamante en 2 semanas. El ESP me da información que otros jugadores ni sueñan tener.",
+    text: "Subí de Plata 2 a Diamante 1 en como un mes. Mis amigos piensan que mejoré jugando mucho jaja, si supieran...",
     rating: 5,
     avatar: "👑",
     verified: true,
-    rank: "Diamond 2"
+    rank: "Diamond 2",
+    timeAgo: "hace 6 días"
   },
   {
     id: 5,
     name: "@PhoenixFire",
-    text: "La IA adaptativa es genial. Se ajusta a mi estilo de juego y parece completamente legítimo.",
+    text: "Me gusta que se adapta a como juego. No es como esos cheats obvios que te hacen ver sospechoso. Muy recomendado.",
     rating: 5,
     avatar: "🔥",
     verified: true,
-    rank: "Ascendant 3"
+    rank: "Ascendant 3",
+    timeAgo: "hace 2 días"
   },
   {
     id: 6,
     name: "@CypherHack",
-    text: "Mejor inversión que he hecho. El ROI en mis partidas ranked es increíble. Vale cada centavo.",
+    text: "Mejor compra que he hecho este año. Vale cada dólar, en serio. Mi winrate subió un montón desde que lo uso.",
     rating: 5,
     avatar: "🕵️",
     verified: true,
-    rank: "Immortal 2"
+    rank: "Immortal 2",
+    timeAgo: "hace 5 días"
   }
 ]
 
@@ -300,7 +306,7 @@ export default function SocialProof() {
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.5 }}
                   >
-                    Hace 2 días
+                    {testimonial.timeAgo}
                   </motion.span>
                 </div>
               </div>
