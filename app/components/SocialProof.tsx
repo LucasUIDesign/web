@@ -67,14 +67,18 @@ const testimonials = [
 ]
 
 const liveActivity = [
-  "🇪🇸 Carlos acaba de comprar Gold Plan",
-  "🇲🇽 Miguel está usando Aimbot ahora",
-  "🇦🇷 Sofia ganó una partida ranked",
-  "🇨🇱 Diego activó Wallhack",
-  "🇵🇪 Ana subió a Immortal",
-  "🇨🇴 Luis compró Platinum Plan",
-  "🇺🇾 Maria está dominando en Bind",
-  "🇪🇨 Pedro activó ESP avanzado"
+  "🇺🇸 Alex acaba de comprar LIFETIME Plan",
+  "🇲🇽 Miguel está usando Phantom Protocol ahora",
+  "🇦🇷 Sofia ganó 8 partidas seguidas con PRO",
+  "🇨🇱 Diego activó Wallhack - subió a Diamond",
+  "🇵🇪 Ana subió a Immortal usando ELITE",
+  "🇨🇴 Luis compró STARTER Plan",
+  "🇺🇾 Maria dominó en Ascent con ESP",
+  "🇪🇨 Pedro activó Aimbot - 30 kills",
+  "🇧🇷 João compró PRO Plan",
+  "🇪🇸 Carlos subió 3 rangos con ELITE",
+  "🇨🇦 Emma ganó torneo usando Phantom",
+  "🇫🇷 Pierre activó Anti-Detección"
 ]
 
 export default function SocialProof() {
@@ -159,22 +163,29 @@ export default function SocialProof() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="bg-gray-800/50 rounded-lg p-4 mb-16 border border-gray-600"
+          className="bg-gradient-to-r from-accent/10 to-highlight/10 rounded-xl p-6 mb-16 border border-accent/30 backdrop-blur-sm"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse mr-3" />
-              <span className="text-sm font-semibold text-gray-300">Actividad en Vivo:</span>
+              <motion.div 
+                className="w-4 h-4 bg-success rounded-full mr-3"
+                animate={{ scale: [1, 1.3, 1], opacity: [1, 0.5, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              <span className="text-base font-bold text-light">Actividad en Tiempo Real:</span>
             </div>
             <motion.div
               key={currentActivity}
-              initial={{ opacity: 0, x: 20 }}
+              initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="text-sm text-green-400"
+              exit={{ opacity: 0, x: -30 }}
+              className="text-base text-success font-medium"
             >
               {liveActivity[currentActivity]}
             </motion.div>
+          </div>
+          <div className="mt-3 text-xs text-highlight/70">
+            ⚡ Actualizaciones cada 3 segundos • {activeUsers.toLocaleString()} usuarios conectados
           </div>
         </motion.div>
 

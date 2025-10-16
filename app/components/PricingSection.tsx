@@ -7,8 +7,8 @@ import CheckoutModal from './CheckoutModal'
 const plans = [
   {
     name: "STARTER",
-    price: 19,
-    originalPrice: 29,
+    price: 15,
+    originalPrice: 25,
     duration: "7 días",
     features: [
       "Aimbot Básico",
@@ -26,8 +26,8 @@ const plans = [
   },
   {
     name: "PRO",
-    price: 39,
-    originalPrice: 69,
+    price: 30,
+    originalPrice: 50,
     duration: "1 mes",
     features: [
       "Aimbot Avanzado",
@@ -46,8 +46,8 @@ const plans = [
   },
   {
     name: "ELITE",
-    price: 149,
-    originalPrice: 249,
+    price: 90,
+    originalPrice: 150,
     duration: "1 año",
     features: [
       "Todas las funciones PRO",
@@ -67,8 +67,8 @@ const plans = [
   },
   {
     name: "LIFETIME",
-    price: 349,
-    originalPrice: 599,
+    price: 200,
+    originalPrice: 400,
     duration: "De por vida",
     features: [
       "Acceso de por vida",
