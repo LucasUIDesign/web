@@ -20,29 +20,31 @@ export default function StatusModal({ isOpen, onClose }: StatusModalProps) {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+        className="fixed inset-0 z-[9999] flex items-start justify-center p-4 bg-black/90 backdrop-blur-sm overflow-y-auto pt-20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
       >
         <motion.div
-          className="relative w-full max-w-2xl bg-gradient-to-br from-primary via-secondary to-primary rounded-2xl border-2 border-accent/40 shadow-2xl"
+          className="relative w-full max-w-2xl bg-gradient-to-br from-primary via-secondary to-primary rounded-2xl border-2 border-accent/40 shadow-2xl mb-20"
           initial={{ scale: 0.9, y: 20 }}
           animate={{ scale: 1, y: 0 }}
           exit={{ scale: 0.9, y: 20 }}
           onClick={(e) => e.stopPropagation()}
         >
+          {/* Close Button - FUERA del padding para que sea más visible */}
+          <button
+            onClick={onClose}
+            className="absolute -top-4 -right-4 z-[10000] w-12 h-12 bg-gradient-to-br from-danger to-red-600 hover:from-red-600 hover:to-danger rounded-full flex items-center justify-center text-white transition-all duration-200 shadow-2xl hover:scale-110 border-4 border-primary"
+            aria-label="Cerrar modal"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          
           <div className="p-8">
-            {/* Close Button */}
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 z-20 w-10 h-10 bg-danger hover:bg-danger/80 rounded-full flex items-center justify-center text-white transition-all duration-200 shadow-lg hover:scale-110"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
             {/* Header */}
             <div className="text-center mb-8">
               <motion.div
