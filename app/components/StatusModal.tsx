@@ -20,14 +20,14 @@ export default function StatusModal({ isOpen, onClose }: StatusModalProps) {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-[9999] flex items-start justify-center p-4 bg-black/90 backdrop-blur-sm overflow-y-auto pt-20"
+        className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm overflow-y-auto"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
       >
         <motion.div
-          className="relative w-full max-w-2xl bg-gradient-to-br from-primary via-secondary to-primary rounded-2xl border-2 border-accent/40 shadow-2xl mb-20"
+          className="relative w-full max-w-2xl bg-gradient-to-br from-primary via-secondary to-primary rounded-2xl border-2 border-accent/40 shadow-2xl my-8"
           initial={{ scale: 0.9, y: 20 }}
           animate={{ scale: 1, y: 0 }}
           exit={{ scale: 0.9, y: 20 }}
