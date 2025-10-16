@@ -30,10 +30,10 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-white mb-4">Soporte</h4>
             <ul className="space-y-2 text-gray-400 text-sm">
-              <li><a href="#" className="hover:text-highlight transition-colors">Centro de Ayuda</a></li>
-              <li><a href="#" className="hover:text-highlight transition-colors">Guías de Instalación</a></li>
-              <li><a href="#" className="hover:text-highlight transition-colors">Discord Oficial</a></li>
-              <li><a href="#" className="hover:text-highlight transition-colors">Soporte 24/7</a></li>
+              <li><a href="/support" className="hover:text-highlight transition-colors">Centro de Ayuda</a></li>
+              <li><a href="/support" className="hover:text-highlight transition-colors">Guías de Instalación</a></li>
+              <li><a href="/support" className="hover:text-highlight transition-colors">Preguntas Frecuentes</a></li>
+              <li><a href="/support" className="hover:text-highlight transition-colors">Soporte 24/7</a></li>
             </ul>
           </div>
           

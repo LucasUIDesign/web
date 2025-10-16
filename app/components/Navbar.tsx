@@ -27,7 +27,7 @@ export default function Navbar() {
     { name: 'Store', href: '#pricing' },
     { name: 'Features', href: '#features' },
     { name: 'Status', href: '#status', onClick: () => setShowStatusModal(true) },
-    { name: 'Discord', href: '#discord' }
+    { name: 'Support', href: '/support' }
   ]
 
   return (
