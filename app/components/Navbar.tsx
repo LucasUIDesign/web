@@ -98,17 +98,18 @@ export default function Navbar() {
           
           <StatusModal isOpen={showStatusModal} onClose={() => setShowStatusModal(false)} />
 
-          {/* Dashboard Button */}
-          <motion.button
-            className="hidden md:block bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white font-bold px-6 py-2 rounded-lg transition-all duration-300"
+          {/* Get Access Button */}
+          <motion.a
+            href="#pricing"
+            className="hidden md:block bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white font-bold px-6 py-2 rounded-lg transition-all duration-300 cursor-pointer"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.8 }}
             whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(176, 38, 255, 0.5)' }}
             whileTap={{ scale: 0.95 }}
           >
-            Dashboard
-          </motion.button>
+            Get Access
+          </motion.a>
         </div>
       </div>
     </motion.nav>

@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 export default function Logo({ size = 'normal' }: { size?: 'small' | 'normal' | 'large' }) {
   const sizes = {
@@ -12,12 +13,14 @@ export default function Logo({ size = 'normal' }: { size?: 'small' | 'normal' | 
   const currentSize = sizes[size]
 
   return (
-    <motion.div 
-      className="flex items-center space-x-3"
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8 }}
-    >
+    <Link href="/" className="cursor-pointer">
+      <motion.div 
+        className="flex items-center space-x-3"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        whileHover={{ scale: 1.05 }}
+      >
       {/* Logo Icon */}
       <motion.div 
         className="relative"
@@ -184,5 +187,6 @@ export default function Logo({ size = 'normal' }: { size?: 'small' | 'normal' | 
         </motion.div>
       </div>
     </motion.div>
+    </Link>
   )
 }
