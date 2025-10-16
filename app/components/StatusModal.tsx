@@ -107,7 +107,7 @@ export default function StatusModal({ isOpen, onClose }: StatusModalProps) {
                         Política de Mantenimiento
                       </h3>
                       <p className="text-blue-200 text-sm">
-                        Cualquier mantenimiento será notificado con <span className="font-bold text-white">30 minutos de anticipación</span> en Discord.
+                        Cualquier mantenimiento será notificado con <span className="font-bold text-white">30 minutos de anticipación</span> dentro del software y de nuestra página.
                       </p>
                     </div>
                   </div>
