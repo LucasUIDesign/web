@@ -369,13 +369,14 @@ export default function SocialProof() {
           <p className="text-xl text-gray-300 mb-6">
             Más de 10,000 jugadores ya están dominando con Phantom Protocol
           </p>
-          <motion.button
-            className="bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-500 hover:to-purple-500 text-white font-bold py-4 px-8 rounded-lg text-xl neon-border"
+          <motion.a
+            href="#pricing"
+            className="inline-block bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-500 hover:to-purple-500 text-white font-bold py-4 px-8 rounded-lg text-xl neon-border cursor-pointer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             OBTENER PHANTOM PROTOCOL AHORA
-          </motion.button>
+          </motion.a>
         </motion.div>
       </div>
     </section>

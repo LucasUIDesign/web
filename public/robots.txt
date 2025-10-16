@@ -12,6 +12,7 @@ Disallow: /.git/
 
 # Allow main pages
 Allow: /
+Allow: /support
 Allow: /*.css
 Allow: /*.js
 Allow: /*.png
