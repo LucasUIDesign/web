@@ -14,11 +14,11 @@ interface CheckoutModalProps {
   }
 }
 
-type CryptoType = 'BTC' | 'ETH'
+type WalletOption = 'wallet1' | 'wallet2'
 
 export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalProps) {
   const [step, setStep] = useState(1)
-  const [selectedCrypto, setSelectedCrypto] = useState<CryptoType>('BTC')
+  const [selectedWallet, setSelectedWallet] = useState<WalletOption>('wallet1')
   const [timeLeft, setTimeLeft] = useState(300) // 5 minutos
   const [email, setEmail] = useState('')
   const [transactionId, setTransactionId] = useState('')
@@ -27,22 +27,16 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [copied, setCopied] = useState<string | null>(null)
 
-  // Wallets del cliente
+  // Wallets ETH del cliente
   const wallets = {
-    BTC: "bc1ql0upf2d9xntcwzjrjx62j4h5vr09z62mcwwd6e",
-    ETH: "0xFc574A6cB9358aB43E2861bEf8bc8a512C160A55"
+    wallet1: "0xFc574A6cB9358aB43E2861bEf8bc8a512C160A55",
+    wallet2: "0x37154761C074bFba57931F32EC2fc25518Bb1c1a"
   }
 
-  // Precios aproximados (deberías actualizar con API real)
-  const cryptoPrices = {
-    BTC: 95000, // USD por BTC
-    ETH: 3500   // USD por ETH
-  }
+  const ethPrice = 3500 // USD por ETH (aproximado)
 
   const getCryptoAmount = () => {
-    return selectedCrypto === 'BTC'
-      ? (plan.price / cryptoPrices.BTC).toFixed(8)
-      : (plan.price / cryptoPrices.ETH).toFixed(6)
+    return (plan.price / ethPrice).toFixed(6)
   }
 
   // Countdown timer
@@ -66,7 +60,7 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
   useEffect(() => {
     if (!isOpen) {
       setStep(1)
-      setSelectedCrypto('BTC')
+      setSelectedWallet('wallet1')
       setTimeLeft(300)
       setEmail('')
       setTransactionId('')
@@ -158,7 +152,7 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
                 Checkout Seguro
               </h2>
               <p className="text-xl text-gray-400">
-                Pago 100% anónimo con <span className="text-crypto-btc font-bold">Bitcoin</span> o <span className="text-crypto-eth font-bold">Ethereum</span>
+                Pago 100% anónimo con <span className="text-crypto-eth font-bold">Ethereum (ETH)</span>
               </p>
             </div>
 
@@ -222,43 +216,19 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
                   </div>
                 </motion.div>
 
-                {/* Crypto Selector */}
+                {/* Wallet Selector */}
                 <div className="grid grid-cols-2 gap-6 mb-10">
                   <motion.button
-                    onClick={() => setSelectedCrypto('BTC')}
-                    className={`relative p-8 rounded-2xl border-2 transition-all overflow-hidden ${
-                      selectedCrypto === 'BTC'
-                        ? 'bg-gradient-to-br from-orange-900/40 to-yellow-900/40 border-crypto-btc shadow-[0_0_30px_rgba(247,147,26,0.5)]'
-                        : 'bg-gray-800/50 border-gray-700 hover:border-crypto-btc/50'
-                    }`}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    {selectedCrypto === 'BTC' && (
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
-                        animate={{ x: ['-100%', '100%'] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      />
-                    )}
-                    <div className="relative z-10">
-                      <div className="text-6xl mb-4">₿</div>
-                      <div className="text-2xl font-bold text-crypto-btc mb-2">Bitcoin</div>
-                      <div className="text-sm text-gray-400">Red BTC</div>
-                    </div>
-                  </motion.button>
-
-                  <motion.button
-                    onClick={() => setSelectedCrypto('ETH')}
-                    className={`relative p-8 rounded-2xl border-2 transition-all overflow-hidden ${
-                      selectedCrypto === 'ETH'
+                    onClick={() => setSelectedWallet('wallet1')}
+                    className={`relative p-6 rounded-2xl border-2 transition-all overflow-hidden ${
+                      selectedWallet === 'wallet1'
                         ? 'bg-gradient-to-br from-blue-900/40 to-indigo-900/40 border-crypto-eth shadow-[0_0_30px_rgba(98,126,234,0.5)]'
                         : 'bg-gray-800/50 border-gray-700 hover:border-crypto-eth/50'
                     }`}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    {selectedCrypto === 'ETH' && (
+                    {selectedWallet === 'wallet1' && (
                       <motion.div
                         className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
                         animate={{ x: ['-100%', '100%'] }}
@@ -266,9 +236,33 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
                       />
                     )}
                     <div className="relative z-10">
-                      <div className="text-6xl mb-4">Ξ</div>
-                      <div className="text-2xl font-bold text-crypto-eth mb-2">Ethereum</div>
-                      <div className="text-sm text-gray-400">Red ERC-20</div>
+                      <div className="text-5xl mb-3">Ξ</div>
+                      <div className="text-xl font-bold text-crypto-eth mb-1">Wallet 1</div>
+                      <div className="text-xs text-gray-400 font-mono">0xFc57...0A55</div>
+                    </div>
+                  </motion.button>
+
+                  <motion.button
+                    onClick={() => setSelectedWallet('wallet2')}
+                    className={`relative p-6 rounded-2xl border-2 transition-all overflow-hidden ${
+                      selectedWallet === 'wallet2'
+                        ? 'bg-gradient-to-br from-purple-900/40 to-pink-900/40 border-purple-500 shadow-[0_0_30px_rgba(168,85,247,0.5)]'
+                        : 'bg-gray-800/50 border-gray-700 hover:border-purple-500/50'
+                    }`}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {selectedWallet === 'wallet2' && (
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+                        animate={{ x: ['-100%', '100%'] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      />
+                    )}
+                    <div className="relative z-10">
+                      <div className="text-5xl mb-3">Ξ</div>
+                      <div className="text-xl font-bold text-purple-400 mb-1">Wallet 2</div>
+                      <div className="text-xs text-gray-400 font-mono">0x3715...1c1a</div>
                     </div>
                   </motion.button>
                 </div>
@@ -276,11 +270,7 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   {/* QR Code */}
                   <motion.div
-                    className={`rounded-2xl p-8 border-2 relative overflow-hidden ${
-                      selectedCrypto === 'BTC'
-                        ? 'bg-gradient-to-br from-orange-900/20 to-yellow-900/20 border-crypto-btc/50'
-                        : 'bg-gradient-to-br from-blue-900/20 to-indigo-900/20 border-crypto-eth/50'
-                    }`}
+                    className="rounded-2xl p-8 border-2 relative overflow-hidden bg-gradient-to-br from-blue-900/20 to-indigo-900/20 border-crypto-eth/50"
                     whileHover={{ scale: 1.02 }}
                     layout
                   >
@@ -289,16 +279,14 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
                       <h3 className="text-2xl font-bold text-white mb-2 text-center">
                         Escanea el QR
                       </h3>
-                      <p className={`text-center font-bold mb-6 text-lg ${
-                        selectedCrypto === 'BTC' ? 'text-crypto-btc' : 'text-crypto-eth'
-                      }`}>
-                        {selectedCrypto === 'BTC' ? '₿ Bitcoin' : 'Ξ Ethereum'}
+                      <p className="text-center font-bold mb-6 text-lg text-crypto-eth">
+                        Ξ Ethereum (ETH)
                       </p>
                       <div className="bg-white p-4 rounded-xl">
-                        <QRCode value={`${selectedCrypto.toLowerCase()}:${wallets[selectedCrypto]}?amount=${getCryptoAmount()}`} />
+                        <QRCode value={`ethereum:${wallets[selectedWallet]}?value=${getCryptoAmount()}`} />
                       </div>
                       <p className="text-center text-sm text-gray-400 mt-4">
-                        Usa tu wallet preferida
+                        Usa MetaMask, Trust Wallet o cualquier wallet ETH
                       </p>
                     </div>
                   </motion.div>
@@ -316,8 +304,8 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
                       </label>
                       <div className="flex items-center gap-3 relative z-10">
                         <div className="flex-1 bg-black/60 p-5 rounded-xl border border-yellow-500/20">
-                          <code className="text-3xl font-black block bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-                            {getCryptoAmount()} {selectedCrypto}
+                          <code className="text-3xl font-black block bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+                            {getCryptoAmount()} ETH
                           </code>
                           <span className="text-lg text-gray-400">≈ ${plan.price} USD</span>
                         </div>
@@ -334,37 +322,21 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
 
                     {/* Address */}
                     <motion.div
-                      className={`rounded-2xl p-6 border-2 relative overflow-hidden ${
-                        selectedCrypto === 'BTC'
-                          ? 'bg-gradient-to-br from-orange-900/30 to-red-900/30 border-crypto-btc/40'
-                          : 'bg-gradient-to-br from-blue-900/30 to-indigo-900/30 border-crypto-eth/40'
-                      }`}
-                      whileHover={{
-                        borderColor: selectedCrypto === 'BTC' ? 'rgba(247, 147, 26, 0.8)' : 'rgba(98, 126, 234, 0.8)'
-                      }}
+                      className="rounded-2xl p-6 border-2 relative overflow-hidden bg-gradient-to-br from-blue-900/30 to-indigo-900/30 border-crypto-eth/40"
+                      whileHover={{ borderColor: 'rgba(98, 126, 234, 0.8)' }}
                       layout
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer" />
-                      <label className={`block text-sm font-bold mb-4 uppercase tracking-wider flex items-center gap-2 ${
-                        selectedCrypto === 'BTC' ? 'text-crypto-btc' : 'text-crypto-eth'
-                      }`}>
-                        <span className="text-2xl">📍</span> Dirección {selectedCrypto}
+                      <label className="block text-sm font-bold mb-4 uppercase tracking-wider flex items-center gap-2 text-crypto-eth">
+                        <span className="text-2xl">📍</span> Dirección ETH ({selectedWallet === 'wallet1' ? 'Wallet 1' : 'Wallet 2'})
                       </label>
                       <div className="flex items-center gap-3 relative z-10">
-                        <code className={`flex-1 text-sm break-all font-mono bg-black/60 p-4 rounded-xl border ${
-                          selectedCrypto === 'BTC'
-                            ? 'text-crypto-btc border-crypto-btc/20'
-                            : 'text-crypto-eth border-crypto-eth/20'
-                        }`}>
-                          {wallets[selectedCrypto]}
+                        <code className="flex-1 text-sm break-all font-mono bg-black/60 p-4 rounded-xl border text-crypto-eth border-crypto-eth/20">
+                          {wallets[selectedWallet]}
                         </code>
                         <motion.button
-                          onClick={() => copyToClipboard(wallets[selectedCrypto], 'address')}
-                          className={`px-5 py-4 rounded-xl font-bold shadow-lg ${
-                            selectedCrypto === 'BTC'
-                              ? 'bg-crypto-btc hover:bg-orange-600'
-                              : 'bg-crypto-eth hover:bg-blue-600'
-                          }`}
+                          onClick={() => copyToClipboard(wallets[selectedWallet], 'address')}
+                          className="bg-crypto-eth hover:bg-blue-600 px-5 py-4 rounded-xl font-bold shadow-lg"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                         >

@@ -21,7 +21,7 @@ export default function SupportPage() {
     },
     {
       question: "¿Qué métodos de pago aceptan?",
-      answer: "Aceptamos Bitcoin (BTC). Los pagos en criptomonedas son instantáneos y 100% seguros."
+      answer: "Aceptamos Ethereum (ETH). Los pagos en criptomonedas son instantáneos y 100% seguros."
     },
     {
       question: "¿Cuánto tarda en activarse mi licencia?",

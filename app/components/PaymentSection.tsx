@@ -13,8 +13,8 @@ export default function PaymentSection() {
   const [email, setEmail] = useState('')
   const [transactionId, setTransactionId] = useState('')
 
-  const btcAddress = "bc1ql0upf2d9xntcwzjrjx62j4h5vr09z62mcwwd6e"
-  const btcAmount = "0.0045"
+  const ethAddress = "0xFc574A6cB9358aB43E2861bEf8bc8a512C160A55"
+  const ethAmount = "0.028571"
   const euroAmount = "99.99"
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,10 +60,10 @@ export default function PaymentSection() {
           className="text-center mb-16"
         >
           <h2 className="text-5xl font-futuristic font-bold mb-6 glow-text">
-            PAGO SEGURO CON BITCOIN
+            PAGO SEGURO CON ETHEREUM
           </h2>
           <p className="text-xl text-gray-300">
-            Transacciones 100% anónimas y seguras
+            Transacciones 100% anónimas y seguras con ETH
           </p>
         </motion.div>
 
@@ -102,7 +102,7 @@ export default function PaymentSection() {
               className="max-w-4xl mx-auto"
             >
               <h3 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                Paso 1: Realiza el Pago con Bitcoin
+                Paso 1: Realiza el Pago con Ethereum
               </h3>
               
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -113,9 +113,9 @@ export default function PaymentSection() {
                 >
                   <div className="text-center mb-6">
                     <h4 className="text-xl font-bold text-white mb-2">Escanea el QR</h4>
-                    <p className="text-sm text-gray-400">Usa tu wallet de Bitcoin</p>
+                    <p className="text-sm text-gray-400">Usa tu wallet de Ethereum</p>
                   </div>
-                  <QRCode value={`bitcoin:${btcAddress}?amount=${btcAmount}`} />
+                  <QRCode value={`ethereum:${ethAddress}?value=${ethAmount}`} />
                 </motion.div>
                 
                 {/* Detalles de pago */}
@@ -125,14 +125,14 @@ export default function PaymentSection() {
                     whileHover={{ borderColor: '#8b5cf6' }}
                   >
                     <label className="block text-sm font-bold text-purple-400 mb-3 uppercase tracking-wider">
-                      Dirección Bitcoin
+                      Dirección Ethereum
                     </label>
                     <div className="flex items-center gap-3">
                       <code className="text-sm text-green-400 flex-1 break-all font-mono bg-black/50 p-3 rounded">
-                        {btcAddress}
+                        {ethAddress}
                       </code>
                       <motion.button
-                        onClick={() => copyToClipboard(btcAddress)}
+                        onClick={() => copyToClipboard(ethAddress)}
                         className="bg-purple-600 hover:bg-purple-700 px-4 py-3 rounded-lg text-sm font-semibold whitespace-nowrap"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -152,12 +152,12 @@ export default function PaymentSection() {
                     <div className="flex items-center gap-3">
                       <div className="flex-1 bg-black/50 p-3 rounded">
                         <code className="text-2xl text-yellow-400 font-bold block">
-                          {btcAmount} BTC
+                          {ethAmount} ETH
                         </code>
                         <span className="text-sm text-gray-400">≈ €{euroAmount}</span>
                       </div>
                       <motion.button
-                        onClick={() => copyToClipboard(btcAmount)}
+                        onClick={() => copyToClipboard(ethAmount)}
                         className="bg-yellow-600 hover:bg-yellow-700 px-4 py-3 rounded-lg text-sm font-semibold whitespace-nowrap"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -389,7 +389,7 @@ export default function PaymentSection() {
             <div>
               <h4 className="font-bold text-red-300 mb-2">IMPORTANTE:</h4>
               <p className="text-red-200 text-sm leading-relaxed">
-                Solo envía BTC desde la red Bitcoin. Otras redes (ERC20, BEP20, TRC20) NO son compatibles. 
+                Solo envía ETH desde la red Ethereum (ERC-20). Otras redes (BEP20, TRC20, Arbitrum, Optimism) podrían NO ser compatibles.
                 Los fondos enviados desde redes incorrectas se perderán permanentemente y no son reembolsables.
               </p>
             </div>
