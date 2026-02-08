@@ -51,22 +51,22 @@ export default function HeroSection() {
           </motion.h1>
 
           {/* Subtitle */}
-          <motion.p 
+          <motion.p
             className="text-2xl md:text-3xl lg:text-4xl text-light/90 font-medium mb-4 max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            Cheats Indetectables de Nivel Profesional
+            Software de Entrenamiento de Nivel Profesional
           </motion.p>
 
-          <motion.p 
+          <motion.p
             className="text-lg md:text-xl text-highlight/70 mb-12 max-w-3xl mx-auto font-body"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            Aimbot Predictivo • Wallhack Inteligente • ESP Avanzado • 0 Bans Reportados
+            Asistencia de Puntería • Overlay Táctico • Análisis Avanzado • Sistema Indetectable
           </motion.p>
 
           {/* CTA Section */}
@@ -110,13 +110,13 @@ export default function HeroSection() {
               <div className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-success to-success mb-2">
                 99.9%
               </div>
-              <div className="text-light/60 font-medium">Precisión Aimbot</div>
+              <div className="text-light/60 font-medium">Precisión de Entrenamiento</div>
             </div>
             <div className="text-center">
               <div className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent to-highlight mb-2">
-                0
+                10K+
               </div>
-              <div className="text-light/60 font-medium">Bans Reportados</div>
+              <div className="text-light/60 font-medium">Usuarios Activos</div>
             </div>
             <div className="text-center">
               <div className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-highlight to-light mb-2">

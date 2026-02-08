@@ -6,24 +6,28 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'PHANTOM PROTOCOL - #1 VALORANT Cheats Undetected 2025 | VGC Bypass',
-  description: 'El cheat más seguro del mercado. Bypass completo de Vanguard y VGC. Aimbot, Wallhack, ESP. 0 bans reportados. Usado por +10,000 pros. Desde €15.',
-  keywords: 'VALORANT cheats, undetected aimbot, ESP hack 2025, best cheats for VALORANT, phantom protocol, valorant hacks, vanguard bypass, VGC bypass, valorant cheats undetected, valorant aimbot 2025, valorant wallhack, valorant esp, cheats valorant, hacks valorant, valorant cheat engine, valorant hack download, valorant cheats free, valorant private cheats',
+  title: 'PHANTOM PROTOCOL - Software de Entrenamiento Avanzado para VALORANT 2025',
+  description: 'Herramienta profesional de práctica y análisis para mejorar tu rendimiento en VALORANT. Incluye asistencia de puntería, visión táctica y estadísticas avanzadas. Usado por miles de jugadores competitivos.',
+  keywords: 'VALORANT training software, aim trainer, game performance, competitive gaming tools, valorant practice tool, aim assistant, tactical overlay, game analysis, valorant coaching software, performance enhancement, esports training, valorant improvement tool',
   robots: 'index, follow',
   openGraph: {
-    title: 'PHANTOM PROTOCOL - #1 VALORANT Cheats Undetected 2025',
-    description: 'El cheat más seguro del mercado. Bypass completo de Vanguard y VGC. 0 bans reportados.',
+    title: 'PHANTOM PROTOCOL - Software de Entrenamiento para VALORANT',
+    description: 'Herramienta profesional de entrenamiento y análisis. Mejora tu rendimiento con asistencia táctica avanzada.',
     type: 'website',
     locale: 'es_ES',
     siteName: 'Phantom Protocol',
+    url: 'https://phantom-protocol.vercel.app',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PHANTOM PROTOCOL - VALORANT Cheats',
-    description: 'El cheat más seguro del mercado. VGC Bypass completo.',
+    title: 'PHANTOM PROTOCOL - Entrenamiento VALORANT',
+    description: 'Software profesional de entrenamiento y análisis para jugadores competitivos.',
   },
   alternates: {
     canonical: 'https://phantom-protocol.vercel.app',
+  },
+  verification: {
+    google: 'AW-17939195414',
   },
 }
 
@@ -43,45 +47,30 @@ export default function RootLayout({
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
             "name": "Phantom Protocol",
-            "description": "El cheat más seguro del mercado para VALORANT. Bypass completo de Vanguard y VGC. 0 bans reportados.",
+            "description": "Software profesional de entrenamiento y análisis de rendimiento para VALORANT. Herramienta de práctica con asistencia de puntería, visión táctica y estadísticas avanzadas.",
             "applicationCategory": "GameApplication",
             "operatingSystem": "Windows",
-            "offers": [
-              {
-                "@type": "Offer",
-                "name": "7 Days Plan",
-                "price": "15",
-                "priceCurrency": "EUR",
-                "availability": "https://schema.org/InStock"
-              },
-              {
-                "@type": "Offer",
-                "name": "Monthly VIP",
-                "price": "30",
-                "priceCurrency": "EUR",
-                "availability": "https://schema.org/InStock"
-              },
-              {
-                "@type": "Offer",
-                "name": "Yearly VIP",
-                "price": "90",
-                "priceCurrency": "EUR",
-                "availability": "https://schema.org/InStock"
-              },
-              {
-                "@type": "Offer",
-                "name": "Lifetime VIP",
-                "price": "200",
-                "priceCurrency": "EUR",
-                "availability": "https://schema.org/LimitedAvailability"
-              }
-            ],
+            "offers": {
+              "@type": "AggregateOffer",
+              "lowPrice": "15",
+              "highPrice": "200",
+              "priceCurrency": "EUR",
+              "availability": "https://schema.org/InStock",
+              "offerCount": "4"
+            },
             "aggregateRating": {
               "@type": "AggregateRating",
               "ratingValue": "4.9",
               "ratingCount": "10247",
               "bestRating": "5"
-            }
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Phantom Protocol Team"
+            },
+            "datePublished": "2025-01-01",
+            "softwareVersion": "2.0",
+            "featureList": "Asistencia de puntería avanzada, Overlay táctico, Análisis de rendimiento, Estadísticas en tiempo real, Soporte 24/7"
           })}
         </script>
         <script type="application/ld+json">
@@ -89,13 +78,18 @@ export default function RootLayout({
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "Phantom Protocol",
-            "description": "Proveedor líder de cheats indetectables para VALORANT",
+            "description": "Desarrolladores de software de entrenamiento profesional para jugadores competitivos de VALORANT",
             "url": "https://phantom-protocol.vercel.app",
             "logo": "https://phantom-protocol.vercel.app/logo.png",
             "sameAs": [
               "https://discord.gg/phantomprotocol",
               "https://t.me/phantomprotocol"
-            ]
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "Customer Support",
+              "availableLanguage": ["Spanish", "English"]
+            }
           })}
         </script>
       </head>

@@ -1,7 +1,8 @@
 # Robots.txt - Phantom Protocol
-# Security-focused configuration
+# SEO-optimized configuration for training software
 
 User-agent: *
+Crawl-delay: 0
 Disallow: /api/
 Disallow: /_next/
 Disallow: /admin/
@@ -21,6 +22,16 @@ Allow: /*.jpeg
 Allow: /*.gif
 Allow: /*.svg
 Allow: /*.webp
+
+# Allow Google bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /
 
 # Block bad bots
 User-agent: AhrefsBot
