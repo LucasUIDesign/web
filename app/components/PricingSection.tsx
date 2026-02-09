@@ -122,7 +122,7 @@ export default function PricingSection() {
   }, [])
 
   return (
-    <section id="pricing" className="py-32 px-8 relative">
+    <section id="pricing" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 relative">
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <motion.div
@@ -130,19 +130,19 @@ export default function PricingSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-10 sm:mb-16 lg:mb-20"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="inline-flex items-center gap-2 bg-accent/10 border border-accent/30 rounded-full px-6 py-3 mb-8"
+            className="inline-flex items-center gap-2 bg-accent/10 border border-accent/30 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8"
           >
-            <span className="text-accent font-medium">Planes de Acceso</span>
+            <span className="text-accent font-medium text-sm sm:text-base">Planes de Acceso</span>
           </motion.div>
 
-          <h2 className="text-6xl md:text-7xl lg:text-8xl font-display font-black mb-8 leading-[0.9]">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-black mb-6 sm:mb-8 leading-[0.9]">
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-light to-highlight">
               ELIGE TU
             </span>
@@ -157,12 +157,12 @@ export default function PricingSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="bg-gradient-to-r from-danger/20 to-warning/20 border-2 border-danger/40 rounded-2xl p-8 mb-12 inline-block backdrop-blur-sm"
+            className="bg-gradient-to-r from-danger/20 to-warning/20 border border-danger/40 sm:border-2 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 mb-8 sm:mb-12 inline-block backdrop-blur-sm"
           >
-            <p className="text-light font-bold text-xl mb-4">
-              ⏰ Oferta especial termina en:
+            <p className="text-light font-bold text-sm sm:text-base lg:text-xl mb-3 sm:mb-4">
+              Oferta especial termina en:
             </p>
-            <div className="flex justify-center items-center gap-6 text-4xl md:text-5xl font-black">
+            <div className="flex justify-center items-center gap-3 sm:gap-4 lg:gap-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black">
               <div className="text-center">
                 <div className="text-transparent bg-clip-text bg-gradient-to-r from-danger to-warning">
                   {String(timeLeft.hours).padStart(2, '0')}
@@ -188,7 +188,7 @@ export default function PricingSection() {
         </motion.div>
 
         {/* Pricing Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-12 sm:mb-16 lg:mb-20">
           {plans.map((plan, index) => (
             <motion.div
               key={plan.name}
@@ -230,17 +230,17 @@ export default function PricingSection() {
                 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="p-8 h-full flex flex-col">
+                <div className="p-5 sm:p-6 lg:p-8 h-full flex flex-col">
                   {/* Header */}
-                  <div className="text-center mb-8">
-                    <h3 className="text-2xl font-display font-black text-light mb-4">
+                  <div className="text-center mb-6 sm:mb-8">
+                    <h3 className="text-xl sm:text-2xl font-display font-black text-light mb-3 sm:mb-4">
                       {plan.name}
                     </h3>
-                    
+
                     {/* Price */}
                     <div className="mb-4">
                       <div className="flex items-baseline justify-center gap-2 mb-2">
-                        <span className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-light to-highlight">
+                        <span className="text-4xl sm:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-light to-highlight">
                           ${plan.price}
                         </span>
                         {plan.originalPrice && (
@@ -269,8 +269,8 @@ export default function PricingSection() {
                   </div>
 
                   {/* Features */}
-                  <div className="flex-1 mb-8">
-                    <ul className="space-y-3">
+                  <div className="flex-1 mb-6 sm:mb-8">
+                    <ul className="space-y-2 sm:space-y-3">
                       {plan.features.map((feature, featureIndex) => (
                         <motion.li 
                           key={featureIndex} 
@@ -287,7 +287,7 @@ export default function PricingSection() {
                           >
                             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                           </svg>
-                          <span className="font-medium">{feature}</span>
+                          <span className="font-medium text-sm sm:text-base">{feature}</span>
                         </motion.li>
                       ))}
                     </ul>
@@ -319,7 +319,7 @@ export default function PricingSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
         >
           {[
             {
@@ -346,13 +346,13 @@ export default function PricingSection() {
               transition={{ delay: index * 0.1, duration: 0.6 }}
               className="text-center"
             >
-              <div className="w-16 h-16 bg-accent/20 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-accent/20 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4 text-2xl sm:text-3xl">
                 {guarantee.icon}
               </div>
-              <h4 className="font-display font-bold text-light text-xl mb-2">
+              <h4 className="font-display font-bold text-light text-base sm:text-lg lg:text-xl mb-1 sm:mb-2">
                 {guarantee.title}
               </h4>
-              <p className="text-light/60 font-medium">
+              <p className="text-light/60 font-medium text-xs sm:text-sm lg:text-base">
                 {guarantee.description}
               </p>
             </motion.div>

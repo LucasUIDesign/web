@@ -139,23 +139,23 @@ export default function BentoGrid() {
   }
 
   return (
-    <section id="features" className="py-20 px-6">
+    <section id="features" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6">
       <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <h2 className="text-6xl md:text-7xl font-display font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-light via-highlight to-accent">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-black mb-4 sm:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-light via-highlight to-accent">
             CARACTERÍSTICAS ÉLITE
           </h2>
-          <p className="text-xl md:text-2xl text-light/80 max-w-3xl mx-auto font-japanese">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-light/80 max-w-3xl mx-auto font-body">
             Tecnología de vanguardia que te dará la ventaja definitiva
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {features.map((feature, index) => (
             <motion.div
               key={feature.id}
@@ -172,12 +172,11 @@ export default function BentoGrid() {
                 transition: { duration: 0.3 }
               }}
             >
-              <div className="bento-card p-8 rounded-3xl h-full relative overflow-hidden border-2 border-accent/20 hover:border-accent/50 transition-all duration-300">
+              <div className="bento-card p-5 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl h-full relative overflow-hidden border-2 border-accent/20 hover:border-accent/50 transition-all duration-300">
 
-
-                <div className="flex items-center mb-6">
+                <div className="flex items-center mb-4 sm:mb-6">
                   <motion.div
-                    className="w-16 h-16 bg-gradient-to-br from-accent to-highlight rounded-2xl flex items-center justify-center mr-4 text-3xl"
+                    className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-accent to-highlight rounded-xl sm:rounded-2xl flex items-center justify-center mr-3 sm:mr-4 text-2xl sm:text-3xl flex-shrink-0"
                     whileHover={{ 
                       scale: 1.1,
                       rotate: [0, -5, 5, 0],
@@ -187,8 +186,8 @@ export default function BentoGrid() {
                     {feature.icon}
                   </motion.div>
                   <div>
-                    <motion.h3 
-                      className="text-2xl font-display font-black text-light mb-1"
+                    <motion.h3
+                      className="text-lg sm:text-xl lg:text-2xl font-display font-black text-light mb-1"
                       whileHover={{ x: 3 }}
                     >
                       {feature.title}
@@ -204,8 +203,8 @@ export default function BentoGrid() {
                   </div>
                 </div>
                 
-                <motion.p 
-                  className="text-light/70 mb-4 text-base leading-relaxed font-body"
+                <motion.p
+                  className="text-light/70 mb-4 text-sm sm:text-base leading-relaxed font-body"
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
@@ -237,35 +236,35 @@ export default function BentoGrid() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8"
+          className="mt-10 sm:mt-16 lg:mt-20 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 lg:gap-8"
         >
           <motion.div 
-            className="bento-card p-6 rounded-2xl text-center"
+            className="bento-card p-3 sm:p-4 lg:p-6 rounded-xl sm:rounded-2xl text-center"
             whileHover={{ scale: 1.05 }}
           >
-            <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent to-highlight mb-2">99.9%</div>
-            <div className="text-light/60 font-japanese">Precisión Aimbot</div>
+            <div className="text-2xl sm:text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent to-highlight mb-2">99.9%</div>
+            <div className="text-light/60 text-xs sm:text-sm font-body">Precisión Aimbot</div>
           </motion.div>
           <motion.div 
-            className="bento-card p-6 rounded-2xl text-center"
+            className="bento-card p-3 sm:p-4 lg:p-6 rounded-xl sm:rounded-2xl text-center"
             whileHover={{ scale: 1.05 }}
           >
-            <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-success to-success mb-2">0</div>
-            <div className="text-light/60 font-japanese">Bans Reportados</div>
+            <div className="text-2xl sm:text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-success to-success mb-2">0</div>
+            <div className="text-light/60 text-xs sm:text-sm font-body">Bans Reportados</div>
           </motion.div>
           <motion.div 
-            className="bento-card p-6 rounded-2xl text-center"
+            className="bento-card p-3 sm:p-4 lg:p-6 rounded-xl sm:rounded-2xl text-center"
             whileHover={{ scale: 1.05 }}
           >
-            <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-highlight to-light mb-2">10K+</div>
-            <div className="text-light/60 font-japanese">Usuarios Activos</div>
+            <div className="text-2xl sm:text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-highlight to-light mb-2">10K+</div>
+            <div className="text-light/60 text-xs sm:text-sm font-body">Usuarios Activos</div>
           </motion.div>
           <motion.div 
-            className="bento-card p-6 rounded-2xl text-center"
+            className="bento-card p-3 sm:p-4 lg:p-6 rounded-xl sm:rounded-2xl text-center"
             whileHover={{ scale: 1.05 }}
           >
-            <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent to-highlight mb-2">24/7</div>
-            <div className="text-light/60 font-japanese">Soporte</div>
+            <div className="text-2xl sm:text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent to-highlight mb-2">24/7</div>
+            <div className="text-light/60 text-xs sm:text-sm font-body">Soporte</div>
           </motion.div>
         </motion.div>
       </div>
