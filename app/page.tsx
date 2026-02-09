@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <>
       <LoadingScreen />
-      <main className="relative min-h-screen">
+      <main id="main-content" className="relative min-h-screen">
         <CustomCursor />
         <Navbar />
         <HeroSection />

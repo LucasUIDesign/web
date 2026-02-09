@@ -56,6 +56,8 @@ export default function Logo({ size = 'normal' }: { size?: 'small' | 'normal' | 
             viewBox="0 0 100 100"
             className="w-3/4 h-3/4"
             fill="none"
+            role="img"
+            aria-label="Phantom Protocol logo"
           >
             {/* Ghost outline */}
             <motion.path

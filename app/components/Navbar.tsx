@@ -135,6 +135,8 @@ export default function Navbar() {
                 className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg bg-accent/10 border border-accent/20"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 whileTap={{ scale: 0.9 }}
+                aria-label={mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+                aria-expanded={mobileMenuOpen}
               >
                 <motion.span
                   className="block w-5 h-0.5 bg-accent mb-1"

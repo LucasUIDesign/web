@@ -94,6 +94,7 @@ export default function RootLayout({
         </script>
       </head>
       <body className={`${inter.className} bg-dark-bg text-white overflow-x-hidden`}>
+        <a href="#main-content" className="skip-link">Saltar al contenido</a>
         {/* Google Ads (gtag.js) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-17939195414"

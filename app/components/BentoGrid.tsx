@@ -1,271 +1,273 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState } from 'react'
 
 const features = [
   {
     id: 1,
     title: "Aimbot Predictivo",
     subtitle: "Precisión del 99.7%",
-    description: "Nuestro algoritmo analiza 1,200 movimientos por segundo. Los enemigos no tendrán chance.",
-    icon: "🎯",
-    color: "from-red-500 to-red-700",
-    demo: "aimbot"
+    description: "Algoritmo avanzado que analiza 1,200 movimientos por segundo con predicción de trayectoria en tiempo real.",
+    icon: (
+      <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="12" cy="12" r="6" />
+        <circle cx="12" cy="12" r="2" />
+        <line x1="12" y1="2" x2="12" y2="6" />
+        <line x1="12" y1="18" x2="12" y2="22" />
+        <line x1="2" y1="12" x2="6" y2="12" />
+        <line x1="18" y1="12" x2="22" y2="12" />
+      </svg>
+    ),
+    gradient: "from-[#00FFD1] to-[#00B4D8]",
+    glowColor: "rgba(0,255,209,0.15)",
+    stat: "99.7%",
+    statLabel: "Precisión"
   },
   {
     id: 2,
     title: "Wallhack Inteligente",
-    subtitle: "Ve a través de todo",
-    description: "Detecta enemigos a través de paredes con precisión milimétrica. Nunca más te pillarán desprevenido.",
-    icon: "👁️",
-    color: "from-blue-500 to-blue-700",
-    demo: "wallhack"
+    subtitle: "Visión sin límites",
+    description: "Detección avanzada de posiciones a través de superficies con filtrado inteligente y mínimo impacto visual.",
+    icon: (
+      <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+        <circle cx="12" cy="12" r="3" />
+        <path d="M12 5v-2M12 21v-2M5 12H3M21 12h-2" strokeDasharray="2 2" />
+      </svg>
+    ),
+    gradient: "from-[#7B61FF] to-[#00B4D8]",
+    glowColor: "rgba(123,97,255,0.15)",
+    stat: "360°",
+    statLabel: "Cobertura"
   },
   {
     id: 3,
     title: "ESP Avanzado",
-    subtitle: "Información en tiempo real",
-    description: "Vida, armadura, armas y posición exacta de todos los jugadores. Domina el campo de batalla.",
-    icon: "📡",
-    color: "from-purple-500 to-purple-700",
-    demo: "esp"
+    subtitle: "Intel en tiempo real",
+    description: "Overlay completo con vida, armadura, armas, distancia y predicción de movimiento de todos los jugadores.",
+    icon: (
+      <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+        <rect x="2" y="3" width="20" height="14" rx="2" />
+        <path d="M8 21h8M12 17v4" />
+        <circle cx="8" cy="10" r="1.5" fill="currentColor" />
+        <circle cx="16" cy="10" r="1.5" fill="currentColor" />
+        <path d="M5 7h3M16 7h3" strokeDasharray="1 1" />
+      </svg>
+    ),
+    gradient: "from-[#00B4D8] to-[#00FFD1]",
+    glowColor: "rgba(0,180,216,0.15)",
+    stat: "12+",
+    statLabel: "Data Points"
   },
   {
     id: 4,
     title: "IA Adaptativa",
-    subtitle: "Aprende tu estilo",
-    description: "Se adapta a tu forma de jugar para parecer completamente natural. Anti-detección garantizada.",
-    icon: "🧠",
-    color: "from-green-500 to-green-700",
-    demo: "ai"
+    subtitle: "Comportamiento natural",
+    description: "Motor de IA que aprende tu estilo de juego y adapta las asistencias para un rendimiento orgánico e indetectable.",
+    icon: (
+      <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+        <path d="M12 2a4 4 0 014 4v2a4 4 0 01-8 0V6a4 4 0 014-4z" />
+        <path d="M6 10v1a6 6 0 0012 0v-1" />
+        <path d="M12 17v4M8 21h8" />
+        <circle cx="10" cy="7" r="0.5" fill="currentColor" />
+        <circle cx="14" cy="7" r="0.5" fill="currentColor" />
+      </svg>
+    ),
+    gradient: "from-[#00FFD1] to-[#7B61FF]",
+    glowColor: "rgba(0,255,209,0.12)",
+    stat: "ML",
+    statLabel: "Powered"
   },
   {
     id: 5,
-    title: "Actualizaciones Automáticas",
+    title: "Auto-Update Engine",
     subtitle: "Siempre actualizado",
-    description: "Nuestro sistema se actualiza automáticamente con cada parche de VALORANT. Sin interrupciones.",
-    icon: "🔄",
-    color: "from-yellow-500 to-yellow-700",
-    demo: "updates"
+    description: "Sistema de actualización silenciosa que se sincroniza automáticamente con cada parche sin interrupciones.",
+    icon: (
+      <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+        <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c-1.66 0-3-4.03-3-9s1.34-9 3-9m0 18c1.66 0 3-4.03 3-9s-1.34-9-3-9" />
+        <path d="M3 12a9 9 0 019-9" />
+      </svg>
+    ),
+    gradient: "from-[#7B61FF] to-[#00FFD1]",
+    glowColor: "rgba(123,97,255,0.12)",
+    stat: "0s",
+    statLabel: "Downtime"
   },
   {
     id: 6,
-    title: "Soporte 24/7",
-    subtitle: "Ayuda instantánea",
-    description: "Equipo de expertos disponible las 24 horas. Configuración y soporte en menos de 5 minutos.",
-    icon: "💬",
-    color: "from-pink-500 to-pink-700",
-    demo: "support"
+    title: "Soporte Premium",
+    subtitle: "Respuesta inmediata",
+    description: "Equipo de expertos disponible 24/7. Setup guiado, configuración personalizada y resolución en minutos.",
+    icon: (
+      <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+        <path d="M8 10h.01M12 10h.01M16 10h.01" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+    gradient: "from-[#00B4D8] to-[#7B61FF]",
+    glowColor: "rgba(0,180,216,0.12)",
+    stat: "24/7",
+    statLabel: "Disponible"
   }
 ]
 
+const stats = [
+  { value: "99.9%", label: "Precisión Aimbot", gradient: "from-accent to-highlight" },
+  { value: "0", label: "Bans Reportados", gradient: "from-success to-accent" },
+  { value: "10K+", label: "Usuarios Activos", gradient: "from-highlight to-light" },
+  { value: "24/7", label: "Soporte Técnico", gradient: "from-accent to-electric" }
+]
+
 export default function BentoGrid() {
-  const [activeDemo, setActiveDemo] = useState<string | null>(null)
-
-  const renderDemo = (type: string) => {
-    switch (type) {
-      case 'aimbot':
-        return (
-          <div className="relative w-full h-32 bg-black/50 rounded border overflow-hidden">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <motion.div
-                className="w-4 h-4 bg-red-500 rounded-full"
-                animate={{
-                  x: [0, 50, -30, 20, 0],
-                  y: [0, -20, 30, -10, 0]
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-              <motion.div
-                className="absolute w-8 h-8 border-2 border-red-500 rounded-full"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 1, repeat: Infinity }}
-              />
-            </div>
-            <div className="absolute top-2 left-2 text-xs text-red-400">AIMBOT ACTIVO</div>
-          </div>
-        )
-      case 'wallhack':
-        return (
-          <div className="relative w-full h-32 bg-black/50 rounded border overflow-hidden">
-            <div className="absolute inset-0">
-              <div className="w-full h-full bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
-              <motion.div
-                className="absolute top-4 left-4 w-3 h-3 bg-blue-500 rounded-full"
-                animate={{ opacity: [0.3, 1, 0.3] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
-              <motion.div
-                className="absolute bottom-4 right-4 w-3 h-3 bg-blue-500 rounded-full"
-                animate={{ opacity: [1, 0.3, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
-              />
-            </div>
-            <div className="absolute top-2 left-2 text-xs text-blue-400">WALLHACK ACTIVO</div>
-          </div>
-        )
-      case 'esp':
-        return (
-          <div className="relative w-full h-32 bg-black/50 rounded border overflow-hidden">
-            <div className="absolute top-4 left-4 text-xs">
-              <div className="text-green-400">JETT - 150HP</div>
-              <div className="text-yellow-400">PHANTOM</div>
-            </div>
-            <div className="absolute bottom-4 right-4 text-xs">
-              <div className="text-red-400">REYNA - 75HP</div>
-              <div className="text-yellow-400">VANDAL</div>
-            </div>
-            <motion.div
-              className="absolute inset-0 border border-purple-500/50"
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-          </div>
-        )
-      default:
-        return (
-          <div className="w-full h-32 bg-gradient-to-br from-gray-800 to-gray-900 rounded border flex items-center justify-center">
-            <motion.div
-              className="text-4xl"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-            >
-              ⚡
-            </motion.div>
-          </div>
-        )
-    }
-  }
-
   return (
-    <section id="features" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6">
-      <div className="container mx-auto max-w-7xl">
+    <section id="features" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" aria-label="Características del producto">
+      {/* Background decorative elements */}
+      <div className="absolute top-1/4 -left-32 w-64 h-64 bg-accent/5 rounded-full blur-[100px]" aria-hidden="true" />
+      <div className="absolute bottom-1/4 -right-32 w-64 h-64 bg-electric/5 rounded-full blur-[100px]" aria-hidden="true" />
+
+      <div className="container mx-auto max-w-7xl relative">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-10 sm:mb-16"
+          className="text-center mb-12 sm:mb-16 lg:mb-20"
         >
-          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-black mb-4 sm:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-light via-highlight to-accent">
-            CARACTERÍSTICAS ÉLITE
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="inline-flex items-center gap-2 bg-accent/10 border border-accent/25 rounded-full px-4 sm:px-5 py-2 mb-6 sm:mb-8"
+          >
+            <span className="w-1.5 h-1.5 bg-accent rounded-full" aria-hidden="true" />
+            <span className="text-accent font-mono text-xs sm:text-sm tracking-wider uppercase">Tecnología Phantom</span>
+          </motion.div>
+
+          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-black mb-4 sm:mb-6 leading-[0.95]">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-light via-light to-light/80">
+              CARACTERÍSTICAS
+            </span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-accent via-highlight to-electric">
+              ÉLITE
+            </span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-light/80 max-w-3xl mx-auto font-body">
-            Tecnología de vanguardia que te dará la ventaja definitiva
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-light/50 max-w-2xl mx-auto font-body leading-relaxed">
+            Herramientas de última generación diseñadas para darte la ventaja competitiva definitiva
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        {/* Feature Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 mb-16 sm:mb-20 lg:mb-24">
           {features.map((feature, index) => (
-            <motion.div
+            <motion.article
               key={feature.id}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="relative group cursor-pointer"
-              onMouseEnter={() => setActiveDemo(feature.demo)}
-              onMouseLeave={() => setActiveDemo(null)}
-              whileHover={{ 
-                scale: 1.05,
-                rotate: [0, 1, -1, 0],
-                transition: { duration: 0.3 }
-              }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="group relative"
             >
-              <div className="bento-card p-5 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl h-full relative overflow-hidden border-2 border-accent/20 hover:border-accent/50 transition-all duration-300">
+              <motion.div
+                className="relative h-full rounded-2xl sm:rounded-3xl overflow-hidden"
+                style={{
+                  background: 'linear-gradient(145deg, rgba(11,26,43,0.8) 0%, rgba(5,10,14,0.9) 100%)',
+                  border: '1px solid rgba(0,255,209,0.1)',
+                }}
+                whileHover={{
+                  borderColor: 'rgba(0,255,209,0.35)',
+                  boxShadow: `0 20px 50px ${feature.glowColor}, 0 0 30px ${feature.glowColor}`,
+                  y: -4,
+                }}
+                transition={{ duration: 0.3, ease: 'easeOut' }}
+              >
+                {/* Top accent gradient line */}
+                <div className={`h-[2px] w-full bg-gradient-to-r ${feature.gradient} opacity-60 group-hover:opacity-100 transition-opacity duration-300`} aria-hidden="true" />
 
-                <div className="flex items-center mb-4 sm:mb-6">
-                  <motion.div
-                    className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-accent to-highlight rounded-xl sm:rounded-2xl flex items-center justify-center mr-3 sm:mr-4 text-2xl sm:text-3xl flex-shrink-0"
-                    whileHover={{ 
-                      scale: 1.1,
-                      rotate: [0, -5, 5, 0],
-                      transition: { duration: 0.4 }
-                    }}
-                  >
-                    {feature.icon}
-                  </motion.div>
-                  <div>
-                    <motion.h3
-                      className="text-lg sm:text-xl lg:text-2xl font-display font-black text-light mb-1"
-                      whileHover={{ x: 3 }}
+                <div className="p-5 sm:p-6 lg:p-7">
+                  {/* Icon + Stat row */}
+                  <div className="flex items-start justify-between mb-4 sm:mb-5">
+                    <div
+                      className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br ${feature.gradient} p-[1px] flex-shrink-0`}
                     >
-                      {feature.title}
-                    </motion.h3>
-                    <motion.p 
-                      className="text-sm text-highlight font-japanese"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      {feature.subtitle}
-                    </motion.p>
+                      <div className="w-full h-full rounded-xl bg-primary/80 flex items-center justify-center text-accent">
+                        {feature.icon}
+                      </div>
+                    </div>
+
+                    {/* Stat badge */}
+                    <div className="text-right">
+                      <div className={`text-lg sm:text-xl font-black text-transparent bg-clip-text bg-gradient-to-r ${feature.gradient}`}>
+                        {feature.stat}
+                      </div>
+                      <div className="text-[10px] sm:text-xs text-light/40 font-mono uppercase tracking-wider">
+                        {feature.statLabel}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Title + Subtitle */}
+                  <h3 className="text-base sm:text-lg lg:text-xl font-display font-bold text-light mb-1 group-hover:text-accent transition-colors duration-300">
+                    {feature.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-accent/70 font-mono mb-3 sm:mb-4">
+                    {feature.subtitle}
+                  </p>
+
+                  {/* Description */}
+                  <p className="text-sm text-light/50 leading-relaxed group-hover:text-light/65 transition-colors duration-300">
+                    {feature.description}
+                  </p>
+
+                  {/* Bottom hover indicator */}
+                  <div className="mt-4 sm:mt-5 flex items-center gap-2 text-accent/0 group-hover:text-accent/70 transition-all duration-300">
+                    <div className="h-[1px] flex-1 bg-gradient-to-r from-accent/0 via-accent/20 to-accent/0 group-hover:via-accent/40 transition-all duration-300" aria-hidden="true" />
+                    <span className="text-xs font-mono tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-x-2 group-hover:translate-x-0">
+                      ACTIVE
+                    </span>
                   </div>
                 </div>
-                
-                <motion.p
-                  className="text-light/70 mb-4 text-sm sm:text-base leading-relaxed font-body"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  {feature.description}
-                </motion.p>
-
-                {/* Demo interactiva */}
-                <motion.div 
-                  className="mt-4"
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ 
-                    opacity: activeDemo === feature.demo ? 1 : 0,
-                    height: activeDemo === feature.demo ? 'auto' : 0
-                  }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {activeDemo === feature.demo && renderDemo(feature.demo)}
-                </motion.div>
-
-
-              </div>
-            </motion.div>
+              </motion.div>
+            </motion.article>
           ))}
         </div>
 
-        {/* Estadísticas impresionantes */}
+        {/* Stats Grid */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-10 sm:mt-16 lg:mt-20 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 lg:gap-8"
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-6"
         >
-          <motion.div 
-            className="bento-card p-3 sm:p-4 lg:p-6 rounded-xl sm:rounded-2xl text-center"
-            whileHover={{ scale: 1.05 }}
-          >
-            <div className="text-2xl sm:text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent to-highlight mb-2">99.9%</div>
-            <div className="text-light/60 text-xs sm:text-sm font-body">Precisión Aimbot</div>
-          </motion.div>
-          <motion.div 
-            className="bento-card p-3 sm:p-4 lg:p-6 rounded-xl sm:rounded-2xl text-center"
-            whileHover={{ scale: 1.05 }}
-          >
-            <div className="text-2xl sm:text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-success to-success mb-2">0</div>
-            <div className="text-light/60 text-xs sm:text-sm font-body">Bans Reportados</div>
-          </motion.div>
-          <motion.div 
-            className="bento-card p-3 sm:p-4 lg:p-6 rounded-xl sm:rounded-2xl text-center"
-            whileHover={{ scale: 1.05 }}
-          >
-            <div className="text-2xl sm:text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-highlight to-light mb-2">10K+</div>
-            <div className="text-light/60 text-xs sm:text-sm font-body">Usuarios Activos</div>
-          </motion.div>
-          <motion.div 
-            className="bento-card p-3 sm:p-4 lg:p-6 rounded-xl sm:rounded-2xl text-center"
-            whileHover={{ scale: 1.05 }}
-          >
-            <div className="text-2xl sm:text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent to-highlight mb-2">24/7</div>
-            <div className="text-light/60 text-xs sm:text-sm font-body">Soporte</div>
-          </motion.div>
+          {stats.map((stat, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              className="relative group"
+            >
+              <div
+                className="rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 text-center relative overflow-hidden"
+                style={{
+                  background: 'linear-gradient(145deg, rgba(11,26,43,0.6) 0%, rgba(5,10,14,0.8) 100%)',
+                  border: '1px solid rgba(0,255,209,0.08)',
+                }}
+              >
+                <div className={`text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.gradient} mb-1 sm:mb-2`}>
+                  {stat.value}
+                </div>
+                <div className="text-light/45 text-xs sm:text-sm font-mono tracking-wide">
+                  {stat.label}
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

@@ -59,6 +59,7 @@ export default function Footer() {
 
         {/* Floating back to top button */}
         <motion.button
+          aria-label="Volver arriba"
           className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 p-2.5 sm:p-3 rounded-full shadow-lg z-50"
           style={{
             background: 'linear-gradient(135deg, rgba(0,255,209,0.2), rgba(123,97,255,0.2))',
@@ -76,7 +77,7 @@ export default function Footer() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 2 }}
         >
-          <svg className="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
           </svg>
         </motion.button>

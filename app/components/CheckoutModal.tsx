@@ -113,6 +113,9 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
         onClick={onClose}
       >
         <motion.div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="checkout-title"
           className="relative w-full max-w-5xl max-h-[95vh] overflow-y-auto bg-gradient-to-br from-[#1a1625] via-[#0f0f1e] to-[#1a1625] rounded-3xl border-2 border-purple-500/30 shadow-[0_0_50px_rgba(139,92,246,0.3)]"
           initial={{ scale: 0.8, y: 50 }}
           animate={{ scale: 1, y: 0 }}
@@ -122,6 +125,7 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
           {/* Close Button */}
           <motion.button
             onClick={onClose}
+            aria-label="Cerrar checkout"
             className="absolute top-6 right-6 z-10 w-12 h-12 flex items-center justify-center bg-red-600/20 hover:bg-red-600/40 rounded-full border-2 border-red-500/50 transition-all"
             whileHover={{ scale: 1.1, rotate: 90 }}
             whileTap={{ scale: 0.9 }}
@@ -148,7 +152,7 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
                 <span className="text-2xl">💎</span>
                 {plan.name}
               </motion.div>
-              <h2 className="text-5xl font-black bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent mb-4">
+              <h2 id="checkout-title" className="text-5xl font-black bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent mb-4">
                 Checkout Seguro
               </h2>
               <p className="text-xl text-gray-400">
@@ -311,6 +315,7 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
                         </div>
                         <motion.button
                           onClick={() => copyToClipboard(getCryptoAmount(), 'amount')}
+                          aria-label="Copiar cantidad"
                           className="bg-yellow-600 hover:bg-yellow-700 px-5 py-5 rounded-xl font-bold text-xl shadow-lg"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
@@ -336,6 +341,7 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
                         </code>
                         <motion.button
                           onClick={() => copyToClipboard(wallets[selectedWallet], 'address')}
+                          aria-label="Copiar dirección"
                           className="bg-crypto-eth hover:bg-blue-600 px-5 py-4 rounded-xl font-bold shadow-lg"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
@@ -407,14 +413,16 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
                   className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 rounded-2xl p-8 border-2 border-purple-500/40"
                   whileHover={{ borderColor: 'rgba(168, 85, 247, 0.8)' }}
                 >
-                  <label className="block text-base font-bold text-purple-400 mb-4 uppercase tracking-wider flex items-center gap-2">
-                    <span className="text-2xl">📧</span> Tu Email
+                  <label htmlFor="checkout-email" className="block text-base font-bold text-purple-400 mb-4 uppercase tracking-wider flex items-center gap-2">
+                    <span className="text-2xl" aria-hidden="true">📧</span> Tu Email
                   </label>
                   <input
+                    id="checkout-email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="tu@email.com"
+                    autoComplete="email"
                     className="w-full bg-black/60 border-2 border-purple-500/30 rounded-xl px-6 py-5 text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none transition-all text-lg font-medium"
                   />
                   <p className="text-sm text-gray-400 mt-3 flex items-center gap-2">
@@ -427,10 +435,11 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
                   className="bg-gradient-to-br from-blue-900/30 to-indigo-900/30 rounded-2xl p-8 border-2 border-blue-500/40"
                   whileHover={{ borderColor: 'rgba(59, 130, 246, 0.8)' }}
                 >
-                  <label className="block text-base font-bold text-blue-400 mb-4 uppercase tracking-wider flex items-center gap-2">
-                    <span className="text-2xl">🔗</span> ID de Transacción (Opcional)
+                  <label htmlFor="checkout-txid" className="block text-base font-bold text-blue-400 mb-4 uppercase tracking-wider flex items-center gap-2">
+                    <span className="text-2xl" aria-hidden="true">🔗</span> ID de Transacción (Opcional)
                   </label>
                   <input
+                    id="checkout-txid"
                     type="text"
                     value={transactionId}
                     onChange={(e) => setTransactionId(e.target.value)}
@@ -444,13 +453,14 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
                   className="bg-gradient-to-br from-green-900/30 to-emerald-900/30 rounded-2xl p-8 border-2 border-dashed border-green-500/50 hover:border-green-500 transition-all"
                   whileHover={{ scale: 1.01 }}
                 >
-                  <label className="block text-base font-bold text-green-400 mb-6 uppercase tracking-wider flex items-center gap-2">
-                    <span className="text-2xl">📸</span> Comprobante de Pago
+                  <label htmlFor="checkout-proof" className="block text-base font-bold text-green-400 mb-6 uppercase tracking-wider flex items-center gap-2">
+                    <span className="text-2xl" aria-hidden="true">📸</span> Comprobante de Pago
                   </label>
 
                   {!previewUrl ? (
                     <label className="cursor-pointer block">
                       <input
+                        id="checkout-proof"
                         type="file"
                         accept="image/*"
                         onChange={handleFileChange}

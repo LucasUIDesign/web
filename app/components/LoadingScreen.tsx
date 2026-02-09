@@ -184,7 +184,7 @@ export default function LoadingScreen() {
 
               {/* Central phantom icon */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <svg viewBox="0 0 120 120" className="w-full h-full" fill="none">
+                <svg viewBox="0 0 120 120" className="w-full h-full" fill="none" role="img" aria-label="Phantom Protocol loading icon">
                   <defs>
                     <linearGradient id="phantomGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                       <stop offset="0%" stopColor="#00FFD1" />

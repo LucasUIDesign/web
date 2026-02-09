@@ -222,11 +222,11 @@ export default function PricingSection() {
               
               <motion.div 
                 className={`bento-card border-2 ${plan.borderColor} rounded-3xl relative overflow-hidden h-full`}
-                whileHover={{ 
+                whileHover={{
                   y: -8,
-                  boxShadow: plan.popular 
-                    ? '0 25px 50px rgba(123, 44, 191, 0.4)' 
-                    : '0 20px 40px rgba(123, 44, 191, 0.2)'
+                  boxShadow: plan.popular
+                    ? '0 25px 50px rgba(0, 255, 209, 0.25)'
+                    : '0 20px 40px rgba(0, 255, 209, 0.12)'
                 }}
                 transition={{ duration: 0.3 }}
               >
@@ -302,7 +302,7 @@ export default function PricingSection() {
                   >
                     <span className="flex items-center justify-center gap-2">
                       Obtener Acceso
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                       </svg>
                     </span>
