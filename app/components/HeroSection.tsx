@@ -13,13 +13,13 @@ export default function HeroSection() {
 
       {/* Grid overlay */}
       <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: `radial-gradient(circle at 1px 1px, rgba(0, 255, 209, 0.6) 1px, transparent 0)`,
+        backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255, 70, 85, 0.6) 1px, transparent 0)`,
         backgroundSize: '40px 40px'
       }} />
 
       {/* Radial phantom glow */}
       <div className="absolute inset-0" style={{
-        background: 'radial-gradient(ellipse at center, rgba(0,255,209,0.06) 0%, transparent 60%)'
+        background: 'radial-gradient(ellipse at center, rgba(255,70,85,0.06) 0%, transparent 60%)'
       }} />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">

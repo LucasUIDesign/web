@@ -202,7 +202,7 @@ export default function SocialProof() {
               className="bento-card rounded-xl sm:rounded-2xl p-4 sm:p-6 relative overflow-hidden group"
               whileHover={{
                 y: -5,
-                boxShadow: '0 10px 30px rgba(0, 255, 209, 0.15)'
+                boxShadow: '0 10px 30px rgba(255, 70, 85, 0.15)'
               }}
             >
               {/* Animated background gradient */}
@@ -341,10 +341,10 @@ export default function SocialProof() {
             href="#pricing"
             className="inline-block font-display font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-xl sm:rounded-2xl text-sm sm:text-base lg:text-xl cursor-pointer text-primary"
             style={{
-              background: 'linear-gradient(135deg, #00FFD1, #00B4D8)',
-              boxShadow: '0 0 30px rgba(0,255,209,0.3)'
+              background: 'linear-gradient(135deg, #FF4655, #FFD700)',
+              boxShadow: '0 0 30px rgba(255,70,85,0.3)'
             }}
-            whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(0,255,209,0.5)' }}
+            whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(255,70,85,0.5)' }}
             whileTap={{ scale: 0.95 }}
           >
             OBTENER PHANTOM PROTOCOL AHORA

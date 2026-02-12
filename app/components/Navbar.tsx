@@ -13,7 +13,7 @@ export default function Navbar() {
   const backgroundColor = useTransform(
     scrollY,
     [0, 100],
-    ['rgba(5, 10, 14, 0)', 'rgba(5, 10, 14, 0.95)']
+    ['rgba(10, 10, 15, 0)', 'rgba(10, 10, 15, 0.95)']
   )
 
   useEffect(() => {
@@ -113,17 +113,17 @@ export default function Navbar() {
                 href="#pricing"
                 className="hidden md:block text-sm lg:text-base font-display font-bold px-4 lg:px-6 py-2 rounded-xl transition-all duration-300 cursor-pointer"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(0,255,209,0.15), rgba(123,97,255,0.15))',
-                  border: '1px solid rgba(0,255,209,0.3)',
-                  color: '#00FFD1'
+                  background: 'linear-gradient(135deg, rgba(255,70,85,0.15), rgba(200,80,192,0.15))',
+                  border: '1px solid rgba(255,70,85,0.3)',
+                  color: '#FF4655'
                 }}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.8 }}
                 whileHover={{
                   scale: 1.05,
-                  boxShadow: '0 0 25px rgba(0,255,209,0.3)',
-                  borderColor: 'rgba(0,255,209,0.6)'
+                  boxShadow: '0 0 25px rgba(255,70,85,0.3)',
+                  borderColor: 'rgba(255,70,85,0.6)'
                 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -179,8 +179,8 @@ export default function Navbar() {
             <motion.div
               className="absolute top-16 left-4 right-4 rounded-2xl overflow-hidden border border-accent/20"
               style={{
-                background: 'linear-gradient(135deg, rgba(5,10,14,0.98), rgba(10,22,40,0.98))',
-                boxShadow: '0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(0,255,209,0.1)'
+                background: 'linear-gradient(135deg, rgba(10,10,15,0.98), rgba(20,20,32,0.98))',
+                boxShadow: '0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(255,70,85,0.1)'
               }}
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -226,7 +226,7 @@ export default function Navbar() {
                   onClick={() => setMobileMenuOpen(false)}
                   className="block text-center py-3 rounded-xl font-display font-bold text-primary"
                   style={{
-                    background: 'linear-gradient(135deg, #00FFD1, #00B4D8)'
+                    background: 'linear-gradient(135deg, #FF4655, #FFD700)'
                   }}
                   whileTap={{ scale: 0.95 }}
                 >

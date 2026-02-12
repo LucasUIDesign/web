@@ -5,199 +5,210 @@ import Link from 'next/link'
 
 export default function Logo({ size = 'normal' }: { size?: 'small' | 'normal' | 'large' }) {
   const sizes = {
-    small: { container: 40, text: 'text-xl' },
-    normal: { container: 60, text: 'text-3xl' },
-    large: { container: 80, text: 'text-4xl' }
+    small: { container: 36, text: 'text-lg', sub: 'text-[8px]' },
+    normal: { container: 52, text: 'text-2xl', sub: 'text-[10px]' },
+    large: { container: 72, text: 'text-4xl', sub: 'text-sm' }
   }
 
-  const currentSize = sizes[size]
+  const s = sizes[size]
 
   return (
     <Link href="/" className="cursor-pointer">
       <motion.div
-        className="flex items-center space-x-2 sm:space-x-3"
+        className="flex items-center gap-2 sm:gap-3"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-        whileHover={{ scale: 1.05 }}
+        whileHover={{ scale: 1.03 }}
       >
-      {/* Logo Icon */}
-      <motion.div
-        className="relative flex-shrink-0"
-        style={{ width: currentSize.container, height: currentSize.container }}
-        whileHover={{ scale: 1.1, rotate: 5 }}
-        transition={{ type: "spring", stiffness: 300 }}
-      >
-        {/* Outer glow ring */}
+        {/* Logo Icon - Diamond/Shield shape */}
         <motion.div
-          className="absolute inset-0 rounded-full opacity-50 blur-md"
-          style={{ background: 'linear-gradient(135deg, #00FFD1, #7B61FF, #00B4D8)' }}
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 180, 360]
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-
-        {/* Main circle */}
-        <div className="absolute inset-0 rounded-full flex items-center justify-center"
-          style={{
-            background: 'linear-gradient(135deg, #0A1628, #050A0E)',
-            border: '2px solid rgba(0,255,209,0.5)',
-            boxShadow: '0 0 15px rgba(0,255,209,0.2), inset 0 0 15px rgba(0,255,209,0.05)'
-          }}
+          className="relative flex-shrink-0"
+          style={{ width: s.container, height: s.container }}
+          whileHover={{ scale: 1.08 }}
+          transition={{ type: "spring", stiffness: 300 }}
         >
-          {/* Inner design - Phantom ghost */}
+          {/* Outer glow pulse */}
+          <motion.div
+            className="absolute inset-[-4px] opacity-40 blur-md"
+            style={{
+              background: 'linear-gradient(135deg, #FF4655, #C850C0)',
+              clipPath: 'polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%)'
+            }}
+            animate={{
+              opacity: [0.2, 0.5, 0.2],
+              scale: [1, 1.1, 1]
+            }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          />
+
           <svg
             viewBox="0 0 100 100"
-            className="w-3/4 h-3/4"
+            className="w-full h-full relative z-10"
             fill="none"
             role="img"
             aria-label="Phantom Protocol logo"
+            style={{ shapeRendering: 'geometricPrecision' }}
           >
-            {/* Ghost outline */}
-            <motion.path
-              d="M50 20 C35 20, 25 30, 25 45 C25 55, 28 65, 35 70 L35 80 L42 75 L50 80 L58 75 L65 80 L65 70 C72 65, 75 55, 75 45 C75 30, 65 20, 50 20 Z"
-              stroke="url(#phantomLogoGrad)"
-              strokeWidth="2"
-              fill="rgba(0, 255, 209, 0.08)"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
-            />
-
-            {/* Eyes */}
-            <motion.circle
-              cx="40"
-              cy="45"
-              r="5"
-              fill="#00FFD1"
-              animate={{
-                opacity: [1, 0.3, 1],
-                scale: [1, 0.8, 1]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            <motion.circle
-              cx="60"
-              cy="45"
-              r="5"
-              fill="#00FFD1"
-              animate={{
-                opacity: [1, 0.3, 1],
-                scale: [1, 0.8, 1]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-
-            {/* Glitch lines */}
-            <motion.line
-              x1="30" y1="35" x2="45" y2="35"
-              stroke="#7B61FF"
-              strokeWidth="1"
-              animate={{
-                opacity: [0, 1, 0],
-                x1: [30, 32, 30],
-                x2: [45, 43, 45]
-              }}
-              transition={{
-                duration: 0.3,
-                repeat: Infinity,
-                repeatDelay: 2
-              }}
-            />
-            <motion.line
-              x1="55" y1="35" x2="70" y2="35"
-              stroke="#00B4D8"
-              strokeWidth="1"
-              animate={{
-                opacity: [0, 1, 0],
-                x1: [55, 57, 55],
-                x2: [70, 68, 70]
-              }}
-              transition={{
-                duration: 0.3,
-                repeat: Infinity,
-                repeatDelay: 2,
-                delay: 0.15
-              }}
-            />
-
             <defs>
-              <linearGradient id="phantomLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#00FFD1" />
-                <stop offset="50%" stopColor="#7B61FF" />
-                <stop offset="100%" stopColor="#00B4D8" />
+              <linearGradient id="logoEdge" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#FF4655" />
+                <stop offset="100%" stopColor="#C850C0" />
               </linearGradient>
+              <linearGradient id="logoFill" x1="50%" y1="0%" x2="50%" y2="100%">
+                <stop offset="0%" stopColor="#141420" />
+                <stop offset="100%" stopColor="#0A0A0F" />
+              </linearGradient>
+              <radialGradient id="logoEyeGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#FF4655" stopOpacity="1" />
+                <stop offset="100%" stopColor="#FF4655" stopOpacity="0" />
+              </radialGradient>
+              <filter id="logoGlow">
+                <feGaussianBlur stdDeviation="2" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
             </defs>
+
+            {/* Hexagonal shield background */}
+            <motion.polygon
+              points="50,2 93,26 93,74 50,98 7,74 7,26"
+              fill="url(#logoFill)"
+              stroke="url(#logoEdge)"
+              strokeWidth="2.5"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ duration: 1.5 }}
+            />
+
+            {/* Inner hex line */}
+            <polygon
+              points="50,10 85,30 85,70 50,90 15,70 15,30"
+              fill="none"
+              stroke="#FF4655"
+              strokeWidth="0.5"
+              opacity="0.15"
+            />
+
+            {/* Phantom hooded figure silhouette */}
+            <path
+              d="
+                M50,18
+                C38,18 28,28 28,42
+                L27,48
+                L25,52
+                L24,62
+                L22,78
+                C23,82 26,83 30,81
+                C34,79 37,82 40,84
+                C43,86 47,84 50,81
+                C53,84 57,86 60,84
+                C63,82 66,79 70,81
+                C74,83 77,82 78,78
+                L76,62
+                L75,52
+                L73,48
+                L72,42
+                C72,28 62,18 50,18
+                Z
+              "
+              fill="rgba(255,70,85,0.06)"
+              stroke="url(#logoEdge)"
+              strokeWidth="1.2"
+            />
+
+            {/* Hood inner shadow/void */}
+            <path
+              d="
+                M36,38
+                C36,28 42,22 50,22
+                C58,22 64,28 64,38
+                L62,48
+                L38,48
+                Z
+              "
+              fill="#050508"
+              opacity="0.8"
+            />
+
+            {/* Left Eye */}
+            <motion.circle
+              cx="43" cy="38" r="4"
+              fill="url(#logoEyeGlow)"
+              filter="url(#logoGlow)"
+              animate={{
+                opacity: [0.6, 1, 0.6],
+                r: [3.5, 4.5, 3.5]
+              }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <circle cx="43" cy="38" r="2" fill="#FF4655" />
+
+            {/* Right Eye */}
+            <motion.circle
+              cx="57" cy="38" r="4"
+              fill="url(#logoEyeGlow)"
+              filter="url(#logoGlow)"
+              animate={{
+                opacity: [0.6, 1, 0.6],
+                r: [3.5, 4.5, 3.5]
+              }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+            />
+            <circle cx="57" cy="38" r="2" fill="#FF4655" />
+
+            {/* Eye connection line (menacing) */}
+            <motion.line
+              x1="43" y1="38" x2="57" y2="38"
+              stroke="#FF4655" strokeWidth="0.5" opacity="0.3"
+              animate={{ opacity: [0.1, 0.4, 0.1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+
+            {/* Vertical accent line through center */}
+            <line
+              x1="50" y1="50" x2="50" y2="70"
+              stroke="#FF4655" strokeWidth="0.5" opacity="0.2"
+            />
+
+            {/* Small crosshair below eyes */}
+            <g opacity="0.25">
+              <line x1="47" y1="55" x2="53" y2="55" stroke="#FFD700" strokeWidth="0.5" />
+              <line x1="50" y1="52" x2="50" y2="58" stroke="#FFD700" strokeWidth="0.5" />
+            </g>
+
+            {/* Corner accents on shield */}
+            <line x1="50" y1="5" x2="50" y2="12" stroke="#FF4655" strokeWidth="1" opacity="0.4" />
+            <line x1="50" y1="88" x2="50" y2="95" stroke="#FF4655" strokeWidth="1" opacity="0.4" />
           </svg>
-        </div>
+        </motion.div>
 
-        {/* Rotating particles */}
-        {[...Array(3)].map((_, i) => (
+        {/* Logo Text */}
+        <div className="flex flex-col min-w-0">
           <motion.div
-            key={i}
-            className="absolute w-1 h-1 rounded-full"
-            style={{
-              top: '50%',
-              left: '50%',
-              background: i === 0 ? '#00FFD1' : i === 1 ? '#7B61FF' : '#00B4D8',
-              boxShadow: `0 0 4px ${i === 0 ? '#00FFD1' : i === 1 ? '#7B61FF' : '#00B4D8'}`
-            }}
+            className={`${s.text} font-display font-black leading-none tracking-tight`}
             animate={{
-              x: [0, Math.cos(i * 120 * Math.PI / 180) * 35, 0],
-              y: [0, Math.sin(i * 120 * Math.PI / 180) * 35, 0],
-              opacity: [0, 1, 0]
+              textShadow: [
+                '0 0 8px rgba(255,70,85,0.3)',
+                '0 0 16px rgba(255,70,85,0.5), 0 0 30px rgba(255,70,85,0.2)',
+                '0 0 8px rgba(255,70,85,0.3)'
+              ]
             }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              delay: i * 0.3,
-              ease: "easeInOut"
-            }}
-          />
-        ))}
+            transition={{ duration: 3, repeat: Infinity }}
+          >
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-electric">
+              PHANTOM
+            </span>
+          </motion.div>
+          <div
+            className={`${s.sub} font-display font-bold text-light/40 tracking-[0.25em] mt-0.5`}
+          >
+            PROTOCOL
+          </div>
+        </div>
       </motion.div>
-
-      {/* Logo Text */}
-      <div className="flex flex-col min-w-0">
-        <motion.div
-          className={`${currentSize.text} font-display font-black leading-none`}
-          animate={{
-            textShadow: [
-              '0 0 10px rgba(0,255,209,0.4)',
-              '0 0 20px rgba(0,255,209,0.6), 0 0 30px rgba(0,255,209,0.3)',
-              '0 0 10px rgba(0,255,209,0.4)'
-            ]
-          }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-highlight to-electric">
-            PHANTOM
-          </span>
-        </motion.div>
-        <motion.div
-          className={`${size === 'small' ? 'text-[10px]' : size === 'large' ? 'text-lg' : 'text-sm'} font-display font-bold text-light/50 tracking-[0.2em]`}
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.3 }}
-        >
-          PROTOCOL
-        </motion.div>
-      </div>
-    </motion.div>
     </Link>
   )
 }

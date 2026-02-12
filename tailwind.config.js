@@ -8,21 +8,21 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Phantom Aura - Spectral Cyan/Teal Theme
-        'primary': '#050A0E',        // Deep void black
-        'secondary': '#0A1628',      // Dark navy
-        'accent': '#00FFD1',         // Phantom cyan (ghost energy)
-        'highlight': '#00B4D8',      // Electric cyan
-        'light': '#E0F7FA',          // Spectral white
-        'dark': '#020508',           // Absolute void
-        'dark-bg': '#050A0E',        // Main background
-        'dark-card': '#0B1A2B',      // Card background
-        'success': '#00FFD1',        // Phantom green
+        // Crimson Protocol - Valorant Red & Gold Theme
+        'primary': '#0A0A0F',        // Deep void black
+        'secondary': '#141420',      // Dark navy
+        'accent': '#FF4655',         // Valorant crimson (brand red)
+        'highlight': '#FFD700',      // Premium gold
+        'light': '#F0EBE3',          // Warm off-white
+        'dark': '#030308',           // Absolute void
+        'dark-bg': '#0A0A0F',        // Main background
+        'dark-card': '#12121E',      // Card background
+        'success': '#00FF87',        // Neon green (safe/active)
         'warning': '#FFB800',        // Amber warning
-        'danger': '#FF3366',         // Hot pink danger
-        'phantom': '#00FFD1',        // Ghost glow
-        'phantom-dim': '#00997D',    // Dimmed phantom
-        'electric': '#7B61FF',       // Electric purple
+        'danger': '#FF2E4D',         // Hot pink danger
+        'phantom': '#FF4655',        // Ghost glow
+        'phantom-dim': '#992233',    // Dimmed phantom
+        'electric': '#C850C0',       // Electric magenta
         'neon-blue': '#00F0FF',      // Neon blue
         'neon-pink': '#FF2E97',      // Neon pink
         'neon-purple': '#B026FF',    // Neon purple
@@ -31,9 +31,9 @@ module.exports = {
         'crypto-eth': '#627EEA',     // Ethereum
       },
       fontFamily: {
-        'display': ['Space Grotesk', 'Inter', 'sans-serif'],
+        'display': ['Rajdhani', 'Lexend', 'sans-serif'],
         'mono': ['JetBrains Mono', 'Consolas', 'monospace'],
-        'body': ['Inter', 'system-ui', 'sans-serif'],
+        'body': ['Lexend', 'system-ui', 'sans-serif'],
       },
       animation: {
         'glow': 'glow 2s ease-in-out infinite alternate',
@@ -50,8 +50,8 @@ module.exports = {
       },
       keyframes: {
         glow: {
-          '0%': { textShadow: '0 0 5px #00FFD1, 0 0 10px #00FFD1, 0 0 15px #00FFD1' },
-          '100%': { textShadow: '0 0 10px #00FFD1, 0 0 20px #00FFD1, 0 0 40px #00FFD1' }
+          '0%': { textShadow: '0 0 5px #FF4655, 0 0 10px #FF4655, 0 0 15px #FF4655' },
+          '100%': { textShadow: '0 0 10px #FF4655, 0 0 20px #FF4655, 0 0 40px #FF4655' }
         },
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
@@ -92,9 +92,9 @@ module.exports = {
         }
       },
       backgroundImage: {
-        'phantom-gradient': 'linear-gradient(135deg, #050A0E 0%, #0A1628 50%, #050A0E 100%)',
-        'phantom-radial': 'radial-gradient(ellipse at center, rgba(0,255,209,0.15) 0%, transparent 70%)',
-        'hero-gradient': 'linear-gradient(180deg, #050A0E 0%, #0A1628 40%, #050A0E 100%)',
+        'phantom-gradient': 'linear-gradient(135deg, #0A0A0F 0%, #141420 50%, #0A0A0F 100%)',
+        'phantom-radial': 'radial-gradient(ellipse at center, rgba(255,70,85,0.15) 0%, transparent 70%)',
+        'hero-gradient': 'linear-gradient(180deg, #0A0A0F 0%, #141420 40%, #0A0A0F 100%)',
       }
     },
   },

@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Lexend } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const lexend = Lexend({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800'] })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://phantom-protocol.vercel.app'),
@@ -39,6 +39,12 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://phantom-protocol.vercel.app',
+    languages: {
+      'es': 'https://phantom-protocol.vercel.app/',
+      'en': 'https://phantom-protocol.vercel.app/en',
+      'pt-BR': 'https://phantom-protocol.vercel.app/pt',
+      'x-default': 'https://phantom-protocol.vercel.app/',
+    },
   },
   verification: {
     google: 'AW-17939195414',
@@ -55,7 +61,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Lexend:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -139,7 +145,7 @@ export default function RootLayout({
           })}
         </script>
       </head>
-      <body className={`${inter.className} bg-dark-bg text-white overflow-x-hidden`}>
+      <body className={`${lexend.className} bg-dark-bg text-white overflow-x-hidden`}>
         <a href="#main-content" className="skip-link">Saltar al contenido</a>
         {/* Google Ads (gtag.js) */}
         <Script

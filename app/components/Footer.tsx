@@ -6,7 +6,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-[#030508] border-t border-accent/10">
+    <footer className="bg-[#050508] border-t border-accent/10">
       <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Footer Links */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-8">
@@ -62,14 +62,14 @@ export default function Footer() {
           aria-label="Volver arriba"
           className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 p-2.5 sm:p-3 rounded-full shadow-lg z-50"
           style={{
-            background: 'linear-gradient(135deg, rgba(0,255,209,0.2), rgba(123,97,255,0.2))',
-            border: '1px solid rgba(0,255,209,0.3)',
+            background: 'linear-gradient(135deg, rgba(255,70,85,0.2), rgba(200,80,192,0.2))',
+            border: '1px solid rgba(255,70,85,0.3)',
             backdropFilter: 'blur(10px)',
-            boxShadow: '0 0 20px rgba(0,255,209,0.15)'
+            boxShadow: '0 0 20px rgba(255,70,85,0.15)'
           }}
           whileHover={{
             scale: 1.1,
-            boxShadow: '0 0 30px rgba(0,255,209,0.3)'
+            boxShadow: '0 0 30px rgba(255,70,85,0.3)'
           }}
           whileTap={{ scale: 0.9 }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
