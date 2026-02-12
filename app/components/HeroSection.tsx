@@ -62,7 +62,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            Software de Entrenamiento de Nivel Profesional
+            Cheats Indetectables de Nivel Profesional
           </motion.p>
 
           <motion.p
@@ -71,8 +71,8 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            <span className="hidden sm:inline">Asistencia de Puntería • Overlay Táctico • Análisis Avanzado • Sistema Indetectable</span>
-            <span className="sm:hidden">Aim Assist • Overlay • Análisis • Indetectable</span>
+            <span className="hidden sm:inline">Aimbot Predictivo • Wallhack 360° • ESP Avanzado • 100% Indetectable</span>
+            <span className="sm:hidden">Aimbot • Wallhack • ESP • Indetectable</span>
           </motion.p>
 
           {/* CTA Section */}
@@ -116,7 +116,7 @@ export default function HeroSection() {
               <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-success to-success mb-1 sm:mb-2">
                 99.9%
               </div>
-              <div className="text-light/60 font-medium text-[10px] sm:text-xs md:text-sm">Precisión de Entrenamiento</div>
+              <div className="text-light/60 font-medium text-[10px] sm:text-xs md:text-sm">Precisión Aimbot</div>
             </div>
             <div className="text-center">
               <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent to-highlight mb-1 sm:mb-2">

@@ -6,13 +6,27 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'PHANTOM PROTOCOL - Software de Entrenamiento Avanzado para VALORANT 2025',
-  description: 'Herramienta profesional de práctica y análisis para mejorar tu rendimiento en VALORANT. Incluye asistencia de puntería, visión táctica y estadísticas avanzadas. Usado por miles de jugadores competitivos.',
-  keywords: 'VALORANT training software, aim trainer, game performance, competitive gaming tools, valorant practice tool, aim assistant, tactical overlay, game analysis, valorant coaching software, performance enhancement, esports training, valorant improvement tool',
-  robots: 'index, follow',
+  metadataBase: new URL('https://phantom-protocol.vercel.app'),
+  title: {
+    default: 'PHANTOM PROTOCOL | Cheats VALORANT Indetectables - Aimbot, Wallhack, ESP 2025',
+    template: '%s | Phantom Protocol - VALORANT Cheats',
+  },
+  description: 'Phantom Protocol: Los mejores cheats para VALORANT 2025. Aimbot predictivo con 99.7% precisión, Wallhack, ESP avanzado, sistema 100% indetectable por Vanguard. Actualizaciones automáticas y soporte 24/7. Únete a +10.000 usuarios.',
+  keywords: 'valorant cheats, valorant hacks, valorant aimbot, valorant wallhack, valorant esp, phantom protocol, cheats valorant 2025, hack valorant indetectable, aimbot valorant, wallhack valorant, esp valorant, valorant cheat comprar, valorant hack español, cheats para valorant, hacks valorant gratis, valorant undetected cheat, valorant bypass vanguard, mejores cheats valorant',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+    },
+  },
   openGraph: {
-    title: 'PHANTOM PROTOCOL - Software de Entrenamiento para VALORANT',
-    description: 'Herramienta profesional de entrenamiento y análisis. Mejora tu rendimiento con asistencia táctica avanzada.',
+    title: 'PHANTOM PROTOCOL | Cheats VALORANT Indetectables 2025',
+    description: 'Los mejores cheats para VALORANT: Aimbot predictivo, Wallhack, ESP. 100% indetectable por Vanguard. +10K usuarios activos.',
     type: 'website',
     locale: 'es_ES',
     siteName: 'Phantom Protocol',
@@ -20,8 +34,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PHANTOM PROTOCOL - Entrenamiento VALORANT',
-    description: 'Software profesional de entrenamiento y análisis para jugadores competitivos.',
+    title: 'PHANTOM PROTOCOL | Cheats VALORANT 2025',
+    description: 'Aimbot, Wallhack, ESP para VALORANT. Indetectable por Vanguard. +10K usuarios.',
   },
   alternates: {
     canonical: 'https://phantom-protocol.vercel.app',
@@ -46,10 +60,10 @@ export default function RootLayout({
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            "name": "Phantom Protocol",
-            "description": "Software profesional de entrenamiento y análisis de rendimiento para VALORANT. Herramienta de práctica con asistencia de puntería, visión táctica y estadísticas avanzadas.",
+            "name": "Phantom Protocol - VALORANT Cheats",
+            "description": "Los mejores cheats para VALORANT 2025. Aimbot predictivo con 99.7% de precisión, Wallhack inteligente, ESP avanzado. 100% indetectable por Vanguard. Actualizaciones automáticas con cada parche.",
             "applicationCategory": "GameApplication",
-            "operatingSystem": "Windows",
+            "operatingSystem": "Windows 10, Windows 11",
             "offers": {
               "@type": "AggregateOffer",
               "lowPrice": "15",
@@ -69,8 +83,8 @@ export default function RootLayout({
               "name": "Phantom Protocol Team"
             },
             "datePublished": "2025-01-01",
-            "softwareVersion": "2.0",
-            "featureList": "Asistencia de puntería avanzada, Overlay táctico, Análisis de rendimiento, Estadísticas en tiempo real, Soporte 24/7"
+            "softwareVersion": "4.3",
+            "featureList": "Aimbot predictivo 99.7%, Wallhack inteligente, ESP avanzado, IA adaptativa, Auto-update engine, Bypass Vanguard, Soporte 24/7"
           })}
         </script>
         <script type="application/ld+json">
@@ -78,7 +92,7 @@ export default function RootLayout({
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "Phantom Protocol",
-            "description": "Desarrolladores de software de entrenamiento profesional para jugadores competitivos de VALORANT",
+            "description": "Phantom Protocol: Cheats premium indetectables para VALORANT. Aimbot, Wallhack, ESP y más. La herramienta #1 de los gamers competitivos.",
             "url": "https://phantom-protocol.vercel.app",
             "logo": "https://phantom-protocol.vercel.app/logo.png",
             "sameAs": [
@@ -90,6 +104,38 @@ export default function RootLayout({
               "contactType": "Customer Support",
               "availableLanguage": ["Spanish", "English"]
             }
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "¿Phantom Protocol es indetectable en VALORANT?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sí, Phantom Protocol es 100% indetectable por Vanguard. Nuestro sistema se actualiza automáticamente con cada parche para mantener la máxima seguridad. 0 bans reportados."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Qué incluye Phantom Protocol?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Incluye Aimbot predictivo con 99.7% de precisión, Wallhack inteligente con visión 360°, ESP avanzado con 12+ data points, IA adaptativa, auto-update engine y soporte premium 24/7."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Cómo compro Phantom Protocol?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Puedes comprar Phantom Protocol con Ethereum (ETH). Ofrecemos planes desde 15€ hasta 200€ con diferentes duraciones y características. El proceso es seguro y anónimo."
+                }
+              }
+            ]
           })}
         </script>
       </head>

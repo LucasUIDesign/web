@@ -1,5 +1,5 @@
 # Robots.txt - Phantom Protocol
-# SEO-optimized configuration for training software
+# SEO-optimized configuration for VALORANT cheats
 
 User-agent: *
 Crawl-delay: 0

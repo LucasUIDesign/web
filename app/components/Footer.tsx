@@ -13,7 +13,7 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-1">
             <h4 className="font-display font-bold text-accent mb-3 sm:mb-4 text-base sm:text-lg">PHANTOM PROTOCOL</h4>
             <p className="text-light/40 text-xs sm:text-sm leading-relaxed">
-              El software de entrenamiento más avanzado para VALORANT. Mejora tu rendimiento con tecnología de punta.
+              Los cheats más avanzados e indetectables para VALORANT. Aimbot, Wallhack, ESP y más. Domina cada partida.
             </p>
           </div>
 
