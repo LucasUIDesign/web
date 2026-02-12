@@ -3,98 +3,100 @@
 import { motion } from 'framer-motion'
 
 // ═══════════════════════════════════════════
-// ANIMATED DEMOS - VFX for each feature
+// ANIMATED DEMOS - HD VFX for each feature
 // ═══════════════════════════════════════════
+
+const DEMO_CLASS = "relative h-40 sm:h-48 lg:h-52 rounded-xl bg-black/50 border border-white/[0.06] overflow-hidden backdrop-blur-sm"
 
 function AimbotDemo() {
   return (
-    <div className="relative h-28 sm:h-32 rounded-xl bg-black/40 border border-[#00FFD1]/10 overflow-hidden" aria-hidden="true">
-      {/* Grid background */}
-      <div className="absolute inset-0 opacity-10" style={{
-        backgroundImage: 'linear-gradient(rgba(0,255,209,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,209,0.3) 1px, transparent 1px)',
-        backgroundSize: '20px 20px'
+    <div className={DEMO_CLASS} aria-hidden="true">
+      <div className="absolute inset-0 opacity-[0.07]" style={{
+        backgroundImage: 'linear-gradient(rgba(0,255,209,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,209,0.4) 1px, transparent 1px)',
+        backgroundSize: '24px 24px'
       }} />
 
-      <svg viewBox="0 0 280 120" className="w-full h-full">
+      <svg viewBox="0 0 400 180" preserveAspectRatio="xMidYMid meet" className="w-full h-full" shapeRendering="geometricPrecision" textRendering="optimizeLegibility">
+        {/* Radial ambient glow */}
+        <radialGradient id="ambientAim" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#00FFD1" stopOpacity="0.06" />
+          <stop offset="100%" stopColor="transparent" />
+        </radialGradient>
+        <rect x="0" y="0" width="400" height="180" fill="url(#ambientAim)" />
+
         {/* Moving target */}
         <motion.circle
-          cx="140" cy="60" r="6"
+          cx="200" cy="90" r="8"
           fill="#FF4444"
-          filter="url(#targetGlow)"
-          animate={{
-            cx: [80, 200, 140, 60, 220, 140],
-            cy: [40, 80, 30, 70, 50, 60]
-          }}
+          filter="url(#hdTargetGlow)"
+          animate={{ cx: [100, 300, 200, 70, 330, 200], cy: [50, 130, 40, 110, 70, 90] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
-        {/* Target outer ring */}
         <motion.circle
-          cx="140" cy="60" r="12"
-          fill="none" stroke="#FF4444" strokeWidth="1" strokeDasharray="3 3"
-          opacity="0.5"
-          animate={{
-            cx: [80, 200, 140, 60, 220, 140],
-            cy: [40, 80, 30, 70, 50, 60],
-            r: [12, 14, 12]
-          }}
+          cx="200" cy="90" r="16"
+          fill="none" stroke="#FF4444" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.5"
+          animate={{ cx: [100, 300, 200, 70, 330, 200], cy: [50, 130, 40, 110, 70, 90], r: [16, 19, 16] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* Prediction trajectory line */}
+        {/* Prediction line */}
         <motion.line
-          x1="140" y1="60" x2="140" y2="60"
-          stroke="#00FFD1" strokeWidth="1" strokeDasharray="4 4" opacity="0.4"
+          stroke="#00FFD1" strokeWidth="1.2" strokeDasharray="6 6" opacity="0.35"
           animate={{
-            x1: [80, 200, 140, 60, 220, 140],
-            y1: [40, 80, 30, 70, 50, 60],
-            x2: [200, 140, 60, 220, 140, 80],
-            y2: [80, 30, 70, 50, 60, 40]
+            x1: [100, 300, 200, 70, 330, 200], y1: [50, 130, 40, 110, 70, 90],
+            x2: [300, 200, 70, 330, 200, 100], y2: [130, 40, 110, 70, 90, 50]
           }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* Crosshair - tracks target with slight delay */}
+        {/* Crosshair group */}
         <motion.g
           animate={{
-            x: [80 - 140, 200 - 140, 140 - 140, 60 - 140, 220 - 140, 140 - 140],
-            y: [40 - 60, 80 - 60, 30 - 60, 70 - 60, 50 - 60, 60 - 60]
+            x: [100 - 200, 300 - 200, 0, 70 - 200, 330 - 200, 0],
+            y: [50 - 90, 130 - 90, 40 - 90, 110 - 90, 70 - 90, 0]
           }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.15 }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.12 }}
         >
-          {/* Crosshair lines */}
-          <line x1="140" y1="42" x2="140" y2="54" stroke="#00FFD1" strokeWidth="1.5" />
-          <line x1="140" y1="66" x2="140" y2="78" stroke="#00FFD1" strokeWidth="1.5" />
-          <line x1="122" y1="60" x2="134" y2="60" stroke="#00FFD1" strokeWidth="1.5" />
-          <line x1="146" y1="60" x2="158" y2="60" stroke="#00FFD1" strokeWidth="1.5" />
-          {/* Crosshair circle */}
-          <motion.circle
-            cx="140" cy="60" r="16"
-            fill="none" stroke="#00FFD1" strokeWidth="1"
-            animate={{ opacity: [0.3, 0.8, 0.3], scale: [1, 0.95, 1] }}
+          <line x1="200" y1="62" x2="200" y2="80" stroke="#00FFD1" strokeWidth="2" />
+          <line x1="200" y1="100" x2="200" y2="118" stroke="#00FFD1" strokeWidth="2" />
+          <line x1="172" y1="90" x2="190" y2="90" stroke="#00FFD1" strokeWidth="2" />
+          <line x1="210" y1="90" x2="228" y2="90" stroke="#00FFD1" strokeWidth="2" />
+          <motion.circle cx="200" cy="90" r="22" fill="none" stroke="#00FFD1" strokeWidth="1.2"
+            animate={{ opacity: [0.3, 0.9, 0.3], scale: [1, 0.96, 1] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           />
-          {/* Inner dot */}
-          <motion.circle
-            cx="140" cy="60" r="2"
-            fill="#00FFD1"
+          <motion.circle cx="200" cy="90" r="3" fill="#00FFD1"
             animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 0.8, repeat: Infinity }}
           />
+          {/* Corner brackets */}
+          <path d="M176 68 L176 62 L182 62" fill="none" stroke="#00FFD1" strokeWidth="1" opacity="0.5" />
+          <path d="M224 62 L224 68" fill="none" stroke="#00FFD1" strokeWidth="1" opacity="0.5" />
+          <path d="M218 62 L224 62" fill="none" stroke="#00FFD1" strokeWidth="1" opacity="0.5" />
+          <path d="M176 112 L176 118 L182 118" fill="none" stroke="#00FFD1" strokeWidth="1" opacity="0.5" />
+          <path d="M224 118 L224 112" fill="none" stroke="#00FFD1" strokeWidth="1" opacity="0.5" />
+          <path d="M218 118 L224 118" fill="none" stroke="#00FFD1" strokeWidth="1" opacity="0.5" />
         </motion.g>
 
-        {/* LOCKED text flash */}
-        <motion.text
-          x="140" y="105" textAnchor="middle"
-          fill="#00FFD1" fontSize="8" fontFamily="monospace" fontWeight="bold"
-          animate={{ opacity: [0, 1, 1, 0] }}
-          transition={{ duration: 2, repeat: Infinity, times: [0, 0.1, 0.7, 1] }}
-        >
-          ● TARGET LOCKED
-        </motion.text>
+        {/* Distance readout */}
+        <motion.g animate={{ opacity: [0.4, 0.9, 0.4] }} transition={{ duration: 1.5, repeat: Infinity }}>
+          <text x="30" y="28" fill="#00B4D8" fontSize="10" fontFamily="'JetBrains Mono', monospace" fontWeight="500">DIST: 24.3m</text>
+        </motion.g>
+
+        {/* FOV indicator */}
+        <text x="30" y="44" fill="#555" fontSize="9" fontFamily="'JetBrains Mono', monospace">FOV: 120°</text>
+
+        {/* TARGET LOCKED */}
+        <motion.g animate={{ opacity: [0, 1, 1, 0] }} transition={{ duration: 2.5, repeat: Infinity, times: [0, 0.08, 0.75, 1] }}>
+          <rect x="130" y="148" width="140" height="22" rx="4" fill="#00FFD1" opacity="0.08" />
+          <text x="200" y="163" textAnchor="middle" fill="#00FFD1" fontSize="11" fontFamily="'JetBrains Mono', monospace" fontWeight="700" letterSpacing="1">
+            ● TARGET LOCKED
+          </text>
+        </motion.g>
 
         <defs>
-          <filter id="targetGlow">
-            <feGaussianBlur stdDeviation="3" result="blur" />
+          <filter id="hdTargetGlow">
+            <feGaussianBlur stdDeviation="4" result="blur" />
             <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
           </filter>
         </defs>
@@ -105,81 +107,94 @@ function AimbotDemo() {
 
 function WallhackDemo() {
   return (
-    <div className="relative h-28 sm:h-32 rounded-xl bg-black/40 border border-[#7B61FF]/10 overflow-hidden" aria-hidden="true">
-      <svg viewBox="0 0 280 120" className="w-full h-full">
-        <rect x="0" y="0" width="280" height="120" fill="#080C12" />
+    <div className={DEMO_CLASS} aria-hidden="true">
+      <svg viewBox="0 0 400 180" preserveAspectRatio="xMidYMid meet" className="w-full h-full" shapeRendering="geometricPrecision" textRendering="optimizeLegibility">
+        <rect x="0" y="0" width="400" height="180" fill="#080C12" />
 
-        {/* Left side - "your view" */}
-        <rect x="5" y="10" width="90" height="100" rx="4" fill="#0A1628" stroke="#7B61FF" strokeWidth="0.5" opacity="0.5" />
-        <text x="50" y="22" textAnchor="middle" fill="#7B61FF" fontSize="6" fontFamily="monospace" opacity="0.6">YOUR VIEW</text>
+        {/* Left zone */}
+        <rect x="10" y="12" width="120" height="156" rx="6" fill="#0A1628" stroke="#7B61FF" strokeWidth="0.6" opacity="0.4" />
+        <text x="70" y="30" textAnchor="middle" fill="#7B61FF" fontSize="9" fontFamily="'JetBrains Mono', monospace" opacity="0.7">YOUR VIEW</text>
 
-        {/* Wall in the middle */}
-        <rect x="110" y="5" width="60" height="110" fill="#1a1a2e" stroke="#333" strokeWidth="1" />
-        <text x="140" y="65" textAnchor="middle" fill="#444" fontSize="7" fontFamily="monospace">WALL</text>
-        <line x1="115" y1="30" x2="165" y2="30" stroke="#222" strokeWidth="0.5" />
-        <line x1="115" y1="55" x2="165" y2="55" stroke="#222" strokeWidth="0.5" />
-        <line x1="115" y1="80" x2="165" y2="80" stroke="#222" strokeWidth="0.5" />
-        <line x1="140" y1="5" x2="140" y2="115" stroke="#222" strokeWidth="0.5" />
+        {/* Player icon on left */}
+        <circle cx="70" cy="85" r="7" fill="none" stroke="#00FFD1" strokeWidth="1.2" />
+        <line x1="70" y1="92" x2="70" y2="115" stroke="#00FFD1" strokeWidth="1.2" />
+        <line x1="60" y1="100" x2="80" y2="100" stroke="#00FFD1" strokeWidth="1" />
+        <text x="70" y="132" textAnchor="middle" fill="#00FFD1" fontSize="8" fontFamily="'JetBrains Mono', monospace">YOU</text>
 
-        {/* Right side */}
-        <rect x="185" y="10" width="90" height="100" rx="4" fill="#0A1628" stroke="#7B61FF" strokeWidth="0.5" opacity="0.5" />
+        {/* Wall */}
+        <rect x="148" y="6" width="80" height="168" fill="#161B2E" stroke="#2a2a44" strokeWidth="1.2" />
+        {/* Brick texture */}
+        <line x1="152" y1="40" x2="224" y2="40" stroke="#1e2238" strokeWidth="0.8" />
+        <line x1="152" y1="70" x2="224" y2="70" stroke="#1e2238" strokeWidth="0.8" />
+        <line x1="152" y1="100" x2="224" y2="100" stroke="#1e2238" strokeWidth="0.8" />
+        <line x1="152" y1="130" x2="224" y2="130" stroke="#1e2238" strokeWidth="0.8" />
+        <line x1="188" y1="6" x2="188" y2="174" stroke="#1e2238" strokeWidth="0.8" />
+        <text x="188" y="92" textAnchor="middle" fill="#3a3a55" fontSize="10" fontFamily="'JetBrains Mono', monospace" fontWeight="600">WALL</text>
 
-        {/* Enemy figure behind wall (X-ray) */}
-        <motion.g animate={{ y: [0, -5, 0, 3, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
-          <motion.ellipse cx="230" cy="50" rx="8" ry="12"
-            fill="none" stroke="#FF4444" strokeWidth="1.5"
-            animate={{ opacity: [0.4, 0.9, 0.4] }}
-            transition={{ duration: 2, repeat: Infinity }}
+        {/* Right zone */}
+        <rect x="246" y="12" width="144" height="156" rx="6" fill="#0A1628" stroke="#7B61FF" strokeWidth="0.6" opacity="0.4" />
+
+        {/* Enemy behind wall */}
+        <motion.g animate={{ y: [0, -8, 0, 5, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
+          {/* Enemy skeleton */}
+          <motion.circle cx="318" cy="55" r="9" fill="none" stroke="#FF4444" strokeWidth="2"
+            animate={{ opacity: [0.4, 1, 0.4] }} transition={{ duration: 2, repeat: Infinity }}
           />
-          <motion.circle cx="230" cy="35" r="6"
-            fill="none" stroke="#FF4444" strokeWidth="1.5"
-            animate={{ opacity: [0.4, 0.9, 0.4] }}
-            transition={{ duration: 2, repeat: Infinity }}
+          <motion.ellipse cx="318" cy="80" rx="11" ry="18" fill="none" stroke="#FF4444" strokeWidth="2"
+            animate={{ opacity: [0.4, 1, 0.4] }} transition={{ duration: 2, repeat: Infinity }}
           />
-          <rect x="218" y="65" width="24" height="3" rx="1" fill="#333" />
-          <motion.rect x="218" y="65" width="24" height="3" rx="1" fill="#FF4444"
-            animate={{ width: [24, 16, 24] }}
-            transition={{ duration: 5, repeat: Infinity }}
+          <motion.line x1="307" y1="72" x2="298" y2="85" stroke="#FF4444" strokeWidth="1.5"
+            animate={{ opacity: [0.3, 0.8, 0.3] }} transition={{ duration: 2, repeat: Infinity }}
           />
-          <text x="230" y="78" textAnchor="middle" fill="#FF6666" fontSize="6" fontFamily="monospace">ENEMY</text>
+          <motion.line x1="329" y1="72" x2="338" y2="85" stroke="#FF4444" strokeWidth="1.5"
+            animate={{ opacity: [0.3, 0.8, 0.3] }} transition={{ duration: 2, repeat: Infinity }}
+          />
+          {/* HP bar */}
+          <rect x="298" y="105" width="40" height="5" rx="2" fill="#222" />
+          <motion.rect x="298" y="105" width="40" height="5" rx="2" fill="#FF4444"
+            animate={{ width: [40, 25, 40] }} transition={{ duration: 5, repeat: Infinity }}
+          />
+          <text x="318" y="122" textAnchor="middle" fill="#FF6666" fontSize="9" fontFamily="'JetBrains Mono', monospace" fontWeight="600">ENEMY</text>
+          <motion.text x="318" y="136" textAnchor="middle" fill="#FF4444" fontSize="8" fontFamily="'JetBrains Mono', monospace"
+            animate={{ opacity: [0.4, 0.9, 0.4] }} transition={{ duration: 1.5, repeat: Infinity }}
+          >
+            32.1m
+          </motion.text>
         </motion.g>
 
         {/* X-ray vision lines */}
-        <motion.line x1="50" y1="55" x2="230" y2="45"
-          stroke="#7B61FF" strokeWidth="0.8" strokeDasharray="4 4"
-          animate={{ opacity: [0, 0.6, 0] }}
-          transition={{ duration: 3, repeat: Infinity }}
+        <motion.line x1="70" y1="85" x2="318" y2="70"
+          stroke="#7B61FF" strokeWidth="1" strokeDasharray="6 6"
+          animate={{ opacity: [0, 0.7, 0] }} transition={{ duration: 3, repeat: Infinity }}
         />
-        <motion.line x1="50" y1="60" x2="230" y2="50"
-          stroke="#00FFD1" strokeWidth="0.5" strokeDasharray="2 6"
-          animate={{ opacity: [0, 0.4, 0], strokeDashoffset: [0, -20] }}
-          transition={{ duration: 2, repeat: Infinity }}
+        <motion.line x1="70" y1="90" x2="318" y2="80"
+          stroke="#00FFD1" strokeWidth="0.6" strokeDasharray="3 8"
+          animate={{ opacity: [0, 0.5, 0], strokeDashoffset: [0, -30] }} transition={{ duration: 2.5, repeat: Infinity }}
         />
 
         {/* Scan line */}
-        <motion.rect x="0" y="0" width="280" height="2"
-          fill="url(#scanGrad)"
-          animate={{ y: [0, 120] }}
+        <motion.rect x="0" y="0" width="400" height="3"
+          fill="url(#hdScanGrad)"
+          animate={{ y: [0, 180] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
         />
 
-        {/* Wall glow */}
-        <motion.rect x="110" y="5" width="60" height="110"
-          fill="none" stroke="#7B61FF" strokeWidth="1"
-          animate={{ opacity: [0.1, 0.5, 0.1] }}
-          transition={{ duration: 2, repeat: Infinity }}
+        {/* Wall highlight */}
+        <motion.rect x="148" y="6" width="80" height="168"
+          fill="none" stroke="#7B61FF" strokeWidth="1.5"
+          animate={{ opacity: [0.08, 0.45, 0.08] }} transition={{ duration: 2, repeat: Infinity }}
         />
 
-        {/* DETECTED label */}
+        {/* DETECTED badge */}
         <motion.g animate={{ opacity: [0, 1, 1, 0] }} transition={{ duration: 3, repeat: Infinity, times: [0, 0.1, 0.8, 1] }}>
-          <rect x="195" y="88" width="70" height="14" rx="2" fill="#FF4444" opacity="0.2" />
-          <text x="230" y="98" textAnchor="middle" fill="#FF6666" fontSize="7" fontFamily="monospace" fontWeight="bold">DETECTED</text>
+          <rect x="268" y="148" width="100" height="20" rx="4" fill="#FF4444" opacity="0.15" />
+          <text x="318" y="162" textAnchor="middle" fill="#FF6666" fontSize="10" fontFamily="'JetBrains Mono', monospace" fontWeight="700">⚠ DETECTED</text>
         </motion.g>
 
         <defs>
-          <linearGradient id="scanGrad" x1="0" y1="0" x2="1" y2="0">
+          <linearGradient id="hdScanGrad" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stopColor="transparent" />
-            <stop offset="50%" stopColor="rgba(123,97,255,0.6)" />
+            <stop offset="50%" stopColor="rgba(123,97,255,0.7)" />
             <stop offset="100%" stopColor="transparent" />
           </linearGradient>
         </defs>
@@ -190,104 +205,92 @@ function WallhackDemo() {
 
 function ESPDemo() {
   return (
-    <div className="relative h-28 sm:h-32 rounded-xl bg-black/40 border border-[#00B4D8]/10 overflow-hidden" aria-hidden="true">
-      <svg viewBox="0 0 280 120" className="w-full h-full">
-        <rect x="0" y="0" width="280" height="120" fill="#060A10" />
+    <div className={DEMO_CLASS} aria-hidden="true">
+      <svg viewBox="0 0 400 180" preserveAspectRatio="xMidYMid meet" className="w-full h-full" shapeRendering="geometricPrecision" textRendering="optimizeLegibility">
+        <rect x="0" y="0" width="400" height="180" fill="#060A10" />
+
+        {/* HUD corners */}
+        <path d="M8 22 L8 8 L22 8" fill="none" stroke="#00B4D8" strokeWidth="1.5" opacity="0.5" />
+        <path d="M378 8 L392 8 L392 22" fill="none" stroke="#00B4D8" strokeWidth="1.5" opacity="0.5" />
+        <path d="M8 158 L8 172 L22 172" fill="none" stroke="#00B4D8" strokeWidth="1.5" opacity="0.5" />
+        <path d="M378 172 L392 172 L392 158" fill="none" stroke="#00B4D8" strokeWidth="1.5" opacity="0.5" />
 
         {/* Player 1 - Friendly */}
         <g>
-          <motion.rect x="30" y="20" width="30" height="55" rx="2"
-            fill="none" stroke="#00FFD1" strokeWidth="1"
-            animate={{ opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 2, repeat: Infinity }}
+          <motion.rect x="40" y="28" width="44" height="75" rx="3"
+            fill="none" stroke="#00FFD1" strokeWidth="1.5"
+            animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }}
           />
-          <circle cx="45" cy="28" r="5" fill="none" stroke="#00FFD1" strokeWidth="0.8" />
-          <line x1="45" y1="33" x2="45" y2="55" stroke="#00FFD1" strokeWidth="0.8" />
-          <text x="45" y="16" textAnchor="middle" fill="#00FFD1" fontSize="6" fontFamily="monospace">JETT</text>
-          <rect x="30" y="78" width="30" height="3" rx="1" fill="#1a1a1a" />
-          <motion.rect x="30" y="78" width="30" height="3" rx="1" fill="#00FFD1"
-            animate={{ width: [30, 22, 30] }}
-            transition={{ duration: 6, repeat: Infinity }}
+          <circle cx="62" cy="40" r="7" fill="none" stroke="#00FFD1" strokeWidth="1" />
+          <line x1="62" y1="47" x2="62" y2="76" stroke="#00FFD1" strokeWidth="1" />
+          <line x1="50" y1="58" x2="74" y2="58" stroke="#00FFD1" strokeWidth="0.8" />
+          <text x="62" y="22" textAnchor="middle" fill="#00FFD1" fontSize="10" fontFamily="'JetBrains Mono', monospace" fontWeight="600">JETT</text>
+          {/* HP bar */}
+          <rect x="40" y="110" width="44" height="5" rx="2" fill="#1a1a1a" />
+          <motion.rect x="40" y="110" width="44" height="5" rx="2" fill="#00FFD1"
+            animate={{ width: [44, 33, 44] }} transition={{ duration: 6, repeat: Infinity }}
           />
-          <text x="45" y="90" textAnchor="middle" fill="#00FFD1" fontSize="5.5" fontFamily="monospace">150 HP</text>
-          <text x="45" y="98" textAnchor="middle" fill="#888" fontSize="5" fontFamily="monospace">PHANTOM</text>
-          <motion.text x="45" y="106" textAnchor="middle" fill="#00B4D8" fontSize="5" fontFamily="monospace"
-            animate={{ opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          >
-            12.4m
-          </motion.text>
+          <text x="62" y="128" textAnchor="middle" fill="#00FFD1" fontSize="9" fontFamily="'JetBrains Mono', monospace" fontWeight="500">150 HP</text>
+          <text x="62" y="142" textAnchor="middle" fill="#666" fontSize="8" fontFamily="'JetBrains Mono', monospace">PHANTOM</text>
+          <motion.text x="62" y="156" textAnchor="middle" fill="#00B4D8" fontSize="8" fontFamily="'JetBrains Mono', monospace"
+            animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 1.5, repeat: Infinity }}
+          >12.4m</motion.text>
         </g>
 
         {/* Player 2 - Enemy */}
         <g>
-          <motion.rect x="170" y="15" width="28" height="50" rx="2"
-            fill="none" stroke="#FF4444" strokeWidth="1"
-            animate={{ opacity: [0.5, 1, 0.5], x: [170, 175, 170] }}
-            transition={{ duration: 3, repeat: Infinity }}
+          <motion.rect x="200" y="20" width="40" height="68" rx="3"
+            fill="none" stroke="#FF4444" strokeWidth="1.5"
+            animate={{ opacity: [0.5, 1, 0.5], x: [200, 208, 200] }}
+            transition={{ duration: 3.5, repeat: Infinity }}
           />
-          <motion.circle cx="184" cy="23" r="5" fill="none" stroke="#FF4444" strokeWidth="0.8"
-            animate={{ cx: [184, 189, 184] }}
-            transition={{ duration: 3, repeat: Infinity }}
+          <motion.circle cx="220" cy="32" r="7" fill="none" stroke="#FF4444" strokeWidth="1"
+            animate={{ cx: [220, 228, 220] }} transition={{ duration: 3.5, repeat: Infinity }}
           />
-          <motion.line x1="184" y1="28" x2="184" y2="48" stroke="#FF4444" strokeWidth="0.8"
-            animate={{ x1: [184, 189, 184], x2: [184, 189, 184] }}
-            transition={{ duration: 3, repeat: Infinity }}
+          <motion.line x1="220" y1="39" x2="220" y2="64" stroke="#FF4444" strokeWidth="1"
+            animate={{ x1: [220, 228, 220], x2: [220, 228, 220] }} transition={{ duration: 3.5, repeat: Infinity }}
           />
-          <motion.text x="184" y="11" textAnchor="middle" fill="#FF4444" fontSize="6" fontFamily="monospace"
-            animate={{ x: [184, 189, 184] }}
-            transition={{ duration: 3, repeat: Infinity }}
-          >
-            REYNA
-          </motion.text>
-          <rect x="170" y="70" width="28" height="3" rx="1" fill="#1a1a1a" />
-          <motion.rect x="170" y="70" width="18" height="3" rx="1" fill="#FF4444"
-            animate={{ width: [18, 10, 18] }}
-            transition={{ duration: 4, repeat: Infinity }}
+          <motion.text x="220" y="14" textAnchor="middle" fill="#FF4444" fontSize="10" fontFamily="'JetBrains Mono', monospace" fontWeight="600"
+            animate={{ x: [220, 228, 220] }} transition={{ duration: 3.5, repeat: Infinity }}
+          >REYNA</motion.text>
+          {/* HP */}
+          <rect x="200" y="98" width="40" height="5" rx="2" fill="#1a1a1a" />
+          <motion.rect x="200" y="98" width="26" height="5" rx="2" fill="#FF4444"
+            animate={{ width: [26, 14, 26] }} transition={{ duration: 4, repeat: Infinity }}
           />
-          <text x="184" y="82" textAnchor="middle" fill="#FF4444" fontSize="5.5" fontFamily="monospace">75 HP</text>
-          <text x="184" y="90" textAnchor="middle" fill="#888" fontSize="5" fontFamily="monospace">VANDAL</text>
-          <motion.text x="184" y="98" textAnchor="middle" fill="#FF6666" fontSize="5" fontFamily="monospace"
-            animate={{ opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 1, repeat: Infinity }}
-          >
-            28.7m
-          </motion.text>
+          <text x="220" y="116" textAnchor="middle" fill="#FF4444" fontSize="9" fontFamily="'JetBrains Mono', monospace" fontWeight="500">75 HP</text>
+          <text x="220" y="130" textAnchor="middle" fill="#666" fontSize="8" fontFamily="'JetBrains Mono', monospace">VANDAL</text>
+          <motion.text x="220" y="144" textAnchor="middle" fill="#FF6666" fontSize="8" fontFamily="'JetBrains Mono', monospace"
+            animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 1, repeat: Infinity }}
+          >28.7m</motion.text>
         </g>
 
         {/* Mini Radar */}
         <g>
-          <circle cx="245" cy="25" r="18" fill="#0A1628" stroke="#00B4D8" strokeWidth="0.5" opacity="0.8" />
-          <line x1="245" y1="7" x2="245" y2="43" stroke="#00B4D8" strokeWidth="0.3" opacity="0.3" />
-          <line x1="227" y1="25" x2="263" y2="25" stroke="#00B4D8" strokeWidth="0.3" opacity="0.3" />
-          <motion.line x1="245" y1="25" x2="263" y2="25"
-            stroke="#00B4D8" strokeWidth="1"
+          <circle cx="340" cy="40" r="28" fill="#0A1628" stroke="#00B4D8" strokeWidth="0.8" opacity="0.9" />
+          <circle cx="340" cy="40" r="14" fill="none" stroke="#00B4D8" strokeWidth="0.3" opacity="0.2" />
+          <line x1="340" y1="12" x2="340" y2="68" stroke="#00B4D8" strokeWidth="0.4" opacity="0.2" />
+          <line x1="312" y1="40" x2="368" y2="40" stroke="#00B4D8" strokeWidth="0.4" opacity="0.2" />
+          <motion.line x1="340" y1="40" x2="368" y2="40"
+            stroke="#00B4D8" strokeWidth="1.5"
             animate={{ rotate: [0, 360] }}
             transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-            style={{ transformOrigin: '245px 25px' }}
+            style={{ transformOrigin: '340px 40px' }}
           />
-          <motion.circle cx="238" cy="18" r="2" fill="#00FFD1"
-            animate={{ opacity: [0, 1, 0] }}
-            transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
+          <motion.circle cx="332" cy="30" r="3" fill="#00FFD1"
+            animate={{ opacity: [0, 1, 0] }} transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
           />
-          <motion.circle cx="255" cy="30" r="2" fill="#FF4444"
-            animate={{ opacity: [0, 1, 0] }}
-            transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
+          <motion.circle cx="354" cy="48" r="3" fill="#FF4444"
+            animate={{ opacity: [0, 1, 0] }} transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
           />
-          <text x="245" y="48" textAnchor="middle" fill="#00B4D8" fontSize="5" fontFamily="monospace">RADAR</text>
+          <text x="340" y="76" textAnchor="middle" fill="#00B4D8" fontSize="8" fontFamily="'JetBrains Mono', monospace" fontWeight="500">RADAR</text>
         </g>
 
-        {/* HUD corners */}
-        <path d="M5 15 L5 5 L15 5" fill="none" stroke="#00B4D8" strokeWidth="1" opacity="0.4" />
-        <path d="M265 5 L275 5 L275 15" fill="none" stroke="#00B4D8" strokeWidth="1" opacity="0.4" />
-        <path d="M5 105 L5 115 L15 115" fill="none" stroke="#00B4D8" strokeWidth="1" opacity="0.4" />
-        <path d="M265 115 L275 115 L275 105" fill="none" stroke="#00B4D8" strokeWidth="1" opacity="0.4" />
-
-        <motion.text x="140" y="115" textAnchor="middle" fill="#00B4D8" fontSize="5.5" fontFamily="monospace"
-          animate={{ opacity: [0.3, 0.8, 0.3] }}
-          transition={{ duration: 2, repeat: Infinity }}
+        {/* Status bar */}
+        <motion.text x="200" y="172" textAnchor="middle" fill="#00B4D8" fontSize="9" fontFamily="'JetBrains Mono', monospace" fontWeight="500"
+          animate={{ opacity: [0.3, 0.9, 0.3] }} transition={{ duration: 2, repeat: Infinity }}
         >
-          ESP ACTIVE ● 6 PLAYERS DETECTED
+          ESP ACTIVE  ●  6 PLAYERS DETECTED  ●  ROUND 14
         </motion.text>
       </svg>
     </div>
@@ -295,23 +298,23 @@ function ESPDemo() {
 }
 
 function AIDemo() {
-  const inputY = [25, 45, 65, 85]
-  const hiddenY = [17, 35, 53, 71, 89]
-  const outputY = [30, 55, 80]
+  const inputY = [30, 60, 90, 120]
+  const hiddenY = [20, 48, 76, 104, 132]
+  const outputY = [40, 80, 120]
 
   return (
-    <div className="relative h-28 sm:h-32 rounded-xl bg-black/40 border border-[#00FFD1]/10 overflow-hidden" aria-hidden="true">
-      <svg viewBox="0 0 280 120" className="w-full h-full">
-        <rect x="0" y="0" width="280" height="120" fill="#060A10" />
+    <div className={DEMO_CLASS} aria-hidden="true">
+      <svg viewBox="0 0 400 180" preserveAspectRatio="xMidYMid meet" className="w-full h-full" shapeRendering="geometricPrecision" textRendering="optimizeLegibility">
+        <rect x="0" y="0" width="400" height="180" fill="#060A10" />
 
         {/* Connections: Input → Hidden */}
         {inputY.map((iy, i) =>
           hiddenY.map((hy, j) => (
             <motion.line key={`ih-${i}-${j}`}
-              x1="55" y1={iy} x2="135" y2={hy}
-              stroke="#00FFD1" strokeWidth="0.4"
-              animate={{ opacity: [0.03, 0.25, 0.03] }}
-              transition={{ duration: 2, repeat: Infinity, delay: (i + j) * 0.1 }}
+              x1="78" y1={iy} x2="192" y2={hy}
+              stroke="#00FFD1" strokeWidth="0.6"
+              animate={{ opacity: [0.03, 0.3, 0.03] }}
+              transition={{ duration: 2.2, repeat: Infinity, delay: (i + j) * 0.1 }}
             />
           ))
         )}
@@ -320,84 +323,78 @@ function AIDemo() {
         {hiddenY.map((hy, i) =>
           outputY.map((oy, j) => (
             <motion.line key={`ho-${i}-${j}`}
-              x1="145" y1={hy} x2="225" y2={oy}
-              stroke="#7B61FF" strokeWidth="0.4"
-              animate={{ opacity: [0.03, 0.25, 0.03] }}
-              transition={{ duration: 2, repeat: Infinity, delay: (i + j) * 0.12 + 0.5 }}
+              x1="208" y1={hy} x2="322" y2={oy}
+              stroke="#7B61FF" strokeWidth="0.6"
+              animate={{ opacity: [0.03, 0.3, 0.03] }}
+              transition={{ duration: 2.2, repeat: Infinity, delay: (i + j) * 0.12 + 0.5 }}
             />
           ))
         )}
 
-        {/* Input layer nodes */}
+        {/* Input layer */}
         {inputY.map((y, i) => (
           <g key={`in-${i}`}>
-            <motion.circle cx="50" cy={y} r="5" fill="#0A1628" stroke="#00FFD1" strokeWidth="1"
-              animate={{ strokeOpacity: [0.3, 1, 0.3] }}
-              transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
+            <motion.circle cx="70" cy={y} r="8" fill="#0A1628" stroke="#00FFD1" strokeWidth="1.5"
+              animate={{ strokeOpacity: [0.3, 1, 0.3] }} transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
             />
-            <motion.circle cx="50" cy={y} r="2" fill="#00FFD1"
-              animate={{ opacity: [0.2, 0.8, 0.2] }}
-              transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
+            <motion.circle cx="70" cy={y} r="3" fill="#00FFD1"
+              animate={{ opacity: [0.2, 0.9, 0.2] }} transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
             />
           </g>
         ))}
 
-        {/* Hidden layer nodes */}
+        {/* Hidden layer */}
         {hiddenY.map((y, i) => (
           <g key={`hid-${i}`}>
-            <motion.circle cx="140" cy={y} r="5" fill="#0A1628" stroke="#7B61FF" strokeWidth="1"
-              animate={{ strokeOpacity: [0.3, 1, 0.3] }}
-              transition={{ duration: 2, repeat: Infinity, delay: i * 0.15 + 0.5 }}
+            <motion.circle cx="200" cy={y} r="8" fill="#0A1628" stroke="#7B61FF" strokeWidth="1.5"
+              animate={{ strokeOpacity: [0.3, 1, 0.3] }} transition={{ duration: 2, repeat: Infinity, delay: i * 0.15 + 0.5 }}
             />
-            <motion.circle cx="140" cy={y} r="2" fill="#7B61FF"
-              animate={{ opacity: [0.2, 0.8, 0.2] }}
-              transition={{ duration: 2, repeat: Infinity, delay: i * 0.15 + 0.5 }}
+            <motion.circle cx="200" cy={y} r="3" fill="#7B61FF"
+              animate={{ opacity: [0.2, 0.9, 0.2] }} transition={{ duration: 2, repeat: Infinity, delay: i * 0.15 + 0.5 }}
             />
           </g>
         ))}
 
-        {/* Output layer nodes */}
+        {/* Output layer */}
         {outputY.map((y, i) => (
           <g key={`out-${i}`}>
-            <motion.circle cx="230" cy={y} r="5" fill="#0A1628" stroke="#00B4D8" strokeWidth="1"
-              animate={{ strokeOpacity: [0.3, 1, 0.3] }}
-              transition={{ duration: 2, repeat: Infinity, delay: i * 0.25 + 1 }}
+            <motion.circle cx="330" cy={y} r="8" fill="#0A1628" stroke="#00B4D8" strokeWidth="1.5"
+              animate={{ strokeOpacity: [0.3, 1, 0.3] }} transition={{ duration: 2, repeat: Infinity, delay: i * 0.25 + 1 }}
             />
-            <motion.circle cx="230" cy={y} r="2" fill="#00B4D8"
-              animate={{ opacity: [0.2, 0.8, 0.2] }}
-              transition={{ duration: 2, repeat: Infinity, delay: i * 0.25 + 1 }}
+            <motion.circle cx="330" cy={y} r="3" fill="#00B4D8"
+              animate={{ opacity: [0.2, 0.9, 0.2] }} transition={{ duration: 2, repeat: Infinity, delay: i * 0.25 + 1 }}
             />
           </g>
         ))}
 
-        {/* Data pulses traveling along network */}
-        <motion.circle r="2" fill="#00FFD1" filter="url(#pulseGlow)"
-          animate={{ cx: [50, 140, 230], cy: [45, 35, 55], opacity: [0, 1, 0] }}
+        {/* Data pulses */}
+        <motion.circle r="3.5" fill="#00FFD1" filter="url(#hdPulseGlow)"
+          animate={{ cx: [70, 200, 330], cy: [60, 48, 80], opacity: [0, 1, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.circle r="2" fill="#7B61FF" filter="url(#pulseGlow)"
-          animate={{ cx: [50, 140, 230], cy: [65, 71, 30], opacity: [0, 1, 0] }}
+        <motion.circle r="3.5" fill="#7B61FF" filter="url(#hdPulseGlow)"
+          animate={{ cx: [70, 200, 330], cy: [90, 104, 40], opacity: [0, 1, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
         />
-        <motion.circle r="2" fill="#00B4D8" filter="url(#pulseGlow)"
-          animate={{ cx: [50, 140, 230], cy: [25, 53, 80], opacity: [0, 1, 0] }}
+        <motion.circle r="3.5" fill="#00B4D8" filter="url(#hdPulseGlow)"
+          animate={{ cx: [70, 200, 330], cy: [30, 76, 120], opacity: [0, 1, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1.4 }}
         />
 
-        {/* Layer labels */}
-        <text x="50" y="108" textAnchor="middle" fill="#00FFD1" fontSize="5" fontFamily="monospace" opacity="0.5">INPUT</text>
-        <text x="140" y="108" textAnchor="middle" fill="#7B61FF" fontSize="5" fontFamily="monospace" opacity="0.5">PROCESS</text>
-        <text x="230" y="108" textAnchor="middle" fill="#00B4D8" fontSize="5" fontFamily="monospace" opacity="0.5">OUTPUT</text>
+        {/* Labels */}
+        <text x="70" y="155" textAnchor="middle" fill="#00FFD1" fontSize="9" fontFamily="'JetBrains Mono', monospace" opacity="0.6" fontWeight="500">INPUT</text>
+        <text x="200" y="162" textAnchor="middle" fill="#7B61FF" fontSize="9" fontFamily="'JetBrains Mono', monospace" opacity="0.6" fontWeight="500">HIDDEN</text>
+        <text x="330" y="155" textAnchor="middle" fill="#00B4D8" fontSize="9" fontFamily="'JetBrains Mono', monospace" opacity="0.6" fontWeight="500">OUTPUT</text>
 
         {/* LEARNING indicator */}
         <motion.g animate={{ opacity: [0.4, 1, 0.4] }} transition={{ duration: 1.5, repeat: Infinity }}>
-          <rect x="100" y="1" width="80" height="12" rx="6" fill="#00FFD1" opacity="0.1" />
-          <text x="140" y="9" textAnchor="middle" fill="#00FFD1" fontSize="6" fontFamily="monospace" fontWeight="bold">● LEARNING</text>
+          <rect x="145" y="2" width="110" height="18" rx="9" fill="#00FFD1" opacity="0.08" />
+          <text x="200" y="14" textAnchor="middle" fill="#00FFD1" fontSize="9" fontFamily="'JetBrains Mono', monospace" fontWeight="700">● LEARNING</text>
         </motion.g>
 
         <defs>
-          <filter id="pulseGlow">
-            <feGaussianBlur stdDeviation="2" result="blur" />
+          <filter id="hdPulseGlow">
+            <feGaussianBlur stdDeviation="3" result="blur" />
             <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
           </filter>
         </defs>
@@ -408,77 +405,64 @@ function AIDemo() {
 
 function UpdateDemo() {
   return (
-    <div className="relative h-28 sm:h-32 rounded-xl bg-black/40 border border-[#7B61FF]/10 overflow-hidden" aria-hidden="true">
-      <svg viewBox="0 0 280 120" className="w-full h-full">
-        <rect x="0" y="0" width="280" height="120" fill="#060A10" />
+    <div className={DEMO_CLASS} aria-hidden="true">
+      <svg viewBox="0 0 400 180" preserveAspectRatio="xMidYMid meet" className="w-full h-full" shapeRendering="geometricPrecision" textRendering="optimizeLegibility">
+        <rect x="0" y="0" width="400" height="180" fill="#060A10" />
 
         {/* Circular progress ring */}
-        <circle cx="80" cy="55" r="32" fill="none" stroke="#1a1a2e" strokeWidth="4" />
-        <motion.circle cx="80" cy="55" r="32" fill="none"
-          stroke="url(#updateGrad)" strokeWidth="4" strokeLinecap="round"
-          strokeDasharray="201"
-          animate={{ strokeDashoffset: [201, 0, 0, 201] }}
+        <circle cx="110" cy="85" r="48" fill="none" stroke="#1a1a2e" strokeWidth="5" />
+        <motion.circle cx="110" cy="85" r="48" fill="none"
+          stroke="url(#hdUpdateGrad)" strokeWidth="5" strokeLinecap="round"
+          strokeDasharray="301"
+          animate={{ strokeDashoffset: [301, 0, 0, 301] }}
           transition={{ duration: 4, repeat: Infinity, times: [0, 0.6, 0.8, 1], ease: "easeInOut" }}
-          style={{ transformOrigin: '80px 55px', transform: 'rotate(-90deg)' }}
+          style={{ transformOrigin: '110px 85px', transform: 'rotate(-90deg)' }}
+        />
+        {/* Outer glow ring */}
+        <motion.circle cx="110" cy="85" r="52" fill="none" stroke="#7B61FF" strokeWidth="0.5"
+          animate={{ opacity: [0.1, 0.4, 0.1] }} transition={{ duration: 2, repeat: Infinity }}
         />
 
-        {/* Checkmark on completion */}
-        <motion.path d="M68 55 L76 63 L92 47"
-          fill="none" stroke="#00FFD1" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"
+        {/* Checkmark */}
+        <motion.path d="M92 85 L104 97 L130 71"
+          fill="none" stroke="#00FFD1" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"
           animate={{ pathLength: [0, 0, 1, 1, 0], opacity: [0, 0, 1, 1, 0] }}
-          transition={{ duration: 4, repeat: Infinity, times: [0, 0.58, 0.7, 0.85, 1] }}
+          transition={{ duration: 4, repeat: Infinity, times: [0, 0.58, 0.72, 0.85, 1] }}
         />
 
-        {/* Version numbers */}
+        {/* Version info */}
         <g>
-          <text x="170" y="25" fill="#555" fontSize="7" fontFamily="monospace">CURRENT</text>
-          <motion.text x="170" y="42" fill="#7B61FF" fontSize="12" fontFamily="monospace" fontWeight="bold"
-            animate={{ opacity: [1, 0, 0] }}
-            transition={{ duration: 4, repeat: Infinity, times: [0, 0.5, 1] }}
-          >
-            v4.2.1
-          </motion.text>
-          <motion.text x="170" y="42" fill="#00FFD1" fontSize="12" fontFamily="monospace" fontWeight="bold"
-            animate={{ opacity: [0, 0, 1, 1, 0] }}
-            transition={{ duration: 4, repeat: Infinity, times: [0, 0.55, 0.65, 0.9, 1] }}
-          >
-            v4.3.0
-          </motion.text>
-          <motion.g animate={{ opacity: [0, 0, 1, 1, 0] }}
-            transition={{ duration: 4, repeat: Infinity, times: [0, 0.5, 0.6, 0.85, 1] }}
-          >
-            <text x="170" y="56" fill="#00FFD1" fontSize="7" fontFamily="monospace">NEW VERSION</text>
+          <text x="230" y="30" fill="#555" fontSize="10" fontFamily="'JetBrains Mono', monospace" fontWeight="500">CURRENT VERSION</text>
+          <motion.text x="230" y="52" fill="#7B61FF" fontSize="18" fontFamily="'JetBrains Mono', monospace" fontWeight="700"
+            animate={{ opacity: [1, 0, 0] }} transition={{ duration: 4, repeat: Infinity, times: [0, 0.5, 1] }}
+          >v4.2.1</motion.text>
+          <motion.text x="230" y="52" fill="#00FFD1" fontSize="18" fontFamily="'JetBrains Mono', monospace" fontWeight="700"
+            animate={{ opacity: [0, 0, 1, 1, 0] }} transition={{ duration: 4, repeat: Infinity, times: [0, 0.55, 0.65, 0.9, 1] }}
+          >v4.3.0</motion.text>
+          <motion.g animate={{ opacity: [0, 0, 1, 1, 0] }} transition={{ duration: 4, repeat: Infinity, times: [0, 0.5, 0.6, 0.85, 1] }}>
+            <text x="230" y="70" fill="#00FFD1" fontSize="10" fontFamily="'JetBrains Mono', monospace" fontWeight="500">✓ NEW VERSION</text>
           </motion.g>
         </g>
 
         {/* Changelog */}
         <g>
-          <text x="155" y="75" fill="#444" fontSize="5.5" fontFamily="monospace">CHANGELOG:</text>
-          <motion.text x="155" y="85" fill="#00B4D8" fontSize="5" fontFamily="monospace"
+          <text x="230" y="96" fill="#444" fontSize="9" fontFamily="'JetBrains Mono', monospace" fontWeight="500">CHANGELOG:</text>
+          <motion.text x="230" y="114" fill="#00B4D8" fontSize="9" fontFamily="'JetBrains Mono', monospace"
             animate={{ opacity: [0, 1] }} transition={{ duration: 0.5, delay: 0.5, repeat: Infinity, repeatDelay: 3.5 }}
-          >
-            + Anti-detect update
-          </motion.text>
-          <motion.text x="155" y="93" fill="#00B4D8" fontSize="5" fontFamily="monospace"
+          >+ Anti-detect update</motion.text>
+          <motion.text x="230" y="130" fill="#00B4D8" fontSize="9" fontFamily="'JetBrains Mono', monospace"
             animate={{ opacity: [0, 1] }} transition={{ duration: 0.5, delay: 1, repeat: Infinity, repeatDelay: 3.5 }}
-          >
-            + New bypass method
-          </motion.text>
-          <motion.text x="155" y="101" fill="#00B4D8" fontSize="5" fontFamily="monospace"
+          >+ New bypass method</motion.text>
+          <motion.text x="230" y="146" fill="#00B4D8" fontSize="9" fontFamily="'JetBrains Mono', monospace"
             animate={{ opacity: [0, 1] }} transition={{ duration: 0.5, delay: 1.5, repeat: Infinity, repeatDelay: 3.5 }}
-          >
-            + Performance boost
-          </motion.text>
-          <motion.text x="155" y="109" fill="#00FFD1" fontSize="5" fontFamily="monospace" fontWeight="bold"
-            animate={{ opacity: [0, 0, 1, 1] }}
-            transition={{ duration: 4, repeat: Infinity, times: [0, 0.6, 0.7, 1] }}
-          >
-            All patches applied
-          </motion.text>
+          >+ Performance boost</motion.text>
+          <motion.text x="230" y="166" fill="#00FFD1" fontSize="10" fontFamily="'JetBrains Mono', monospace" fontWeight="700"
+            animate={{ opacity: [0, 0, 1, 1] }} transition={{ duration: 4, repeat: Infinity, times: [0, 0.6, 0.7, 1] }}
+          >✓ All patches applied</motion.text>
         </g>
 
         <defs>
-          <linearGradient id="updateGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="hdUpdateGrad" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#7B61FF" />
             <stop offset="100%" stopColor="#00FFD1" />
           </linearGradient>
@@ -490,23 +474,23 @@ function UpdateDemo() {
 
 function SupportDemo() {
   return (
-    <div className="relative h-28 sm:h-32 rounded-xl bg-black/40 border border-[#00B4D8]/10 overflow-hidden" aria-hidden="true">
-      <svg viewBox="0 0 280 120" className="w-full h-full">
-        <rect x="0" y="0" width="280" height="120" fill="#060A10" />
+    <div className={DEMO_CLASS} aria-hidden="true">
+      <svg viewBox="0 0 400 180" preserveAspectRatio="xMidYMid meet" className="w-full h-full" shapeRendering="geometricPrecision" textRendering="optimizeLegibility">
+        <rect x="0" y="0" width="400" height="180" fill="#060A10" />
 
         {/* Chat header */}
-        <rect x="30" y="5" width="220" height="16" rx="4" fill="#0A1628" />
-        <circle cx="42" cy="13" r="3" fill="#00FFD1" />
-        <text x="52" y="16" fill="#00FFD1" fontSize="7" fontFamily="monospace" fontWeight="bold">PHANTOM SUPPORT</text>
-        <text x="220" y="16" fill="#00FFD1" fontSize="6" fontFamily="monospace">ONLINE</text>
+        <rect x="30" y="6" width="340" height="24" rx="6" fill="#0A1628" stroke="#00B4D8" strokeWidth="0.4" />
+        <circle cx="48" cy="18" r="5" fill="#00FFD1" />
+        <text x="62" y="22" fill="#00FFD1" fontSize="10" fontFamily="'JetBrains Mono', monospace" fontWeight="700">PHANTOM SUPPORT</text>
+        <text x="338" y="22" fill="#00FFD1" fontSize="9" fontFamily="'JetBrains Mono', monospace">● ONLINE</text>
 
         {/* User message */}
         <motion.g
           animate={{ opacity: [0, 1, 1, 1, 1, 1, 1, 0] }}
           transition={{ duration: 8, repeat: Infinity, times: [0, 0.05, 0.1, 0.5, 0.6, 0.8, 0.9, 1] }}
         >
-          <rect x="120" y="28" width="120" height="18" rx="8" fill="#1a1a3e" stroke="#7B61FF" strokeWidth="0.5" />
-          <text x="180" y="40" textAnchor="middle" fill="#aaa" fontSize="6.5" fontFamily="monospace">Need help with setup</text>
+          <rect x="150" y="40" width="200" height="26" rx="12" fill="#1a1a3e" stroke="#7B61FF" strokeWidth="0.6" />
+          <text x="250" y="57" textAnchor="middle" fill="#aaa" fontSize="10" fontFamily="'JetBrains Mono', monospace">Need help with setup</text>
         </motion.g>
 
         {/* Typing indicator */}
@@ -514,37 +498,34 @@ function SupportDemo() {
           animate={{ opacity: [0, 0, 1, 1, 0, 0, 0, 0] }}
           transition={{ duration: 8, repeat: Infinity, times: [0, 0.1, 0.15, 0.25, 0.3, 0.5, 0.8, 1] }}
         >
-          <rect x="40" y="52" width="50" height="14" rx="7" fill="#0A1628" stroke="#00B4D8" strokeWidth="0.5" />
-          <motion.circle cx="53" cy="59" r="2" fill="#00B4D8"
-            animate={{ opacity: [0.3, 1, 0.3] }}
-            transition={{ duration: 0.6, repeat: Infinity }}
+          <rect x="40" y="76" width="70" height="22" rx="11" fill="#0A1628" stroke="#00B4D8" strokeWidth="0.6" />
+          <motion.circle cx="58" cy="87" r="3" fill="#00B4D8"
+            animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 0.6, repeat: Infinity }}
           />
-          <motion.circle cx="63" cy="59" r="2" fill="#00B4D8"
-            animate={{ opacity: [0.3, 1, 0.3] }}
-            transition={{ duration: 0.6, repeat: Infinity, delay: 0.2 }}
+          <motion.circle cx="73" cy="87" r="3" fill="#00B4D8"
+            animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 0.6, repeat: Infinity, delay: 0.2 }}
           />
-          <motion.circle cx="73" cy="59" r="2" fill="#00B4D8"
-            animate={{ opacity: [0.3, 1, 0.3] }}
-            transition={{ duration: 0.6, repeat: Infinity, delay: 0.4 }}
+          <motion.circle cx="88" cy="87" r="3" fill="#00B4D8"
+            animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 0.6, repeat: Infinity, delay: 0.4 }}
           />
         </motion.g>
 
-        {/* Support response */}
+        {/* Support response 1 */}
         <motion.g
           animate={{ opacity: [0, 0, 0, 1, 1, 1, 1, 0] }}
           transition={{ duration: 8, repeat: Infinity, times: [0, 0.1, 0.28, 0.35, 0.5, 0.8, 0.9, 1] }}
         >
-          <rect x="40" y="52" width="155" height="18" rx="8" fill="#0A2828" stroke="#00FFD1" strokeWidth="0.5" />
-          <text x="45" y="64" fill="#00FFD1" fontSize="6.5" fontFamily="monospace">Sure! Let me guide you step by step</text>
+          <rect x="40" y="76" width="260" height="26" rx="12" fill="#082828" stroke="#00FFD1" strokeWidth="0.6" />
+          <text x="50" y="93" fill="#00FFD1" fontSize="10" fontFamily="'JetBrains Mono', monospace">Sure! Let me guide you step by step</text>
         </motion.g>
 
-        {/* Second support message */}
+        {/* Support response 2 */}
         <motion.g
           animate={{ opacity: [0, 0, 0, 0, 1, 1, 1, 0] }}
           transition={{ duration: 8, repeat: Infinity, times: [0, 0.1, 0.28, 0.42, 0.5, 0.8, 0.9, 1] }}
         >
-          <rect x="40" y="76" width="130" height="18" rx="8" fill="#0A2828" stroke="#00FFD1" strokeWidth="0.5" />
-          <text x="45" y="88" fill="#00FFD1" fontSize="6.5" fontFamily="monospace">Config sent to your email</text>
+          <rect x="40" y="112" width="220" height="26" rx="12" fill="#082828" stroke="#00FFD1" strokeWidth="0.6" />
+          <text x="50" y="129" fill="#00FFD1" fontSize="10" fontFamily="'JetBrains Mono', monospace">Config sent to your email ✓</text>
         </motion.g>
 
         {/* Resolution badge */}
@@ -552,8 +533,8 @@ function SupportDemo() {
           animate={{ opacity: [0, 0, 0, 0, 0, 1, 1, 0] }}
           transition={{ duration: 8, repeat: Infinity, times: [0, 0.1, 0.28, 0.42, 0.58, 0.65, 0.9, 1] }}
         >
-          <rect x="80" y="98" width="120" height="14" rx="7" fill="#00FFD1" opacity="0.15" />
-          <text x="140" y="108" textAnchor="middle" fill="#00FFD1" fontSize="6.5" fontFamily="monospace" fontWeight="bold">RESOLVED IN 2 MIN</text>
+          <rect x="100" y="148" width="200" height="24" rx="12" fill="#00FFD1" opacity="0.1" />
+          <text x="200" y="164" textAnchor="middle" fill="#00FFD1" fontSize="11" fontFamily="'JetBrains Mono', monospace" fontWeight="700">✓ RESOLVED IN 2 MIN</text>
         </motion.g>
       </svg>
     </div>
@@ -699,7 +680,6 @@ const stats = [
 export default function BentoGrid() {
   return (
     <section id="features" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" aria-label="Características del producto">
-      {/* Background decorative elements */}
       <div className="absolute top-1/4 -left-32 w-64 h-64 bg-accent/5 rounded-full blur-[100px]" aria-hidden="true" />
       <div className="absolute bottom-1/4 -right-32 w-64 h-64 bg-electric/5 rounded-full blur-[100px]" aria-hidden="true" />
 
@@ -760,21 +740,15 @@ export default function BentoGrid() {
                 }}
                 transition={{ duration: 0.3, ease: 'easeOut' }}
               >
-                {/* Top accent gradient line */}
                 <div className={`h-[2px] w-full bg-gradient-to-r ${feature.gradient} opacity-60 group-hover:opacity-100 transition-opacity duration-300`} aria-hidden="true" />
 
                 <div className="p-5 sm:p-6 lg:p-7">
-                  {/* Icon + Stat row */}
                   <div className="flex items-start justify-between mb-4 sm:mb-5">
-                    <div
-                      className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br ${feature.gradient} p-[1px] flex-shrink-0`}
-                    >
+                    <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br ${feature.gradient} p-[1px] flex-shrink-0`}>
                       <div className="w-full h-full rounded-xl bg-primary/80 flex items-center justify-center text-accent">
                         {feature.icon}
                       </div>
                     </div>
-
-                    {/* Stat badge */}
                     <div className="text-right">
                       <div className={`text-lg sm:text-xl font-black text-transparent bg-clip-text bg-gradient-to-r ${feature.gradient}`}>
                         {feature.stat}
@@ -785,23 +759,18 @@ export default function BentoGrid() {
                     </div>
                   </div>
 
-                  {/* Title + Subtitle */}
                   <h3 className="text-base sm:text-lg lg:text-xl font-display font-bold text-light mb-1 group-hover:text-accent transition-colors duration-300">
                     {feature.title}
                   </h3>
                   <p className="text-xs sm:text-sm text-accent/70 font-mono mb-3 sm:mb-4">
                     {feature.subtitle}
                   </p>
-
-                  {/* Description */}
                   <p className="text-sm text-light/50 leading-relaxed group-hover:text-light/65 transition-colors duration-300 mb-4">
                     {feature.description}
                   </p>
 
-                  {/* Animated Demo */}
                   {demos[feature.id]}
 
-                  {/* Bottom hover indicator */}
                   <div className="mt-4 sm:mt-5 flex items-center gap-2 text-accent/0 group-hover:text-accent/70 transition-all duration-300">
                     <div className="h-[1px] flex-1 bg-gradient-to-r from-accent/0 via-accent/20 to-accent/0 group-hover:via-accent/40 transition-all duration-300" aria-hidden="true" />
                     <span className="text-xs font-mono tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-x-2 group-hover:translate-x-0">
