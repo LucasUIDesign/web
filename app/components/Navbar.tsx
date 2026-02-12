@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import Logo from './Logo'
 import StatusModal from './StatusModal'
 
@@ -84,6 +85,18 @@ export default function Navbar() {
             </div>
 
             <div className="flex items-center gap-2 sm:gap-3">
+              {/* Language Switcher - Desktop */}
+              <motion.div
+                className="hidden md:flex items-center gap-0.5 text-xs font-mono"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+              >
+                <span className="text-accent font-bold px-2 py-1 bg-accent/10 rounded text-[11px]">ES</span>
+                <Link href="/en" className="px-2 py-1 text-light/40 hover:text-accent transition-colors text-[11px]">EN</Link>
+                <Link href="/pt" className="px-2 py-1 text-light/40 hover:text-accent transition-colors text-[11px]">PT</Link>
+              </motion.div>
+
               {/* Status Indicator */}
               <motion.button
                 onClick={() => setShowStatusModal(true)}
@@ -208,8 +221,18 @@ export default function Navbar() {
                   </motion.a>
                 ))}
 
-                {/* Mobile Status */}
+                {/* Mobile Language Switcher */}
                 <div className="pt-2 border-t border-accent/10">
+                  <div className="flex items-center gap-2 px-4 py-3">
+                    <span className="text-light/40 text-xs font-mono mr-1">Idioma:</span>
+                    <span className="text-accent font-bold px-2.5 py-1 bg-accent/10 rounded text-xs font-mono">ES</span>
+                    <Link href="/en" onClick={() => setMobileMenuOpen(false)} className="px-2.5 py-1 text-light/40 hover:text-accent transition-colors text-xs font-mono">EN</Link>
+                    <Link href="/pt" onClick={() => setMobileMenuOpen(false)} className="px-2.5 py-1 text-light/40 hover:text-accent transition-colors text-xs font-mono">PT</Link>
+                  </div>
+                </div>
+
+                {/* Mobile Status */}
+                <div className="border-t border-accent/10">
                   <div className="flex items-center gap-2 px-4 py-3">
                     <motion.div
                       className="w-2 h-2 bg-accent rounded-full"

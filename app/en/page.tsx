@@ -57,7 +57,7 @@ export default function EnglishPage() {
             </div>
           </Link>
           <div className="flex items-center gap-4">
-            <div className="hidden sm:flex items-center gap-1 text-xs font-mono text-[#F0EBE3]/40">
+            <div className="flex items-center gap-0.5 text-xs font-mono text-[#F0EBE3]/40">
               <Link href="/" className="px-2 py-1 hover:text-[#FF4655] transition-colors">ES</Link>
               <span className="text-[#FF4655] font-bold px-2 py-1 bg-[#FF4655]/10 rounded">EN</span>
               <Link href="/pt" className="px-2 py-1 hover:text-[#FF4655] transition-colors">PT</Link>
