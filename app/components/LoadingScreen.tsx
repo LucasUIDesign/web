@@ -8,30 +8,32 @@ export default function LoadingScreen() {
   const [progress, setProgress] = useState(0)
   const [statusText, setStatusText] = useState('INITIALIZING PHANTOM PROTOCOL')
   const [showTitle, setShowTitle] = useState(false)
+  const [showPhantom, setShowPhantom] = useState(false)
 
   const particles = useMemo(() =>
-    [...Array(35)].map(() => ({
-      top: `${Math.random() * 100}%`,
-      left: `${Math.random() * 100}%`,
-      duration: 3 + Math.random() * 4,
+    [...Array(40)].map(() => ({
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 4 + 1,
+      duration: 3 + Math.random() * 5,
       delay: Math.random() * 3,
-      size: Math.random() * 3 + 1
+      color: Math.random() > 0.6 ? '#FF4655' : Math.random() > 0.3 ? '#C850C0' : '#FFD700'
     })), []
   )
 
-  const smokeParticles = useMemo(() =>
-    [...Array(8)].map(() => ({
-      x: 540 + Math.random() * 40,
-      y: 75 + Math.random() * 20,
-      size: 3 + Math.random() * 6,
-      delay: Math.random() * 2,
-      duration: 1.5 + Math.random() * 2
+  const embers = useMemo(() =>
+    [...Array(15)].map(() => ({
+      x: 35 + Math.random() * 30,
+      delay: Math.random() * 4,
+      duration: 2 + Math.random() * 3,
+      size: 2 + Math.random() * 4
     })), []
   )
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowTitle(true), 800)
-    return () => clearTimeout(timer)
+    const t1 = setTimeout(() => setShowPhantom(true), 300)
+    const t2 = setTimeout(() => setShowTitle(true), 1000)
+    return () => { clearTimeout(t1); clearTimeout(t2) }
   }, [])
 
   useEffect(() => {
@@ -68,564 +70,534 @@ export default function LoadingScreen() {
     <AnimatePresence>
       {isLoading && (
         <motion.div
-          className="fixed inset-0 z-[10000] bg-[#050508] flex flex-col items-center justify-center overflow-hidden"
+          className="fixed inset-0 z-[10000] bg-[#030308] flex flex-col items-center justify-center overflow-hidden"
           initial={{ opacity: 1 }}
-          exit={{
-            opacity: 0,
-            scale: 1.1,
-            filter: 'blur(10px)'
-          }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}
+          exit={{ opacity: 0, scale: 1.05, filter: 'blur(20px)' }}
+          transition={{ duration: 1, ease: 'easeInOut' }}
         >
-          {/* Deep background gradient */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#050508] via-[#0A0A0F] to-[#141420]" />
+          {/* === DEEP BACKGROUND === */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#030308] via-[#080510] to-[#030308]" />
 
-          {/* Radial crimson glow behind phantom */}
-          <motion.div
-            className="absolute inset-0"
-            style={{
-              background: 'radial-gradient(ellipse at 50% 55%, rgba(255,70,85,0.12) 0%, rgba(255,70,85,0.03) 35%, transparent 65%)'
-            }}
-            animate={{
-              opacity: [0.5, 1, 0.5],
-              scale: [0.95, 1.05, 0.95]
-            }}
-            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-          />
-
-          {/* Grid overlay */}
-          <div className="absolute inset-0 opacity-[0.03]" style={{
-            backgroundImage: 'linear-gradient(rgba(255,70,85,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,70,85,0.4) 1px, transparent 1px)',
-            backgroundSize: '80px 80px'
+          {/* Noise/grain texture */}
+          <div className="absolute inset-0 opacity-[0.06]" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+            backgroundSize: '128px 128px'
           }} />
 
-          {/* Floating particles */}
-          {particles.map((p, i) => (
+          {/* === VOLUMETRIC LIGHT RAYS behind phantom === */}
+          <motion.div
+            className="absolute"
+            style={{
+              top: '15%',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '120vw',
+              height: '120vh',
+              background: 'conic-gradient(from 0deg at 50% 40%, transparent 0deg, rgba(255,70,85,0.03) 15deg, transparent 30deg, rgba(255,70,85,0.04) 50deg, transparent 70deg, rgba(200,80,192,0.03) 90deg, transparent 110deg, rgba(255,70,85,0.03) 130deg, transparent 150deg, rgba(255,215,0,0.02) 170deg, transparent 190deg, rgba(255,70,85,0.04) 210deg, transparent 230deg, rgba(200,80,192,0.03) 250deg, transparent 270deg, rgba(255,70,85,0.03) 300deg, transparent 320deg, rgba(255,70,85,0.04) 345deg, transparent 360deg)',
+            }}
+            animate={{ rotate: [0, 360] }}
+            transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
+          />
+
+          {/* === MASSIVE CRIMSON AURA === */}
+          {/* Primary aura glow */}
+          <motion.div
+            className="absolute rounded-full"
+            style={{
+              top: '20%',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '500px',
+              height: '500px',
+              background: 'radial-gradient(ellipse at center, rgba(255,70,85,0.2) 0%, rgba(255,70,85,0.08) 30%, rgba(200,80,192,0.04) 50%, transparent 70%)',
+              filter: 'blur(40px)',
+            }}
+            animate={{
+              scale: [0.9, 1.1, 0.9],
+              opacity: [0.6, 1, 0.6]
+            }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          {/* Secondary gold aura */}
+          <motion.div
+            className="absolute rounded-full"
+            style={{
+              top: '25%',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '350px',
+              height: '350px',
+              background: 'radial-gradient(ellipse at center, rgba(255,215,0,0.08) 0%, rgba(255,70,85,0.04) 40%, transparent 70%)',
+              filter: 'blur(30px)',
+            }}
+            animate={{
+              scale: [1.1, 0.9, 1.1],
+              opacity: [0.4, 0.8, 0.4]
+            }}
+            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+          />
+
+          {/* === PHANTOM SILHOUETTE === */}
+          <AnimatePresence>
+            {showPhantom && (
+              <motion.div
+                className="absolute z-10"
+                style={{ top: '12%', left: '50%' }}
+                initial={{ opacity: 0, scale: 0.8, x: '-50%' }}
+                animate={{ opacity: 1, scale: 1, x: '-50%' }}
+                transition={{ duration: 1.5, type: 'spring', stiffness: 50 }}
+              >
+                {/* Phantom floating animation */}
+                <motion.div
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                >
+                  {/* === HOODED PHANTOM BODY === */}
+                  <div className="relative" style={{ width: '280px', height: '380px' }}>
+
+                    {/* Outer aura edge glow */}
+                    <motion.div
+                      className="absolute inset-[-20px]"
+                      style={{
+                        clipPath: 'polygon(50% 0%, 28% 6%, 18% 16%, 14% 28%, 12% 40%, 10% 55%, 8% 70%, 12% 82%, 18% 88%, 25% 84%, 32% 90%, 38% 85%, 44% 92%, 50% 87%, 56% 92%, 62% 85%, 68% 90%, 75% 84%, 82% 88%, 88% 82%, 92% 70%, 90% 55%, 88% 40%, 86% 28%, 82% 16%, 72% 6%)',
+                        background: 'radial-gradient(ellipse at 50% 30%, rgba(255,70,85,0.15), transparent 70%)',
+                        filter: 'blur(15px)',
+                      }}
+                      animate={{ opacity: [0.4, 0.8, 0.4] }}
+                      transition={{ duration: 3, repeat: Infinity }}
+                    />
+
+                    {/* Main phantom body */}
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        clipPath: 'polygon(50% 2%, 30% 7%, 20% 17%, 16% 30%, 14% 42%, 12% 55%, 10% 70%, 14% 82%, 20% 87%, 27% 83%, 34% 89%, 40% 84%, 46% 91%, 50% 86%, 54% 91%, 60% 84%, 66% 89%, 73% 83%, 80% 87%, 86% 82%, 90% 70%, 88% 55%, 86% 42%, 84% 30%, 80% 17%, 70% 7%)',
+                        background: 'linear-gradient(180deg, #0a0510 0%, #060310 40%, #04020a 100%)',
+                      }}
+                    />
+
+                    {/* Phantom body edge highlight */}
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        clipPath: 'polygon(50% 2%, 30% 7%, 20% 17%, 16% 30%, 14% 42%, 12% 55%, 10% 70%, 14% 82%, 20% 87%, 27% 83%, 34% 89%, 40% 84%, 46% 91%, 50% 86%, 54% 91%, 60% 84%, 66% 89%, 73% 83%, 80% 87%, 86% 82%, 90% 70%, 88% 55%, 86% 42%, 84% 30%, 80% 17%, 70% 7%)',
+                        background: 'linear-gradient(135deg, rgba(255,70,85,0.08) 0%, transparent 30%, transparent 70%, rgba(200,80,192,0.06) 100%)',
+                      }}
+                    />
+
+                    {/* Hood inner void */}
+                    <div
+                      className="absolute"
+                      style={{
+                        top: '8%',
+                        left: '28%',
+                        width: '44%',
+                        height: '20%',
+                        borderRadius: '50% 50% 40% 40%',
+                        background: 'radial-gradient(ellipse at 50% 60%, #020105 0%, #050308 100%)',
+                      }}
+                    />
+
+                    {/* === GLOWING EYES === */}
+                    {/* Left eye */}
+                    <motion.div
+                      className="absolute rounded-full"
+                      style={{
+                        top: '16%',
+                        left: '37%',
+                        width: '14px',
+                        height: '14px',
+                        background: 'radial-gradient(circle, #FF4655 30%, rgba(255,70,85,0.5) 60%, transparent 100%)',
+                        boxShadow: '0 0 10px #FF4655, 0 0 25px #FF4655, 0 0 50px rgba(255,70,85,0.6), 0 0 80px rgba(255,70,85,0.3), 0 0 120px rgba(255,70,85,0.15)',
+                      }}
+                      animate={{
+                        boxShadow: [
+                          '0 0 10px #FF4655, 0 0 25px #FF4655, 0 0 50px rgba(255,70,85,0.6), 0 0 80px rgba(255,70,85,0.3)',
+                          '0 0 15px #FF4655, 0 0 35px #FF4655, 0 0 70px rgba(255,70,85,0.8), 0 0 100px rgba(255,70,85,0.4), 0 0 150px rgba(255,70,85,0.2)',
+                          '0 0 10px #FF4655, 0 0 25px #FF4655, 0 0 50px rgba(255,70,85,0.6), 0 0 80px rgba(255,70,85,0.3)',
+                        ],
+                        scale: [1, 1.2, 1]
+                      }}
+                      transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+                    />
+                    {/* Left eye core */}
+                    <div className="absolute rounded-full bg-white" style={{
+                      top: 'calc(16% + 4px)', left: 'calc(37% + 5px)',
+                      width: '5px', height: '5px', opacity: 0.9,
+                      boxShadow: '0 0 4px #fff'
+                    }} />
+
+                    {/* Right eye */}
+                    <motion.div
+                      className="absolute rounded-full"
+                      style={{
+                        top: '16%',
+                        left: '54%',
+                        width: '14px',
+                        height: '14px',
+                        background: 'radial-gradient(circle, #FF4655 30%, rgba(255,70,85,0.5) 60%, transparent 100%)',
+                        boxShadow: '0 0 10px #FF4655, 0 0 25px #FF4655, 0 0 50px rgba(255,70,85,0.6), 0 0 80px rgba(255,70,85,0.3)',
+                      }}
+                      animate={{
+                        boxShadow: [
+                          '0 0 10px #FF4655, 0 0 25px #FF4655, 0 0 50px rgba(255,70,85,0.6), 0 0 80px rgba(255,70,85,0.3)',
+                          '0 0 15px #FF4655, 0 0 35px #FF4655, 0 0 70px rgba(255,70,85,0.8), 0 0 100px rgba(255,70,85,0.4), 0 0 150px rgba(255,70,85,0.2)',
+                          '0 0 10px #FF4655, 0 0 25px #FF4655, 0 0 50px rgba(255,70,85,0.6), 0 0 80px rgba(255,70,85,0.3)',
+                        ],
+                        scale: [1, 1.2, 1]
+                      }}
+                      transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut', delay: 0.15 }}
+                    />
+                    {/* Right eye core */}
+                    <div className="absolute rounded-full bg-white" style={{
+                      top: 'calc(16% + 4px)', left: 'calc(54% + 5px)',
+                      width: '5px', height: '5px', opacity: 0.9,
+                      boxShadow: '0 0 4px #fff'
+                    }} />
+
+                    {/* Eye light beam (subtle) */}
+                    <motion.div
+                      className="absolute"
+                      style={{
+                        top: '17%',
+                        left: '38%',
+                        width: '24%',
+                        height: '2px',
+                        background: 'linear-gradient(90deg, rgba(255,70,85,0.4), rgba(255,70,85,0.6), rgba(255,70,85,0.4))',
+                        filter: 'blur(1px)',
+                      }}
+                      animate={{ opacity: [0.2, 0.6, 0.2] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    />
+
+                    {/* === VANDAL RIFLE === */}
+                    {/* Positioned diagonally across the body */}
+                    <div
+                      className="absolute"
+                      style={{
+                        top: '32%',
+                        left: '-25%',
+                        width: '150%',
+                        height: '50px',
+                        transform: 'rotate(-12deg)',
+                      }}
+                    >
+                      {/* Rifle stock */}
+                      <div className="absolute" style={{
+                        left: '0%',
+                        top: '8px',
+                        width: '60px',
+                        height: '32px',
+                        background: 'linear-gradient(135deg, #1a1020 0%, #0f0a18 50%, #0a0812 100%)',
+                        clipPath: 'polygon(0% 20%, 100% 0%, 100% 70%, 80% 100%, 0% 80%)',
+                        boxShadow: '0 2px 10px rgba(0,0,0,0.8), 0 0 20px rgba(255,70,85,0.05)',
+                        border: '1px solid rgba(255,70,85,0.1)',
+                      }} />
+
+                      {/* Rifle receiver/body */}
+                      <div className="absolute" style={{
+                        left: '55px',
+                        top: '5px',
+                        width: '200px',
+                        height: '28px',
+                        background: 'linear-gradient(180deg, #1a1428 0%, #100e1e 40%, #0a0812 100%)',
+                        borderRadius: '3px 2px 2px 3px',
+                        boxShadow: '0 2px 15px rgba(0,0,0,0.8), 0 0 15px rgba(255,70,85,0.06), inset 0 1px 0 rgba(255,255,255,0.03)',
+                        border: '1px solid rgba(255,70,85,0.08)',
+                      }}>
+                        {/* Receiver top rail */}
+                        <div className="absolute top-0 left-0 right-0 h-[2px]" style={{
+                          background: 'linear-gradient(90deg, rgba(255,70,85,0.05), rgba(255,70,85,0.15), rgba(255,70,85,0.05))',
+                        }} />
+                        {/* Ejection port detail */}
+                        <div className="absolute" style={{
+                          top: '4px', left: '40%', width: '30px', height: '10px',
+                          border: '1px solid rgba(255,70,85,0.06)',
+                          borderRadius: '1px',
+                        }} />
+                      </div>
+
+                      {/* Pistol grip */}
+                      <div className="absolute" style={{
+                        left: '130px',
+                        top: '30px',
+                        width: '18px',
+                        height: '35px',
+                        background: 'linear-gradient(180deg, #12101e 0%, #0a0812 100%)',
+                        borderRadius: '0 0 4px 4px',
+                        transform: 'rotate(8deg)',
+                        boxShadow: '0 3px 8px rgba(0,0,0,0.6)',
+                        border: '1px solid rgba(255,70,85,0.06)',
+                      }} />
+
+                      {/* Magazine (curved) */}
+                      <div className="absolute" style={{
+                        left: '155px',
+                        top: '28px',
+                        width: '22px',
+                        height: '45px',
+                        background: 'linear-gradient(180deg, #16122a 0%, #0e0a1e 100%)',
+                        borderRadius: '3px 3px 8px 2px',
+                        transform: 'rotate(6deg) skewX(-3deg)',
+                        boxShadow: '0 4px 12px rgba(0,0,0,0.7), 0 0 8px rgba(255,70,85,0.04)',
+                        border: '1px solid rgba(255,70,85,0.08)',
+                      }} />
+
+                      {/* Barrel */}
+                      <div className="absolute" style={{
+                        left: '252px',
+                        top: '8px',
+                        width: '140px',
+                        height: '14px',
+                        background: 'linear-gradient(180deg, #18142a 0%, #0e0a1e 60%, #100e20 100%)',
+                        borderRadius: '2px 4px 4px 2px',
+                        boxShadow: '0 2px 10px rgba(0,0,0,0.6), 0 0 10px rgba(255,70,85,0.04), inset 0 1px 0 rgba(255,255,255,0.02)',
+                        border: '1px solid rgba(255,70,85,0.06)',
+                      }} />
+
+                      {/* Muzzle brake */}
+                      <div className="absolute" style={{
+                        left: '388px',
+                        top: '5px',
+                        width: '30px',
+                        height: '20px',
+                        background: 'linear-gradient(180deg, #1a152e 0%, #0a0812 100%)',
+                        borderRadius: '2px 6px 6px 2px',
+                        boxShadow: '0 0 15px rgba(255,70,85,0.08), 0 2px 8px rgba(0,0,0,0.5)',
+                        border: '1px solid rgba(255,70,85,0.1)',
+                      }}>
+                        {/* Muzzle slots */}
+                        <div className="absolute top-[3px] right-[4px] w-[2px] h-[14px] bg-black/30 rounded" />
+                        <div className="absolute top-[3px] right-[10px] w-[2px] h-[14px] bg-black/30 rounded" />
+                      </div>
+
+                      {/* Front sight */}
+                      <div className="absolute" style={{
+                        left: '370px',
+                        top: '2px',
+                        width: '8px',
+                        height: '8px',
+                        background: '#12101e',
+                        clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
+                        border: '1px solid rgba(255,70,85,0.08)',
+                      }} />
+
+                      {/* Muzzle glow */}
+                      <motion.div
+                        className="absolute rounded-full"
+                        style={{
+                          left: '415px',
+                          top: '-5px',
+                          width: '40px',
+                          height: '40px',
+                          background: 'radial-gradient(circle, rgba(255,215,0,0.3) 0%, rgba(255,70,85,0.15) 40%, transparent 70%)',
+                          filter: 'blur(8px)',
+                        }}
+                        animate={{
+                          opacity: [0.3, 0.7, 0.3],
+                          scale: [0.8, 1.2, 0.8]
+                        }}
+                        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+                    </div>
+
+                    {/* === PHANTOM INTERNAL GLOW === */}
+                    <motion.div
+                      className="absolute"
+                      style={{
+                        top: '25%',
+                        left: '30%',
+                        width: '40%',
+                        height: '30%',
+                        background: 'radial-gradient(circle, rgba(255,70,85,0.06) 0%, transparent 70%)',
+                        filter: 'blur(20px)',
+                      }}
+                      animate={{ opacity: [0.3, 0.7, 0.3] }}
+                      transition={{ duration: 3, repeat: Infinity }}
+                    />
+
+                    {/* Glitch lines on phantom */}
+                    <motion.div
+                      className="absolute left-[15%] w-[70%] h-[2px]"
+                      style={{
+                        top: '45%',
+                        background: 'linear-gradient(90deg, transparent, rgba(200,80,192,0.5), transparent)',
+                      }}
+                      animate={{ opacity: [0, 0.8, 0], left: ['15%', '18%', '15%'] }}
+                      transition={{ duration: 0.15, repeat: Infinity, repeatDelay: 4 }}
+                    />
+                    <motion.div
+                      className="absolute left-[20%] w-[60%] h-[1.5px]"
+                      style={{
+                        top: '60%',
+                        background: 'linear-gradient(90deg, transparent, rgba(255,215,0,0.4), transparent)',
+                      }}
+                      animate={{ opacity: [0, 0.6, 0], left: ['20%', '17%', '20%'] }}
+                      transition={{ duration: 0.12, repeat: Infinity, repeatDelay: 3.5, delay: 2 }}
+                    />
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* === GROUND REFLECTION === */}
+          <div className="absolute bottom-[18%] left-1/2 -translate-x-1/2 w-[80%] max-w-[600px]">
             <motion.div
-              key={i}
+              style={{
+                height: '2px',
+                background: 'linear-gradient(90deg, transparent, rgba(255,70,85,0.3), rgba(200,80,192,0.2), rgba(255,70,85,0.3), transparent)',
+                boxShadow: '0 0 30px rgba(255,70,85,0.15), 0 0 60px rgba(255,70,85,0.08)',
+              }}
+              animate={{ opacity: [0.3, 0.7, 0.3] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            />
+            {/* Ground glow */}
+            <div style={{
+              height: '80px',
+              background: 'linear-gradient(180deg, rgba(255,70,85,0.08) 0%, transparent 100%)',
+              filter: 'blur(20px)',
+              marginTop: '-5px',
+            }} />
+          </div>
+
+          {/* === RISING EMBERS/PARTICLES === */}
+          {embers.map((e, i) => (
+            <motion.div
+              key={`ember-${i}`}
               className="absolute rounded-full"
               style={{
-                top: p.top,
-                left: p.left,
-                width: p.size,
-                height: p.size,
-                background: i % 3 === 0 ? '#FF4655' : i % 3 === 1 ? '#C850C0' : '#FFD700',
-                boxShadow: `0 0 ${p.size * 4}px ${i % 3 === 0 ? 'rgba(255,70,85,0.6)' : i % 3 === 1 ? 'rgba(200,80,192,0.6)' : 'rgba(255,215,0,0.6)'}`
+                left: `${e.x}%`,
+                bottom: '20%',
+                width: e.size,
+                height: e.size,
+                background: i % 2 === 0 ? '#FF4655' : '#FFD700',
+                boxShadow: `0 0 ${e.size * 3}px ${i % 2 === 0 ? 'rgba(255,70,85,0.8)' : 'rgba(255,215,0,0.8)'}`,
               }}
               animate={{
-                y: [0, -(30 + Math.random() * 60), 0],
-                x: [0, (Math.random() - 0.5) * 40, 0],
-                opacity: [0, 0.7, 0],
-                scale: [0.5, 1.5, 0.5]
+                y: [0, -(200 + Math.random() * 300)],
+                x: [(Math.random() - 0.5) * 60, (Math.random() - 0.5) * 100],
+                opacity: [0, 0.9, 0],
+                scale: [0.5, 1, 0.3],
+              }}
+              transition={{
+                duration: e.duration,
+                repeat: Infinity,
+                delay: e.delay,
+                ease: 'easeOut',
+              }}
+            />
+          ))}
+
+          {/* === FLOATING AMBIENT PARTICLES === */}
+          {particles.map((p, i) => (
+            <motion.div
+              key={`p-${i}`}
+              className="absolute rounded-full"
+              style={{
+                top: `${p.y}%`,
+                left: `${p.x}%`,
+                width: p.size,
+                height: p.size,
+                background: p.color,
+                boxShadow: `0 0 ${p.size * 3}px ${p.color}`,
+              }}
+              animate={{
+                y: [0, -(20 + Math.random() * 40), 0],
+                opacity: [0, 0.6, 0],
               }}
               transition={{
                 duration: p.duration,
                 repeat: Infinity,
                 delay: p.delay,
-                ease: 'easeInOut'
+                ease: 'easeInOut',
               }}
             />
           ))}
 
-          {/* Scan line */}
+          {/* === SCAN LINE === */}
           <motion.div
-            className="absolute left-0 right-0 h-[2px]"
+            className="absolute left-0 right-0 h-[1px] z-20"
             style={{
-              background: 'linear-gradient(90deg, transparent, rgba(255,70,85,0.5), rgba(200,80,192,0.3), transparent)',
-              boxShadow: '0 0 20px rgba(255,70,85,0.2)'
+              background: 'linear-gradient(90deg, transparent 10%, rgba(255,70,85,0.3) 30%, rgba(255,70,85,0.5) 50%, rgba(255,70,85,0.3) 70%, transparent 90%)',
+              boxShadow: '0 0 20px rgba(255,70,85,0.15)',
             }}
-            animate={{ top: ['-5%', '105%'] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+            animate={{ top: ['-2%', '102%'] }}
+            transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
           />
 
-          {/* === TITLE: MODO PHANTOM = MODO DIOS === */}
+          {/* === TITLE: PHANTOM PROTOCOL = MODO DIOS === */}
           <AnimatePresence>
             {showTitle && (
               <motion.div
-                className="absolute top-[8%] sm:top-[10%] z-20 text-center px-4"
-                initial={{ opacity: 0, y: -30, scale: 0.8 }}
+                className="absolute top-[5%] sm:top-[7%] z-20 text-center px-4"
+                initial={{ opacity: 0, y: -20, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 1, type: 'spring', stiffness: 80 }}
+                transition={{ duration: 1.2, type: 'spring', stiffness: 60 }}
               >
                 <motion.h1
-                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-black tracking-[0.15em] uppercase"
+                  className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-display font-black tracking-[0.1em] sm:tracking-[0.15em] uppercase"
                   animate={{
                     textShadow: [
-                      '0 0 10px rgba(255,70,85,0.4), 0 0 30px rgba(255,70,85,0.2)',
-                      '0 0 20px rgba(255,70,85,0.8), 0 0 60px rgba(255,70,85,0.4), 0 0 100px rgba(255,70,85,0.2)',
-                      '0 0 10px rgba(255,70,85,0.4), 0 0 30px rgba(255,70,85,0.2)'
+                      '0 0 10px rgba(255,70,85,0.3), 0 0 40px rgba(255,70,85,0.15)',
+                      '0 0 20px rgba(255,70,85,0.6), 0 0 60px rgba(255,70,85,0.3), 0 0 100px rgba(255,70,85,0.15)',
+                      '0 0 10px rgba(255,70,85,0.3), 0 0 40px rgba(255,70,85,0.15)',
                     ]
                   }}
-                  transition={{ duration: 2.5, repeat: Infinity }}
+                  transition={{ duration: 3, repeat: Infinity }}
                 >
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-electric to-accent">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF4655] via-[#C850C0] to-[#FF4655]">
                     PHANTOM PROTOCOL
                   </span>
-                  <span className="text-light/30 mx-2 sm:mx-3">=</span>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-highlight via-accent to-highlight">
+                  <span className="text-white/20 mx-2 sm:mx-3">=</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FF4655] to-[#FFD700]">
                     MODO DIOS
                   </span>
                 </motion.h1>
-                {/* Decorative line under title */}
                 <motion.div
                   className="mt-2 sm:mt-3 mx-auto h-[1px]"
                   style={{
-                    background: 'linear-gradient(90deg, transparent, #FF4655, #FFD700, #FF4655, transparent)'
+                    background: 'linear-gradient(90deg, transparent, #FF4655, #FFD700, #FF4655, transparent)',
+                    boxShadow: '0 0 10px rgba(255,70,85,0.3)',
                   }}
-                  initial={{ width: 0 }}
-                  animate={{ width: '100%' }}
-                  transition={{ duration: 1.5, delay: 0.3 }}
+                  initial={{ width: 0, opacity: 0 }}
+                  animate={{ width: '100%', opacity: 1 }}
+                  transition={{ duration: 1.5, delay: 0.5 }}
                 />
               </motion.div>
             )}
           </AnimatePresence>
 
-          {/* === PHANTOM WITH VANDAL - MAIN SVG SCENE === */}
-          <motion.div
-            className="relative z-10 w-[90vw] max-w-[700px] sm:max-w-[800px]"
-            initial={{ opacity: 0, x: -100, scale: 0.9 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 1.2, type: 'spring', stiffness: 60, damping: 15 }}
-          >
-            <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <svg
-                viewBox="0 0 700 500"
-                className="w-full h-auto"
-                fill="none"
-                role="img"
-                aria-label="Phantom Protocol - Ghost with Vandal rifle"
-                style={{ shapeRendering: 'geometricPrecision' }}
-              >
-                <defs>
-                  {/* Phantom body gradient */}
-                  <linearGradient id="loadPhantomBody" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#1a0a10" />
-                    <stop offset="40%" stopColor="#12081a" />
-                    <stop offset="100%" stopColor="#0a0510" />
-                  </linearGradient>
-                  {/* Phantom cloak edge glow */}
-                  <linearGradient id="loadCloakEdge" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#FF4655" stopOpacity="0.6" />
-                    <stop offset="50%" stopColor="#C850C0" stopOpacity="0.4" />
-                    <stop offset="100%" stopColor="#FFD700" stopOpacity="0.3" />
-                  </linearGradient>
-                  {/* Eye glow */}
-                  <radialGradient id="loadEyeGlow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#FF4655" stopOpacity="1" />
-                    <stop offset="60%" stopColor="#FF4655" stopOpacity="0.5" />
-                    <stop offset="100%" stopColor="#FF4655" stopOpacity="0" />
-                  </radialGradient>
-                  {/* Muzzle glow */}
-                  <radialGradient id="loadMuzzleGlow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#FFD700" stopOpacity="0.8" />
-                    <stop offset="40%" stopColor="#FF4655" stopOpacity="0.4" />
-                    <stop offset="100%" stopColor="#FF4655" stopOpacity="0" />
-                  </radialGradient>
-                  {/* Ground glow */}
-                  <radialGradient id="loadGroundGlow" cx="50%" cy="0%" r="80%" fx="50%" fy="0%">
-                    <stop offset="0%" stopColor="#FF4655" stopOpacity="0.3" />
-                    <stop offset="100%" stopColor="#FF4655" stopOpacity="0" />
-                  </radialGradient>
-                  {/* Rifle metal gradient */}
-                  <linearGradient id="loadRifleMetal" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#1a1a2e" />
-                    <stop offset="50%" stopColor="#16162a" />
-                    <stop offset="100%" stopColor="#0f0f20" />
-                  </linearGradient>
-                  {/* Glow filter */}
-                  <filter id="loadGlow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="4" result="blur" />
-                    <feMerge>
-                      <feMergeNode in="blur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                  {/* Heavy glow filter */}
-                  <filter id="loadHeavyGlow" x="-100%" y="-100%" width="300%" height="300%">
-                    <feGaussianBlur stdDeviation="8" result="blur" />
-                    <feMerge>
-                      <feMergeNode in="blur" />
-                      <feMergeNode in="blur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                  {/* Shadow filter */}
-                  <filter id="loadShadow">
-                    <feDropShadow dx="0" dy="4" stdDeviation="8" floodColor="#FF4655" floodOpacity="0.3" />
-                  </filter>
-                </defs>
-
-                {/* === GROUND EFFECT === */}
-                <ellipse cx="330" cy="440" rx="280" ry="25" fill="url(#loadGroundGlow)" />
-                <motion.line
-                  x1="80" y1="435" x2="580" y2="435"
-                  stroke="#FF4655" strokeWidth="1" opacity="0.2"
-                  animate={{ opacity: [0.15, 0.35, 0.15] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                {/* Ground reflection dots */}
-                {[120, 200, 280, 360, 440, 520].map((x, i) => (
-                  <motion.circle
-                    key={`ground-${i}`}
-                    cx={x} cy={435} r="1.5"
-                    fill="#FF4655"
-                    animate={{ opacity: [0.1, 0.5, 0.1] }}
-                    transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2 }}
-                  />
-                ))}
-
-                {/* === PHANTOM CLOAK / BODY === */}
-                {/* Main body silhouette - hooded figure, side profile facing right */}
-                <motion.path
-                  d="
-                    M310,65
-                    C275,65 252,90 252,120
-                    L248,135
-                    L240,142
-                    L232,185
-                    L225,260
-                    L215,370
-                    C220,388 235,395 252,385
-                    C265,378 278,388 290,395
-                    C302,400 315,395 325,385
-                    C338,378 350,388 362,395
-                    C375,400 390,393 400,375
-                    L388,260
-                    L380,185
-                    L372,142
-                    L365,135
-                    L360,120
-                    C360,90 338,65 310,65
-                    Z
-                  "
-                  fill="url(#loadPhantomBody)"
-                  stroke="url(#loadCloakEdge)"
-                  strokeWidth="1.5"
-                  filter="url(#loadShadow)"
-                  initial={{ opacity: 0, pathLength: 0 }}
-                  animate={{ opacity: 1, pathLength: 1 }}
-                  transition={{ duration: 1.5, ease: 'easeOut' }}
-                />
-
-                {/* Inner cloak detail lines */}
-                <motion.path
-                  d="M270,160 L260,280 L248,370"
-                  stroke="#FF4655" strokeWidth="0.5" opacity="0.15"
-                  fill="none"
-                  animate={{ opacity: [0.1, 0.2, 0.1] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                />
-                <motion.path
-                  d="M350,160 L358,280 L370,370"
-                  stroke="#C850C0" strokeWidth="0.5" opacity="0.15"
-                  fill="none"
-                  animate={{ opacity: [0.1, 0.2, 0.1] }}
-                  transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-                />
-
-                {/* === HOOD SHADOW / FACE VOID === */}
-                <path
-                  d="
-                    M268,108
-                    C268,85 288,72 310,72
-                    C332,72 352,85 350,108
-                    L345,125
-                    L275,125
-                    Z
-                  "
-                  fill="#050508"
-                  opacity="0.9"
-                />
-
-                {/* === GLOWING EYES === */}
-                {/* Right eye (visible, forward-facing side) */}
-                <motion.circle
-                  cx="325" cy="100" r="8"
-                  fill="url(#loadEyeGlow)"
-                  filter="url(#loadGlow)"
-                  animate={{
-                    opacity: [0.5, 1, 0.5],
-                    r: [7, 9, 7]
-                  }}
-                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                />
-                <circle cx="325" cy="100" r="3.5" fill="#FF4655" />
-                <circle cx="326" cy="99" r="1.2" fill="#fff" opacity="0.7" />
-
-                {/* Left eye (slightly behind, dimmer) */}
-                <motion.circle
-                  cx="298" cy="100" r="7"
-                  fill="url(#loadEyeGlow)"
-                  filter="url(#loadGlow)"
-                  animate={{
-                    opacity: [0.4, 0.8, 0.4],
-                    r: [6, 8, 6]
-                  }}
-                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
-                />
-                <circle cx="298" cy="100" r="3" fill="#FF4655" opacity="0.8" />
-                <circle cx="299" cy="99" r="1" fill="#fff" opacity="0.5" />
-
-                {/* Eye trail / scan line from eyes */}
-                <motion.line
-                  x1="335" y1="98" x2="420" y2="90"
-                  stroke="#FF4655" strokeWidth="1" opacity="0.3"
-                  strokeDasharray="4 6"
-                  animate={{ opacity: [0, 0.4, 0], x2: [420, 450, 420] }}
-                  transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
-                />
-
-                {/* === RIGHT ARM (forward, holding barrel/foregrip) === */}
-                <path
-                  d="
-                    M360,135
-                    L395,125
-                    L438,115
-                    L440,125
-                    L395,133
-                    L362,145
-                    Z
-                  "
-                  fill="url(#loadPhantomBody)"
-                  stroke="url(#loadCloakEdge)"
-                  strokeWidth="0.8"
-                />
-
-                {/* === LEFT ARM (back, holding stock/grip area) === */}
-                <path
-                  d="
-                    M248,135
-                    L220,142
-                    L198,150
-                    L196,160
-                    L218,152
-                    L250,145
-                    Z
-                  "
-                  fill="url(#loadPhantomBody)"
-                  stroke="url(#loadCloakEdge)"
-                  strokeWidth="0.8"
-                />
-
-                {/* === VANDAL RIFLE === */}
-                {/* Stock (rear, wooden part) */}
-                <path
-                  d="M168,148 L198,142 L200,135 L202,158 L198,156 L168,158 Z"
-                  fill="#1a1020"
-                  stroke="#FF4655"
-                  strokeWidth="0.5"
-                  opacity="0.85"
-                />
-
-                {/* Receiver body (main part) */}
-                <path
-                  d="M198,132 L438,108 L440,120 L198,148 Z"
-                  fill="url(#loadRifleMetal)"
-                  stroke="#FF4655"
-                  strokeWidth="0.6"
-                  opacity="0.9"
-                />
-
-                {/* Trigger guard */}
-                <path
-                  d="M280,148 L282,162 C285,168 292,168 294,162 L296,148"
-                  fill="none"
-                  stroke="#FF4655"
-                  strokeWidth="0.5"
-                  opacity="0.5"
-                />
-
-                {/* Magazine (curved) */}
-                <motion.path
-                  d="M310,120 L314,158 C315,162 320,162 321,158 L318,120"
-                  fill="#12081a"
-                  stroke="#FF4655"
-                  strokeWidth="0.5"
-                  opacity="0.8"
-                  animate={{ opacity: [0.7, 0.9, 0.7] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                />
-
-                {/* Barrel (long) */}
-                <path
-                  d="M438,106 L548,86 L548,94 L438,118 Z"
-                  fill="url(#loadRifleMetal)"
-                  stroke="#FF4655"
-                  strokeWidth="0.5"
-                  opacity="0.85"
-                />
-
-                {/* Muzzle brake */}
-                <path
-                  d="M546,84 L572,78 L575,72 L578,78 L578,92 L575,98 L572,92 L546,96 Z"
-                  fill="#0f0f20"
-                  stroke="#FF4655"
-                  strokeWidth="0.6"
-                  opacity="0.9"
-                />
-
-                {/* Scope / Iron sight */}
-                <path
-                  d="M360,105 L400,98 L402,92 L405,92 L405,100 L400,106 L360,112 Z"
-                  fill="#16162a"
-                  stroke="#C850C0"
-                  strokeWidth="0.4"
-                  opacity="0.7"
-                />
-                {/* Scope lens glow */}
-                <motion.circle
-                  cx="403" cy="96" r="3"
-                  fill="#C850C0"
-                  opacity="0.3"
-                  animate={{ opacity: [0.2, 0.5, 0.2] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-
-                {/* === MUZZLE GLOW / FLASH === */}
-                <motion.circle
-                  cx="578" cy="85" r="15"
-                  fill="url(#loadMuzzleGlow)"
-                  filter="url(#loadHeavyGlow)"
-                  animate={{
-                    opacity: [0.2, 0.6, 0.2],
-                    r: [12, 18, 12]
-                  }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-                />
-
-                {/* Muzzle smoke particles */}
-                {smokeParticles.map((sp, i) => (
-                  <motion.circle
-                    key={`smoke-${i}`}
-                    cx={sp.x} cy={sp.y} r={sp.size}
-                    fill="#FF4655"
-                    opacity="0.1"
-                    animate={{
-                      cx: [sp.x, sp.x + 40 + Math.random() * 30],
-                      cy: [sp.y, sp.y - 20 - Math.random() * 20],
-                      opacity: [0, 0.15, 0],
-                      r: [sp.size, sp.size * 2, sp.size * 3]
-                    }}
-                    transition={{
-                      duration: sp.duration,
-                      repeat: Infinity,
-                      delay: sp.delay,
-                      ease: 'easeOut'
-                    }}
-                  />
-                ))}
-
-                {/* === GHOST TRAIL / AURA EFFECT === */}
-                {/* Flowing energy from cape bottom */}
-                <motion.path
-                  d="M225,360 C220,380 210,400 200,420 C210,415 220,425 230,420"
-                  stroke="#FF4655" strokeWidth="1" fill="none" opacity="0.2"
-                  animate={{ opacity: [0.1, 0.3, 0.1], d: [
-                    "M225,360 C220,380 210,400 200,420 C210,415 220,425 230,420",
-                    "M225,360 C218,385 205,405 195,425 C208,418 222,428 232,422",
-                    "M225,360 C220,380 210,400 200,420 C210,415 220,425 230,420"
-                  ]}}
-                  transition={{ duration: 3, repeat: Infinity }}
-                />
-                <motion.path
-                  d="M390,365 C395,385 405,405 415,425 C405,418 395,428 385,422"
-                  stroke="#C850C0" strokeWidth="1" fill="none" opacity="0.2"
-                  animate={{ opacity: [0.1, 0.25, 0.1] }}
-                  transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
-                />
-
-                {/* Phantom aura particles floating up from body */}
-                {[0, 1, 2, 3, 4].map((i) => (
-                  <motion.circle
-                    key={`aura-${i}`}
-                    cx={280 + i * 20}
-                    cy={200}
-                    r={2}
-                    fill={i % 2 === 0 ? '#FF4655' : '#C850C0'}
-                    animate={{
-                      cy: [250 + Math.random() * 100, 100, 50],
-                      opacity: [0, 0.5, 0],
-                      cx: [280 + i * 20 + (Math.random() - 0.5) * 30, 280 + i * 20 + (Math.random() - 0.5) * 50, 280 + i * 20 + (Math.random() - 0.5) * 60]
-                    }}
-                    transition={{
-                      duration: 3 + Math.random() * 2,
-                      repeat: Infinity,
-                      delay: i * 0.5,
-                      ease: 'easeOut'
-                    }}
-                  />
-                ))}
-
-                {/* === GLITCH LINES on phantom === */}
-                <motion.rect
-                  x="260" y="180" width="90" height="2"
-                  fill="#C850C0" opacity="0"
-                  animate={{
-                    opacity: [0, 0.6, 0],
-                    x: [260, 265, 260],
-                    width: [90, 80, 90]
-                  }}
-                  transition={{ duration: 0.15, repeat: Infinity, repeatDelay: 4 }}
-                />
-                <motion.rect
-                  x="255" y="250" width="100" height="1.5"
-                  fill="#FFD700" opacity="0"
-                  animate={{
-                    opacity: [0, 0.5, 0],
-                    x: [255, 250, 255]
-                  }}
-                  transition={{ duration: 0.12, repeat: Infinity, repeatDelay: 3.5, delay: 1.5 }}
-                />
-
-                {/* === CROSSHAIR at aim point (far right) === */}
-                <motion.g
-                  animate={{ opacity: [0.3, 0.8, 0.3] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  <line x1="625" y1="75" x2="645" y2="75" stroke="#FF4655" strokeWidth="1" />
-                  <line x1="635" y1="65" x2="635" y2="85" stroke="#FF4655" strokeWidth="1" />
-                  <circle cx="635" cy="75" r="8" stroke="#FF4655" strokeWidth="0.8" fill="none" />
-                  <circle cx="635" cy="75" r="2" fill="#FF4655" />
-                </motion.g>
-
-              </svg>
-            </motion.div>
-          </motion.div>
-
-          {/* === LOADING INFO SECTION === */}
-          <div className="relative z-10 flex flex-col items-center px-4 mt-2 sm:mt-4">
+          {/* === LOADING INFO === */}
+          <div className="absolute bottom-[6%] sm:bottom-[8%] z-20 flex flex-col items-center px-4 w-full max-w-sm">
             {/* Status text */}
             <motion.div
-              className="font-mono text-xs sm:text-sm text-accent/70 mb-4 sm:mb-5 flex items-center gap-2"
+              className="font-mono text-[10px] sm:text-xs text-[#FF4655]/60 mb-3 sm:mb-4 flex items-center gap-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
+              transition={{ delay: 1 }}
             >
               <motion.span
-                className="inline-block w-1.5 h-1.5 sm:w-2 sm:h-2 bg-accent rounded-full"
+                className="inline-block w-1.5 h-1.5 bg-[#FF4655] rounded-full"
                 animate={{ opacity: [1, 0.3, 1] }}
                 transition={{ duration: 0.8, repeat: Infinity }}
               />
-              <span className="truncate max-w-[280px] sm:max-w-none tracking-wider">{statusText}</span>
+              <span className="truncate tracking-widest">{statusText}</span>
               <motion.span
+                className="text-[#FF4655]/40"
                 animate={{ opacity: [0, 1, 0] }}
                 transition={{ duration: 0.8, repeat: Infinity }}
-              >
-                _
-              </motion.span>
+              >_</motion.span>
             </motion.div>
 
             {/* Progress bar */}
-            <div className="w-60 sm:w-72 md:w-80 mb-3">
-              <div className="h-1 sm:h-1.5 bg-white/5 rounded-full overflow-hidden backdrop-blur-sm border border-white/5">
+            <div className="w-full mb-3">
+              <div className="h-[3px] bg-white/[0.03] rounded-full overflow-hidden">
                 <motion.div
                   className="h-full rounded-full relative"
                   style={{
                     background: 'linear-gradient(90deg, #FF4655, #C850C0, #FFD700)',
-                    boxShadow: '0 0 20px rgba(255,70,85,0.5)'
+                    boxShadow: '0 0 15px rgba(255,70,85,0.5), 0 0 30px rgba(255,70,85,0.2)',
                   }}
                   initial={{ width: '0%' }}
                   animate={{ width: `${Math.min(progress, 100)}%` }}
@@ -634,7 +606,7 @@ export default function LoadingScreen() {
                   <motion.div
                     className="absolute inset-0"
                     style={{
-                      background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)'
+                      background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)',
                     }}
                     animate={{ x: ['-100%', '200%'] }}
                     transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
@@ -643,27 +615,27 @@ export default function LoadingScreen() {
               </div>
             </div>
 
-            {/* Progress percentage */}
+            {/* Percentage */}
             <motion.div
-              className="font-mono text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-electric"
+              className="font-mono text-sm sm:text-base font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FF4655] to-[#C850C0]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.8 }}
             >
               {Math.round(Math.min(progress, 100))}%
             </motion.div>
           </div>
 
-          {/* === BOTTOM TAGLINE === */}
+          {/* === BOTTOM TAG === */}
           <motion.div
-            className="absolute bottom-4 sm:bottom-8 flex items-center gap-2 sm:gap-3 text-[10px] sm:text-xs text-light/20 font-mono tracking-widest"
+            className="absolute bottom-2 sm:bottom-4 flex items-center gap-2 text-[8px] sm:text-[10px] text-white/10 font-mono tracking-[0.2em]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.2 }}
+            transition={{ delay: 1.5 }}
           >
-            <div className="w-8 sm:w-12 h-px bg-gradient-to-r from-transparent to-accent/30" />
+            <div className="w-6 sm:w-10 h-px bg-gradient-to-r from-transparent to-[#FF4655]/20" />
             <span>SECURE • UNDETECTABLE • PHANTOM</span>
-            <div className="w-8 sm:w-12 h-px bg-gradient-to-l from-transparent to-accent/30" />
+            <div className="w-6 sm:w-10 h-px bg-gradient-to-l from-transparent to-[#FF4655]/20" />
           </motion.div>
         </motion.div>
       )}
