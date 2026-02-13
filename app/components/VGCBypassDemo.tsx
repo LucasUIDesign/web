@@ -2,8 +2,13 @@
 
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
+import { translations, t, type Lang } from '../translations'
 
-export default function VGCBypassDemo() {
+interface VGCBypassDemoProps {
+  lang?: Lang
+}
+
+export default function VGCBypassDemo({ lang = 'es' }: VGCBypassDemoProps) {
   const [stage, setStage] = useState(0)
   const [progress, setProgress] = useState(0)
 
@@ -24,46 +29,23 @@ export default function VGCBypassDemo() {
     return () => clearInterval(progressTimer)
   }, [stage])
 
-  const stages = [
-    {
-      title: '🔍 Escaneando Vanguard',
-      description: 'Detectando procesos VGC y servicios activos',
-      color: 'from-blue-500 to-cyan-500',
-      icon: '🔍'
-    },
-    {
-      title: '🛡️ Neutralizando VGC',
-      description: 'Aplicando bypass kernel-mode',
-      color: 'from-purple-500 to-pink-500',
-      icon: '🛡️'
-    },
-    {
-      title: '🔐 Ofuscando Memoria',
-      description: 'Encriptación AES-256 + XOR dinámico',
-      color: 'from-yellow-500 to-orange-500',
-      icon: '🔐'
-    },
-    {
-      title: '⚡ Inyectando Cheat',
-      description: 'Manual mapping en proceso del juego',
-      color: 'from-green-500 to-emerald-500',
-      icon: '⚡'
-    },
-    {
-      title: '✅ Bypass Completo',
-      description: 'Sistema 100% indetectable y operativo',
-      color: 'from-green-600 to-green-700',
-      icon: '✅'
-    }
+  const stagesData = translations.vgc.stages
+  const colors = [
+    'from-blue-500 to-cyan-500',
+    'from-purple-500 to-pink-500',
+    'from-yellow-500 to-orange-500',
+    'from-green-500 to-emerald-500',
+    'from-green-600 to-green-700',
   ]
+  const icons = ['🔍', '🛡️', '🔐', '⚡', '✅']
 
-  const currentStage = stages[stage]
+  const currentColor = colors[stage]
 
   return (
     <section className="py-24 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary via-secondary to-primary" />
-      
+
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
         <motion.div
@@ -77,13 +59,13 @@ export default function VGCBypassDemo() {
             animate={{ scale: [1, 1.05, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            🔬 TECNOLOGÍA AVANZADA
+            {t(translations.vgc.advancedTech, lang)}
           </motion.div>
           <h2 className="text-5xl md:text-6xl font-display font-black text-light mb-6">
-            VGC Bypass en Acción
+            {t(translations.vgc.title, lang)}
           </h2>
           <p className="text-xl text-highlight max-w-3xl mx-auto font-japanese">
-            Observa cómo nuestro sistema neutraliza Vanguard en tiempo real
+            {t(translations.vgc.subtitle, lang)}
           </p>
         </motion.div>
 
@@ -105,25 +87,25 @@ export default function VGCBypassDemo() {
             >
               <motion.div
                 className="text-8xl mb-6"
-                animate={{ 
+                animate={{
                   scale: [1, 1.2, 1],
                   rotate: [0, 10, -10, 0]
                 }}
                 transition={{ duration: 0.6 }}
               >
-                {currentStage.icon}
+                {icons[stage]}
               </motion.div>
-              <h3 className={`text-3xl md:text-4xl font-black mb-3 bg-gradient-to-r ${currentStage.color} bg-clip-text text-transparent`}>
-                {currentStage.title}
+              <h3 className={`text-3xl md:text-4xl font-black mb-3 bg-gradient-to-r ${currentColor} bg-clip-text text-transparent`}>
+                {t(stagesData[stage].title, lang)}
               </h3>
-              <p className="text-lg text-highlight">{currentStage.description}</p>
+              <p className="text-lg text-highlight">{t(stagesData[stage].description, lang)}</p>
             </motion.div>
 
             {/* Progress Bar */}
             <div className="mb-8">
               <div className="bg-primary/50 rounded-full h-6 overflow-hidden border border-accent/30">
                 <motion.div
-                  className={`h-full bg-gradient-to-r ${currentStage.color} relative`}
+                  className={`h-full bg-gradient-to-r ${currentColor} relative`}
                   initial={{ width: 0 }}
                   animate={{ width: `${progress}%` }}
                   transition={{ duration: 0.1 }}
@@ -137,7 +119,7 @@ export default function VGCBypassDemo() {
                 </motion.div>
               </div>
               <div className="flex justify-between mt-2 text-sm text-highlight">
-                <span>Progreso</span>
+                <span>{t(translations.vgc.progress, lang)}</span>
                 <span className="font-bold">{progress}%</span>
               </div>
             </div>
@@ -150,43 +132,43 @@ export default function VGCBypassDemo() {
                 <div className="w-3 h-3 rounded-full bg-green-500" />
                 <span className="ml-4 text-gray-400">phantom-protocol.exe</span>
               </div>
-              
+
               <div className="space-y-2 text-green-400">
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: stage >= 0 ? 1 : 0.3 }}
                 >
-                  <span className="text-blue-400">[INFO]</span> Iniciando Phantom Protocol v3.2.1
+                  <span className="text-blue-400">[INFO]</span> {t(translations.vgc.terminal.init, lang)}
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: stage >= 1 ? 1 : 0.3 }}
                 >
-                  <span className="text-yellow-400">[SCAN]</span> Vanguard detectado: vgc.sys, vgk.sys
+                  <span className="text-yellow-400">[SCAN]</span> {t(translations.vgc.terminal.scan, lang)}
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: stage >= 2 ? 1 : 0.3 }}
                 >
-                  <span className="text-purple-400">[BYPASS]</span> Aplicando kernel-mode bypass...
+                  <span className="text-purple-400">[BYPASS]</span> {t(translations.vgc.terminal.bypass, lang)}
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: stage >= 3 ? 1 : 0.3 }}
                 >
-                  <span className="text-orange-400">[CRYPT]</span> Ofuscando memoria con AES-256
+                  <span className="text-orange-400">[CRYPT]</span> {t(translations.vgc.terminal.crypt, lang)}
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: stage >= 4 ? 1 : 0.3 }}
                 >
-                  <span className="text-green-400">[SUCCESS]</span> Cheat inyectado exitosamente
+                  <span className="text-green-400">[SUCCESS]</span> {t(translations.vgc.terminal.success, lang)}
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: stage >= 4 ? 1 : 0.3 }}
                 >
-                  <span className="text-green-400">[READY]</span> Sistema 100% indetectable ✓
+                  <span className="text-green-400">[READY]</span> {t(translations.vgc.terminal.ready, lang)}
                 </motion.div>
               </div>
             </div>
@@ -212,7 +194,7 @@ export default function VGCBypassDemo() {
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="text-3xl font-black text-accent mb-1">&lt;2s</div>
-                <div className="text-xs text-highlight">Inyección</div>
+                <div className="text-xs text-highlight">{t(translations.vgc.injection, lang)}</div>
               </motion.div>
               <motion.div
                 className="bg-gradient-to-br from-yellow-900/30 to-orange-900/30 border border-yellow-500/30 rounded-xl p-4 text-center"
@@ -237,24 +219,24 @@ export default function VGCBypassDemo() {
             whileHover={{ scale: 1.05 }}
           >
             <div className="text-5xl mb-4">🔐</div>
-            <h4 className="text-xl font-bold text-light mb-2">Encriptación Militar</h4>
-            <p className="text-sm text-highlight">AES-256 + XOR dinámico en tiempo real</p>
+            <h4 className="text-xl font-bold text-light mb-2">{t(translations.vgc.militaryEncryption, lang)}</h4>
+            <p className="text-sm text-highlight">{t(translations.vgc.militaryEncryptionDesc, lang)}</p>
           </motion.div>
           <motion.div
             className="bento-card p-6 rounded-2xl text-center"
             whileHover={{ scale: 1.05 }}
           >
             <div className="text-5xl mb-4">⚡</div>
-            <h4 className="text-xl font-bold text-light mb-2">Auto-Update</h4>
-            <p className="text-sm text-highlight">Offsets actualizados cada 30 minutos</p>
+            <h4 className="text-xl font-bold text-light mb-2">{t(translations.vgc.autoUpdateTitle, lang)}</h4>
+            <p className="text-sm text-highlight">{t(translations.vgc.autoUpdateDesc, lang)}</p>
           </motion.div>
           <motion.div
             className="bento-card p-6 rounded-2xl text-center"
             whileHover={{ scale: 1.05 }}
           >
             <div className="text-5xl mb-4">🛡️</div>
-            <h4 className="text-xl font-bold text-light mb-2">Driver Firmado</h4>
-            <p className="text-sm text-highlight">Certificado digital válido y verificado</p>
+            <h4 className="text-xl font-bold text-light mb-2">{t(translations.vgc.signedDriver, lang)}</h4>
+            <p className="text-sm text-highlight">{t(translations.vgc.signedDriverDesc, lang)}</p>
           </motion.div>
         </motion.div>
       </div>

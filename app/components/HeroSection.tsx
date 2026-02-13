@@ -2,8 +2,13 @@
 
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { translations, t, type Lang } from '../translations'
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  lang?: Lang
+}
+
+export default function HeroSection({ lang = 'es' }: HeroSectionProps) {
   const [activeUsers] = useState(1847)
 
   return (
@@ -37,7 +42,7 @@ export default function HeroSection() {
             className="inline-flex items-center gap-2 bg-accent/10 border border-accent/30 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8"
           >
             <div className="w-2 h-2 bg-success rounded-full animate-pulse" />
-            <span className="text-light/80 font-medium text-xs sm:text-sm">Sistema 100% Operativo</span>
+            <span className="text-light/80 font-medium text-xs sm:text-sm">{t(translations.hero.systemOperative, lang)}</span>
           </motion.div>
 
           {/* Main Headline */}
@@ -48,10 +53,10 @@ export default function HeroSection() {
             transition={{ delay: 0.3, duration: 0.8 }}
           >
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-light to-highlight">
-              DOMINA
+              {t(translations.hero.headline1, lang)}
             </span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-accent to-light">
-              VALORANT
+              {t(translations.hero.headline2, lang)}
             </span>
           </motion.h1>
 
@@ -62,7 +67,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            Cheats Indetectables de Nivel Profesional
+            {t(translations.hero.subtitle, lang)}
           </motion.p>
 
           <motion.p
@@ -71,8 +76,8 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            <span className="hidden sm:inline">Aimbot Predictivo • Wallhack 360° • ESP Avanzado • 100% Indetectable</span>
-            <span className="sm:hidden">Aimbot • Wallhack • ESP • Indetectable</span>
+            <span className="hidden sm:inline">{t(translations.hero.featureListFull, lang)}</span>
+            <span className="sm:hidden">{t(translations.hero.featureListShort, lang)}</span>
           </motion.p>
 
           {/* CTA Section */}
@@ -85,7 +90,7 @@ export default function HeroSection() {
             {/* Urgency Badge */}
             <div className="bg-gradient-to-r from-danger/20 to-warning/20 border border-danger/40 rounded-xl sm:rounded-2xl px-5 sm:px-8 py-3 sm:py-4 backdrop-blur-sm">
               <p className="text-light font-bold text-sm sm:text-base lg:text-lg">
-                Solo 23 licencias disponibles hoy
+                {t(translations.hero.licensesAvailable, lang)}
               </p>
             </div>
 
@@ -97,7 +102,7 @@ export default function HeroSection() {
               whileTap={{ scale: 0.98 }}
             >
               <span className="flex items-center gap-2 sm:gap-3">
-                OBTENER ACCESO AHORA
+                {t(translations.hero.ctaButton, lang)}
                 <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
@@ -116,19 +121,19 @@ export default function HeroSection() {
               <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-success to-success mb-1 sm:mb-2">
                 99.9%
               </div>
-              <div className="text-light/60 font-medium text-[10px] sm:text-xs md:text-sm">Precisión Aimbot</div>
+              <div className="text-light/60 font-medium text-[10px] sm:text-xs md:text-sm">{t(translations.hero.aimbotAccuracy, lang)}</div>
             </div>
             <div className="text-center">
               <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent to-highlight mb-1 sm:mb-2">
                 10K+
               </div>
-              <div className="text-light/60 font-medium text-[10px] sm:text-xs md:text-sm">Usuarios Activos</div>
+              <div className="text-light/60 font-medium text-[10px] sm:text-xs md:text-sm">{t(translations.hero.activeUsers, lang)}</div>
             </div>
             <div className="text-center">
               <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-highlight to-light mb-1 sm:mb-2">
                 24/7
               </div>
-              <div className="text-light/60 font-medium text-[10px] sm:text-xs md:text-sm">Soporte Técnico</div>
+              <div className="text-light/60 font-medium text-[10px] sm:text-xs md:text-sm">{t(translations.hero.techSupport, lang)}</div>
             </div>
           </motion.div>
 
@@ -145,7 +150,7 @@ export default function HeroSection() {
               transition={{ duration: 2, repeat: Infinity }}
             />
             <span className="font-medium text-sm sm:text-base">
-              {activeUsers.toLocaleString()} jugadores activos ahora
+              {activeUsers.toLocaleString()} {t(translations.hero.playersActive, lang)}
             </span>
           </motion.div>
         </motion.div>

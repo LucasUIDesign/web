@@ -2,88 +2,18 @@
 
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import { translations, t, type Lang } from '../translations'
 
-const testimonials = [
-  {
-    id: 1,
-    name: "@ValoPro_ES",
-    text: "Honestamente no esperaba que funcionara tan bien. Llevo 3 semanas usándolo y mi aim ha mejorado muchísimo, parece natural.",
-    rating: 5,
-    avatar: "🎯",
-    verified: true,
-    rank: "Radiant",
-    timeAgo: "hace 4 días"
-  },
-  {
-    id: 2,
-    name: "@JettMain2025",
-    text: "Al principio tenía miedo de que me banearan, pero después de 2 meses sin problemas ya confío totalmente. El soporte responde súper rápido.",
-    rating: 5,
-    avatar: "⚡",
-    verified: true,
-    rank: "Immortal 3",
-    timeAgo: "hace 1 semana"
-  },
-  {
-    id: 3,
-    name: "@SageCarry",
-    text: "Lo compré hace como 5 meses y cero problemas. El wallhack es sutil, no es obvio como otros que he probado antes.",
-    rating: 5,
-    avatar: "🔮",
-    verified: true,
-    rank: "Immortal 1",
-    timeAgo: "hace 3 días"
-  },
-  {
-    id: 4,
-    name: "@DuelistKing",
-    text: "Subí de Plata 2 a Diamante 1 en como un mes. Mis amigos piensan que mejoré jugando mucho jaja, si supieran...",
-    rating: 5,
-    avatar: "👑",
-    verified: true,
-    rank: "Diamond 2",
-    timeAgo: "hace 6 días"
-  },
-  {
-    id: 5,
-    name: "@PhoenixFire",
-    text: "Me gusta que se adapta a como juego. No es como esos cheats obvios que te hacen ver sospechoso. Muy recomendado.",
-    rating: 5,
-    avatar: "🔥",
-    verified: true,
-    rank: "Ascendant 3",
-    timeAgo: "hace 2 días"
-  },
-  {
-    id: 6,
-    name: "@CypherHack",
-    text: "Mejor compra que he hecho este año. Vale cada dólar, en serio. Mi winrate subió un montón desde que lo uso.",
-    rating: 5,
-    avatar: "🕵️",
-    verified: true,
-    rank: "Immortal 2",
-    timeAgo: "hace 5 días"
-  }
-]
+interface SocialProofProps {
+  lang?: Lang
+}
 
-const liveActivity = [
-  "🇺🇸 Alex acaba de comprar LIFETIME Plan",
-  "🇲🇽 Miguel está usando Phantom Protocol ahora",
-  "🇦🇷 Sofia ganó 8 partidas seguidas con PRO",
-  "🇨🇱 Diego activó Wallhack - subió a Diamond",
-  "🇵🇪 Ana subió a Immortal usando ELITE",
-  "🇨🇴 Luis compró STARTER Plan",
-  "🇺🇾 Maria dominó en Ascent con ESP",
-  "🇪🇨 Pedro activó Aimbot - 30 kills",
-  "🇧🇷 João compró PRO Plan",
-  "🇪🇸 Carlos subió 3 rangos con ELITE",
-  "🇨🇦 Emma ganó torneo usando Phantom",
-  "🇫🇷 Pierre activó Anti-Detección"
-]
-
-export default function SocialProof() {
+export default function SocialProof({ lang = 'es' }: SocialProofProps) {
   const [activeUsers, setActiveUsers] = useState(1247)
   const [currentActivity, setCurrentActivity] = useState(0)
+
+  const testimonials = translations.social.testimonials[lang]
+  const liveActivity = translations.social.liveActivities[lang]
 
   useEffect(() => {
     const userTimer = setInterval(() => {
@@ -98,7 +28,7 @@ export default function SocialProof() {
       clearInterval(userTimer)
       clearInterval(activityTimer)
     }
-  }, [])
+  }, [liveActivity.length])
 
   return (
     <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 relative overflow-hidden">
@@ -113,10 +43,10 @@ export default function SocialProof() {
           className="text-center mb-10 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4 sm:mb-6 glow-text text-light">
-            LO QUE DICEN NUESTROS USUARIOS
+            {t(translations.social.title, lang)}
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-light/60 max-w-3xl mx-auto">
-            Miles de jugadores ya están dominando VALORANT con Phantom Protocol
+            {t(translations.social.subtitle, lang)}
           </p>
         </motion.div>
 
@@ -138,23 +68,23 @@ export default function SocialProof() {
               >
                 {activeUsers.toLocaleString()}
               </motion.div>
-              <div className="text-light/50 text-xs sm:text-sm">Jugadores Activos</div>
+              <div className="text-light/50 text-xs sm:text-sm">{t(translations.social.activePlayers, lang)}</div>
               <div className="flex items-center justify-center mt-1 sm:mt-2">
                 <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-accent rounded-full animate-pulse mr-1.5 sm:mr-2" />
-                <span className="text-[10px] sm:text-xs text-accent">En línea ahora</span>
+                <span className="text-[10px] sm:text-xs text-accent">{t(translations.social.onlineNow, lang)}</span>
               </div>
             </div>
             <div>
               <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-highlight mb-1 sm:mb-2">10,247</div>
-              <div className="text-light/50 text-xs sm:text-sm">Partidas Ganadas Hoy</div>
+              <div className="text-light/50 text-xs sm:text-sm">{t(translations.social.matchesWon, lang)}</div>
             </div>
             <div>
               <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-electric mb-1 sm:mb-2">99.2%</div>
-              <div className="text-light/50 text-xs sm:text-sm">Tasa de Satisfacción</div>
+              <div className="text-light/50 text-xs sm:text-sm">{t(translations.social.satisfaction, lang)}</div>
             </div>
             <div>
               <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-success mb-1 sm:mb-2">0</div>
-              <div className="text-light/50 text-xs sm:text-sm">Bans Reportados</div>
+              <div className="text-light/50 text-xs sm:text-sm">{t(translations.social.bansReported, lang)}</div>
             </div>
           </div>
         </motion.div>
@@ -173,7 +103,7 @@ export default function SocialProof() {
                 animate={{ scale: [1, 1.3, 1], opacity: [1, 0.5, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
-              <span className="text-sm sm:text-base font-bold text-light">Actividad en Tiempo Real:</span>
+              <span className="text-sm sm:text-base font-bold text-light">{t(translations.social.liveActivity, lang)}</span>
             </div>
             <motion.div
               key={currentActivity}
@@ -186,7 +116,7 @@ export default function SocialProof() {
             </motion.div>
           </div>
           <div className="mt-2 sm:mt-3 text-[10px] sm:text-xs text-highlight/50">
-            Actualizaciones cada 3 segundos • {activeUsers.toLocaleString()} usuarios conectados
+            {t(translations.social.updatesEvery, lang)} • {activeUsers.toLocaleString()} {t(translations.social.usersConnected, lang)}
           </div>
         </motion.div>
 
@@ -259,15 +189,13 @@ export default function SocialProof() {
                       <span className="font-bold text-light text-sm sm:text-base truncate">
                         {testimonial.name}
                       </span>
-                      {testimonial.verified && (
-                        <motion.span
-                          className="ml-1.5 sm:ml-2 text-accent text-xs sm:text-sm"
-                          animate={{ scale: [1, 1.2, 1] }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                        >
-                          ✓
-                        </motion.span>
-                      )}
+                      <motion.span
+                        className="ml-1.5 sm:ml-2 text-accent text-xs sm:text-sm"
+                        animate={{ scale: [1, 1.2, 1] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      >
+                        ✓
+                      </motion.span>
                     </div>
                     <div className="text-xs sm:text-sm text-highlight/60">
                       {testimonial.rank}
@@ -281,7 +209,7 @@ export default function SocialProof() {
 
                 <div className="flex items-center justify-between">
                   <div className="flex">
-                    {[...Array(testimonial.rating)].map((_, i) => (
+                    {[...Array(5)].map((_, i) => (
                       <motion.span
                         key={i}
                         className="text-warning text-xs sm:text-sm"
@@ -309,7 +237,7 @@ export default function SocialProof() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="mt-10 sm:mt-16 text-center"
         >
-          <h3 className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-light mb-6 sm:mb-8">Certificado por Expertos</h3>
+          <h3 className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-light mb-6 sm:mb-8">{t(translations.social.certifiedByExperts, lang)}</h3>
           <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 lg:gap-6">
             {[
               { text: "Anti-Cheat Bypass", color: "text-accent" },
@@ -332,10 +260,10 @@ export default function SocialProof() {
           className="mt-10 sm:mt-16 text-center bg-gradient-to-r from-accent/10 to-electric/10 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-accent/20"
         >
           <h3 className="text-xl sm:text-2xl lg:text-3xl font-display font-bold text-light mb-3 sm:mb-4">
-            ¿Listo para Unirte a los Mejores?
+            {t(translations.social.readyToJoin, lang)}
           </h3>
           <p className="text-sm sm:text-base lg:text-xl text-light/60 mb-4 sm:mb-6">
-            Más de 10,000 jugadores ya están dominando con Phantom Protocol
+            {t(translations.social.over10kPlayers, lang)}
           </p>
           <motion.a
             href="#pricing"
@@ -347,7 +275,7 @@ export default function SocialProof() {
             whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(255,70,85,0.5)' }}
             whileTap={{ scale: 0.95 }}
           >
-            OBTENER PHANTOM PROTOCOL AHORA
+            {t(translations.social.ctaButton, lang)}
           </motion.a>
         </motion.div>
       </div>

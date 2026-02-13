@@ -2,8 +2,13 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useState, useMemo } from 'react'
+import { translations, t, type Lang } from '../translations'
 
-export default function LoadingScreen() {
+interface LoadingScreenProps {
+  lang?: Lang
+}
+
+export default function LoadingScreen({ lang = 'es' }: LoadingScreenProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [progress, setProgress] = useState(0)
   const [statusText, setStatusText] = useState('INITIALIZING PHANTOM PROTOCOL')
@@ -37,23 +42,14 @@ export default function LoadingScreen() {
   }, [])
 
   useEffect(() => {
-    const statusMessages = [
-      'INITIALIZING PHANTOM PROTOCOL',
-      'LOADING NEURAL ENGINE',
-      'CALIBRATING AIMBOT ENGINE',
-      'BYPASSING VANGUARD',
-      'ESTABLISHING SECURE CONNECTION',
-      'DEPLOYING WALLHACK MODULE',
-      'ACTIVATING GOD MODE',
-      'SYSTEM READY'
-    ]
+    const statusMessages = translations.loading.statusMessages[lang]
 
     const interval = setInterval(() => {
       setProgress(prev => {
         const next = prev + Math.random() * 3.5 + 1
         if (next >= 100) {
           clearInterval(interval)
-          setStatusText('SYSTEM READY')
+          setStatusText(statusMessages[statusMessages.length - 1])
           setTimeout(() => setIsLoading(false), 1000)
           return 100
         }
@@ -594,7 +590,7 @@ export default function LoadingScreen() {
                   </span>
                   <span className="text-white/20 mx-1 sm:mx-3">=</span>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FF4655] to-[#FFD700]">
-                    MODO DIOS
+                    {t(translations.loading.godMode, lang)}
                   </span>
                 </motion.h1>
                 <motion.div

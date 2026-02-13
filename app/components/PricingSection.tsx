@@ -3,112 +3,76 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import CheckoutModal from './CheckoutModal'
+import { translations, t, type Lang } from '../translations'
 
-const plans = [
-  {
-    name: "STARTER",
-    price: 15,
-    originalPrice: 25,
-    duration: "7 días",
-    features: [
-      "Aimbot Básico",
-      "Wallhack Estándar",
-      "ESP Básico",
-      "Soporte Discord",
-      "Actualizaciones incluidas",
-      "Guía de instalación"
-    ],
-    color: "from-accent to-highlight",
-    borderColor: "border-accent/30",
-    popular: false,
-    note: "Ideal para probar",
-    savings: "40",
-    perDay: "2.14"
-  },
-  {
-    name: "PRO",
-    price: 30,
-    originalPrice: 50,
-    duration: "30 días",
-    features: [
-      "Aimbot Avanzado + Prediction",
-      "Wallhack Inteligente 360°",
-      "ESP Completo + Radar",
-      "Soporte Prioritario",
-      "Configs Pro incluidas",
-      "Auto-Update + HWID Spoofer",
-      "Anti-Screenshot Protection"
-    ],
-    color: "from-highlight to-accent",
-    borderColor: "border-highlight/40",
-    popular: true,
-    note: "Más elegido",
-    savings: "40",
-    perDay: "1.00",
-    bonus: "Config pack valorado en $25"
-  },
-  {
-    name: "ELITE",
-    price: 85,
-    originalPrice: 150,
-    duration: "365 días",
-    features: [
-      "Todo lo de PRO incluido",
-      "IA Predictiva Anti-Recoil",
-      "Triggerbot + RCS Avanzado",
-      "Stream-Proof Mode",
-      "Config Remota en vivo",
-      "Soporte dedicado 24/7",
-      "Beta Features + Early Access",
-      "HWID Spoofer Premium",
-      "Garantía Anti-Ban Extendida"
-    ],
-    color: "from-electric to-accent",
-    borderColor: "border-electric/40",
-    popular: false,
-    note: "Mejor valor anual",
-    savings: "43",
-    perDay: "0.23",
-    badge: "MEJOR VALOR",
-    bonus: "HWID Spoofer Premium incluido"
-  },
-  {
-    name: "LIFETIME",
-    price: 200,
-    originalPrice: 400,
-    duration: "De por vida",
-    features: [
-      "Acceso perpetuo",
-      "Todo lo de ELITE incluido",
-      "Actualizaciones de por vida",
-      "Nuevos productos gratis",
-      "Soporte premium ilimitado",
-      "Beta exclusiva",
-      "Sistema de referidos VIP",
-      "Licencia transferible 1x",
-      "Garantía Anti-Ban total"
-    ],
-    color: "from-highlight via-accent to-electric",
-    borderColor: "border-highlight/40",
-    popular: false,
-    note: "Inversión única",
-    badge: "PREMIUM",
-    savings: "50",
-    perDay: "0"
-  }
-]
+interface PricingSectionProps {
+  lang?: Lang
+}
 
-// Recent purchases for social proof
-const recentPurchases = [
-  { user: "Miguel R.", plan: "PRO", time: "hace 2 min", country: "🇲🇽" },
-  { user: "Carlos L.", plan: "ELITE", time: "hace 5 min", country: "🇦🇷" },
-  { user: "Juan P.", plan: "PRO", time: "hace 8 min", country: "🇨🇴" },
-  { user: "Diego M.", plan: "STARTER", time: "hace 12 min", country: "🇪🇸" },
-  { user: "Alex V.", plan: "ELITE", time: "hace 15 min", country: "🇨🇱" },
-  { user: "Pablo S.", plan: "PRO", time: "hace 18 min", country: "🇵🇪" },
-]
+export default function PricingSection({ lang = 'es' }: PricingSectionProps) {
+  const pT = translations.pricing
 
-export default function PricingSection() {
+  const plans = [
+    {
+      name: "STARTER",
+      price: 15,
+      originalPrice: 25,
+      duration: t(pT.plans.starter.duration, lang),
+      features: pT.plans.starter.features[lang],
+      color: "from-accent to-highlight",
+      borderColor: "border-accent/30",
+      popular: false,
+      note: t(pT.plans.starter.note, lang),
+      savings: "40",
+      perDay: "2.14"
+    },
+    {
+      name: "PRO",
+      price: 30,
+      originalPrice: 50,
+      duration: t(pT.plans.pro.duration, lang),
+      features: pT.plans.pro.features[lang],
+      color: "from-highlight to-accent",
+      borderColor: "border-highlight/40",
+      popular: true,
+      note: t(pT.plans.pro.note, lang),
+      savings: "40",
+      perDay: "1.00",
+      bonus: t(pT.plans.pro.bonus, lang)
+    },
+    {
+      name: "ELITE",
+      price: 85,
+      originalPrice: 150,
+      duration: t(pT.plans.elite.duration, lang),
+      features: pT.plans.elite.features[lang],
+      color: "from-electric to-accent",
+      borderColor: "border-electric/40",
+      popular: false,
+      note: t(pT.plans.elite.note, lang),
+      savings: "43",
+      perDay: "0.23",
+      badge: t(pT.plans.elite.badge, lang),
+      bonus: t(pT.plans.elite.bonus, lang)
+    },
+    {
+      name: "LIFETIME",
+      price: 200,
+      originalPrice: 400,
+      duration: t(pT.plans.lifetime.duration, lang),
+      features: pT.plans.lifetime.features[lang],
+      color: "from-highlight via-accent to-electric",
+      borderColor: "border-highlight/40",
+      popular: false,
+      note: t(pT.plans.lifetime.note, lang),
+      badge: t(pT.plans.lifetime.badge, lang),
+      savings: "50",
+      perDay: "0"
+    }
+  ]
+
+  const recentPurchases = pT.recentPurchases[lang] as readonly { user: string; plan: string; time: string; country: string }[]
+
   const [timeLeft, setTimeLeft] = useState({
     hours: 23,
     minutes: 47,
@@ -117,7 +81,7 @@ export default function PricingSection() {
 
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false)
   const [selectedPlan, setSelectedPlan] = useState<typeof plans[0] | null>(null)
-  const [recentPurchase, setRecentPurchase] = useState<typeof recentPurchases[0] | null>(null)
+  const [recentPurchase, setRecentPurchase] = useState<{ user: string; plan: string; time: string; country: string } | null>(null)
   const [showPurchaseNotif, setShowPurchaseNotif] = useState(false)
 
   const handleBuyNow = (plan: typeof plans[0]) => {
@@ -159,7 +123,7 @@ export default function PricingSection() {
       clearTimeout(initialTimeout)
       clearInterval(interval)
     }
-  }, [])
+  }, [recentPurchases])
 
   return (
     <section id="pricing" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
@@ -178,7 +142,7 @@ export default function PricingSection() {
               </div>
               <div>
                 <p className="text-light font-bold text-sm">
-                  {recentPurchase.user} adquirió {recentPurchase.plan}
+                  {recentPurchase.user} {t(pT.purchased, lang)} {recentPurchase.plan}
                 </p>
                 <p className="text-success text-xs font-medium">
                   {recentPurchase.time}
@@ -205,20 +169,20 @@ export default function PricingSection() {
             transition={{ delay: 0.2, duration: 0.6 }}
             className="inline-flex items-center gap-2 bg-accent/10 border border-accent/30 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8"
           >
-            <span className="text-accent font-medium text-sm sm:text-base">Planes de Acceso</span>
+            <span className="text-accent font-medium text-sm sm:text-base">{t(pT.accessPlans, lang)}</span>
           </motion.div>
 
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-black mb-4 sm:mb-6 leading-[0.9]">
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-light to-highlight">
-              ELIGE TU
+              {t(pT.chooseYour, lang)}
             </span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-accent to-highlight">
-              VENTAJA
+              {t(pT.advantage, lang)}
             </span>
           </h2>
 
           <p className="text-light/60 text-base sm:text-lg max-w-2xl mx-auto mb-8">
-            Cada plan incluye acceso completo al sistema, actualizaciones automáticas y soporte técnico
+            {t(pT.subtitle, lang)}
           </p>
 
           {/* Timer - subtle */}
@@ -230,7 +194,7 @@ export default function PricingSection() {
             className="bg-accent/5 border border-accent/20 rounded-2xl p-4 sm:p-6 inline-block backdrop-blur-sm"
           >
             <p className="text-light/70 font-medium text-sm sm:text-base mb-3">
-              Precios promocionales terminan en:
+              {t(pT.promoEnds, lang)}
             </p>
             <div className="flex justify-center items-center gap-2 sm:gap-4 text-2xl sm:text-3xl md:text-4xl font-black">
               <div className="text-center bg-primary/60 rounded-xl px-3 sm:px-4 py-2 min-w-[60px] sm:min-w-[75px]">
@@ -275,7 +239,7 @@ export default function PricingSection() {
                   animate={{ y: [0, -2, 0] }}
                   transition={{ duration: 3, repeat: Infinity }}
                 >
-                  MÁS ELEGIDO
+                  {t(pT.mostChosen, lang)}
                 </motion.div>
               )}
 
@@ -321,7 +285,7 @@ export default function PricingSection() {
                       {plan.savings && (
                         <div className="inline-flex items-center gap-1 bg-success/20 border border-success/40 rounded-full px-3 py-1 mb-2">
                           <span className="text-success text-sm font-bold">
-                            Ahorra {plan.savings}%
+                            {t(pT.save, lang)} {plan.savings}%
                           </span>
                         </div>
                       )}
@@ -332,7 +296,7 @@ export default function PricingSection() {
 
                       {plan.perDay !== "0" && (
                         <p className="text-light/50 text-xs sm:text-sm mt-1">
-                          ${plan.perDay}/día
+                          ${plan.perDay}{t(pT.perDay, lang)}
                         </p>
                       )}
 
@@ -381,7 +345,7 @@ export default function PricingSection() {
                     whileTap={{ scale: 0.98 }}
                   >
                     <span className="flex items-center justify-center gap-2">
-                      Obtener Acceso
+                      {t(pT.getAccessBtn, lang)}
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                       </svg>
@@ -404,18 +368,18 @@ export default function PricingSection() {
           {[
             {
               icon: "🛡️",
-              title: "100% Indetectable",
-              description: "Garantía anti-ban o reembolso completo"
+              title: t(pT.guarantees.undetectable.title, lang),
+              description: t(pT.guarantees.undetectable.desc, lang)
             },
             {
               icon: "⚡",
-              title: "Activación Instantánea",
-              description: "Acceso inmediato tras el pago"
+              title: t(pT.guarantees.instant.title, lang),
+              description: t(pT.guarantees.instant.desc, lang)
             },
             {
               icon: "🔄",
-              title: "Actualizaciones Gratis",
-              description: "Siempre compatible con la última versión"
+              title: t(pT.guarantees.freeUpdates.title, lang),
+              description: t(pT.guarantees.freeUpdates.desc, lang)
             }
           ].map((guarantee, index) => (
             <motion.div

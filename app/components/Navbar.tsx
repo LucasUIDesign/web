@@ -5,8 +5,13 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Logo from './Logo'
 import StatusModal from './StatusModal'
+import { translations, t, type Lang } from '../translations'
 
-export default function Navbar() {
+interface NavbarProps {
+  lang?: Lang
+}
+
+export default function Navbar({ lang = 'es' }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [showStatusModal, setShowStatusModal] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -35,11 +40,13 @@ export default function Navbar() {
   }, [])
 
   const navItems = [
-    { name: 'Store', href: '#pricing' },
-    { name: 'Features', href: '#features' },
-    { name: 'Status', href: '#status', onClick: () => setShowStatusModal(true) },
-    { name: 'Support', href: '/support' }
+    { name: t(translations.navbar.store, lang), href: '#pricing' },
+    { name: t(translations.navbar.features, lang), href: '#features' },
+    { name: t(translations.navbar.status, lang), href: '#status', onClick: () => setShowStatusModal(true) },
+    { name: t(translations.navbar.support, lang), href: '/support' }
   ]
+
+  const langPrefix = lang === 'es' ? '/' : `/${lang}`
 
   return (
     <>
@@ -92,9 +99,21 @@ export default function Navbar() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
               >
-                <span className="text-accent font-bold px-2 py-1 bg-accent/10 rounded text-[11px]">ES</span>
-                <Link href="/en" className="px-2 py-1 text-light/40 hover:text-accent transition-colors text-[11px]">EN</Link>
-                <Link href="/pt" className="px-2 py-1 text-light/40 hover:text-accent transition-colors text-[11px]">PT</Link>
+                {lang === 'es' ? (
+                  <span className="text-accent font-bold px-2 py-1 bg-accent/10 rounded text-[11px]">ES</span>
+                ) : (
+                  <Link href="/" className="px-2 py-1 text-light/40 hover:text-accent transition-colors text-[11px]">ES</Link>
+                )}
+                {lang === 'en' ? (
+                  <span className="text-accent font-bold px-2 py-1 bg-accent/10 rounded text-[11px]">EN</span>
+                ) : (
+                  <Link href="/en" className="px-2 py-1 text-light/40 hover:text-accent transition-colors text-[11px]">EN</Link>
+                )}
+                {lang === 'pt' ? (
+                  <span className="text-accent font-bold px-2 py-1 bg-accent/10 rounded text-[11px]">PT</span>
+                ) : (
+                  <Link href="/pt" className="px-2 py-1 text-light/40 hover:text-accent transition-colors text-[11px]">PT</Link>
+                )}
               </motion.div>
 
               {/* Status Indicator */}
@@ -118,7 +137,7 @@ export default function Navbar() {
                     ease: "easeInOut"
                   }}
                 />
-                <span className="text-accent text-xs sm:text-sm font-semibold">Online</span>
+                <span className="text-accent text-xs sm:text-sm font-semibold">{t(translations.navbar.online, lang)}</span>
               </motion.button>
 
               {/* Get Access Button - Desktop */}
@@ -140,7 +159,7 @@ export default function Navbar() {
                 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Get Access
+                {t(translations.navbar.getAccess, lang)}
               </motion.a>
 
               {/* Mobile Menu Button */}
@@ -148,7 +167,7 @@ export default function Navbar() {
                 className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg bg-accent/10 border border-accent/20"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 whileTap={{ scale: 0.9 }}
-                aria-label={mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+                aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={mobileMenuOpen}
               >
                 <motion.span
@@ -224,10 +243,22 @@ export default function Navbar() {
                 {/* Mobile Language Switcher */}
                 <div className="pt-2 border-t border-accent/10">
                   <div className="flex items-center gap-2 px-4 py-3">
-                    <span className="text-light/40 text-xs font-mono mr-1">Idioma:</span>
-                    <span className="text-accent font-bold px-2.5 py-1 bg-accent/10 rounded text-xs font-mono">ES</span>
-                    <Link href="/en" onClick={() => setMobileMenuOpen(false)} className="px-2.5 py-1 text-light/40 hover:text-accent transition-colors text-xs font-mono">EN</Link>
-                    <Link href="/pt" onClick={() => setMobileMenuOpen(false)} className="px-2.5 py-1 text-light/40 hover:text-accent transition-colors text-xs font-mono">PT</Link>
+                    <span className="text-light/40 text-xs font-mono mr-1">{t(translations.navbar.language, lang)}</span>
+                    {lang === 'es' ? (
+                      <span className="text-accent font-bold px-2.5 py-1 bg-accent/10 rounded text-xs font-mono">ES</span>
+                    ) : (
+                      <Link href="/" onClick={() => setMobileMenuOpen(false)} className="px-2.5 py-1 text-light/40 hover:text-accent transition-colors text-xs font-mono">ES</Link>
+                    )}
+                    {lang === 'en' ? (
+                      <span className="text-accent font-bold px-2.5 py-1 bg-accent/10 rounded text-xs font-mono">EN</span>
+                    ) : (
+                      <Link href="/en" onClick={() => setMobileMenuOpen(false)} className="px-2.5 py-1 text-light/40 hover:text-accent transition-colors text-xs font-mono">EN</Link>
+                    )}
+                    {lang === 'pt' ? (
+                      <span className="text-accent font-bold px-2.5 py-1 bg-accent/10 rounded text-xs font-mono">PT</span>
+                    ) : (
+                      <Link href="/pt" onClick={() => setMobileMenuOpen(false)} className="px-2.5 py-1 text-light/40 hover:text-accent transition-colors text-xs font-mono">PT</Link>
+                    )}
                   </div>
                 </div>
 
@@ -239,7 +270,7 @@ export default function Navbar() {
                       animate={{ scale: [1, 1.3, 1], opacity: [1, 0.5, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     />
-                    <span className="text-accent text-sm font-semibold">All services online</span>
+                    <span className="text-accent text-sm font-semibold">{t(translations.navbar.allServicesOnline, lang)}</span>
                   </div>
                 </div>
 
@@ -253,7 +284,7 @@ export default function Navbar() {
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Get Access
+                  {t(translations.navbar.getAccess, lang)}
                 </motion.a>
               </div>
             </motion.div>

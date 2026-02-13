@@ -1,86 +1,78 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Logo from './Logo'
+import { translations, t, type Lang } from '../translations'
 
-export default function Footer() {
-  const currentYear = new Date().getFullYear()
+interface FooterProps {
+  lang?: Lang
+}
 
+export default function Footer({ lang = 'es' }: FooterProps) {
   return (
-    <footer className="bg-[#050508] border-t border-accent/10">
-      <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        {/* Footer Links */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-8">
-          <div className="col-span-2 md:col-span-1">
-            <h4 className="font-display font-bold text-accent mb-3 sm:mb-4 text-base sm:text-lg">PHANTOM PROTOCOL</h4>
-            <p className="text-light/40 text-xs sm:text-sm leading-relaxed">
-              Los cheats más avanzados e indetectables para VALORANT. Aimbot, Wallhack, ESP y más. Domina cada partida.
+    <footer id="footer" className="relative py-12 sm:py-16 px-4 sm:px-6 border-t border-accent/10 bg-gradient-to-b from-primary to-dark overflow-hidden">
+      {/* Glow effect */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-accent/5 blur-3xl" />
+
+      <div className="container mx-auto max-w-7xl relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-10 sm:mb-14">
+          {/* Brand */}
+          <div className="sm:col-span-2 lg:col-span-1">
+            <Logo size="small" />
+            <p className="text-light/40 text-sm mt-4 leading-relaxed max-w-xs">
+              {t(translations.footer.description, lang)}
             </p>
           </div>
 
+          {/* Products */}
           <div>
-            <h4 className="font-display font-bold text-light/80 mb-3 sm:mb-4 text-sm sm:text-base">Productos</h4>
-            <ul className="space-y-1.5 sm:space-y-2 text-light/40 text-xs sm:text-sm">
-              <li><a href="#pricing" className="hover:text-accent transition-colors">Phantom Protocol</a></li>
-              <li><a href="#features" className="hover:text-accent transition-colors">Características</a></li>
-              <li><a href="#pricing" className="hover:text-accent transition-colors">Planes de Acceso</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Documentación</a></li>
+            <h3 className="text-light font-display font-bold text-sm mb-4 tracking-wider uppercase">{t(translations.footer.products, lang)}</h3>
+            <ul className="space-y-2.5">
+              <li><a href="#features" className="text-light/40 hover:text-accent transition-colors text-sm">{t(translations.footer.characteristics, lang)}</a></li>
+              <li><a href="#pricing" className="text-light/40 hover:text-accent transition-colors text-sm">{t(translations.footer.accessPlans, lang)}</a></li>
+              <li><a href="#" className="text-light/40 hover:text-accent transition-colors text-sm">{t(translations.footer.documentation, lang)}</a></li>
             </ul>
           </div>
 
+          {/* Support */}
           <div>
-            <h4 className="font-display font-bold text-light/80 mb-3 sm:mb-4 text-sm sm:text-base">Soporte</h4>
-            <ul className="space-y-1.5 sm:space-y-2 text-light/40 text-xs sm:text-sm">
-              <li><a href="/support" className="hover:text-highlight transition-colors">Centro de Ayuda</a></li>
-              <li><a href="/support" className="hover:text-highlight transition-colors">Guías de Instalación</a></li>
-              <li><a href="/support" className="hover:text-highlight transition-colors">Preguntas Frecuentes</a></li>
-              <li><a href="/support" className="hover:text-highlight transition-colors">Soporte 24/7</a></li>
+            <h3 className="text-light font-display font-bold text-sm mb-4 tracking-wider uppercase">{t(translations.footer.supportTitle, lang)}</h3>
+            <ul className="space-y-2.5">
+              <li><a href="#" className="text-light/40 hover:text-accent transition-colors text-sm">{t(translations.footer.helpCenter, lang)}</a></li>
+              <li><a href="#" className="text-light/40 hover:text-accent transition-colors text-sm">{t(translations.footer.installGuides, lang)}</a></li>
+              <li><a href="#" className="text-light/40 hover:text-accent transition-colors text-sm">{t(translations.footer.faq, lang)}</a></li>
+              <li><a href="#" className="text-light/40 hover:text-accent transition-colors text-sm">{t(translations.footer.support247, lang)}</a></li>
             </ul>
           </div>
 
+          {/* Legal */}
           <div>
-            <h4 className="font-display font-bold text-light/80 mb-3 sm:mb-4 text-sm sm:text-base">Legal</h4>
-            <ul className="space-y-1.5 sm:space-y-2 text-light/40 text-xs sm:text-sm">
-              <li><a href="#" className="hover:text-light/70 transition-colors">Términos de Uso</a></li>
-              <li><a href="#" className="hover:text-light/70 transition-colors">Política de Privacidad</a></li>
-              <li><a href="#" className="hover:text-light/70 transition-colors">Política de Reembolsos</a></li>
+            <h3 className="text-light font-display font-bold text-sm mb-4 tracking-wider uppercase">{t(translations.footer.legal, lang)}</h3>
+            <ul className="space-y-2.5">
+              <li><a href="#" className="text-light/40 hover:text-accent transition-colors text-sm">{t(translations.footer.terms, lang)}</a></li>
+              <li><a href="#" className="text-light/40 hover:text-accent transition-colors text-sm">{t(translations.footer.privacy, lang)}</a></li>
+              <li><a href="#" className="text-light/40 hover:text-accent transition-colors text-sm">{t(translations.footer.refunds, lang)}</a></li>
             </ul>
           </div>
         </div>
 
-        {/* Divider with gradient */}
-        <div className="h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent mb-6" />
-
-        {/* Copyright */}
-        <div className="text-center">
-          <div className="text-light/30 text-xs sm:text-sm font-mono">
-            © {currentYear} Phantom Protocol. All rights reserved.
-          </div>
+        {/* Bottom Bar */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-accent/10">
+          <p className="text-light/30 text-xs sm:text-sm text-center sm:text-left">
+            &copy; {new Date().getFullYear()} Phantom Protocol. All rights reserved.
+          </p>
+          <motion.a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault()
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
+            className="text-accent hover:text-highlight text-xs sm:text-sm font-semibold transition-colors cursor-pointer"
+            whileHover={{ y: -2 }}
+          >
+            ↑ {t(translations.footer.backToTop, lang)}
+          </motion.a>
         </div>
-
-        {/* Floating back to top button */}
-        <motion.button
-          aria-label="Volver arriba"
-          className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 p-2.5 sm:p-3 rounded-full shadow-lg z-50"
-          style={{
-            background: 'linear-gradient(135deg, rgba(255,70,85,0.2), rgba(200,80,192,0.2))',
-            border: '1px solid rgba(255,70,85,0.3)',
-            backdropFilter: 'blur(10px)',
-            boxShadow: '0 0 20px rgba(255,70,85,0.15)'
-          }}
-          whileHover={{
-            scale: 1.1,
-            boxShadow: '0 0 30px rgba(255,70,85,0.3)'
-          }}
-          whileTap={{ scale: 0.9 }}
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 2 }}
-        >
-          <svg className="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-          </svg>
-        </motion.button>
       </div>
     </footer>
   )
